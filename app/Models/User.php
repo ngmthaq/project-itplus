@@ -18,9 +18,12 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name',
+        'role_id',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'remember_token'
     ];
 
     /**
@@ -41,4 +44,31 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Table
+    protected $table = 'users';
+
+    // Has a user information
+    public function userInformation()
+    {
+        return $this->hasOne(UserInformation::class, 'user_id');
+    }
+
+    // Has many comments
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
+
+    // Has many posts
+    public function posts()
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
+
+    // Belong to role
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }
