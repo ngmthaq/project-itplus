@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@300;400;500;600&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Glory:wght@100;200;300;400;500;600;700&display=swap');
 /* ANIMATION */
 
 @-webkit-keyframes fadeOut {
@@ -49,7 +48,7 @@
     --secondary-color: #999;
     --border-color: #000;
     --serif: 'Playfair Display', serif;
-    --sans-serif: 'Dosis', sans-serif;
+    --sans-serif: 'Glory', sans-serif;
 }
 
 /* BODY */
@@ -126,6 +125,10 @@ ul.social li a:hover {
     color: var(--text-secondary-color);
 }
 
+.text-main {
+    color: var(--main-color);
+}
+
 /* HEADER */
 
 header {
@@ -133,6 +136,7 @@ header {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 1;
 }
 
 .top-header {
@@ -168,6 +172,8 @@ header {
 .my-navbar-list li a:hover {
     color: var(--main-color);
 }
+
+/* HEADER SEARCH */
 
 .search-form {
     display: flex;
@@ -220,6 +226,12 @@ header {
     color: var(--main-color) !important;
 }
 
+/* REQUIRED */
+
+.required {
+    color: red;
+}
+
 /* SCROLL TO TOP */
 
 .scroll-to-top {
@@ -232,5 +244,61 @@ header {
     padding: 6px;
     border-radius: 2px;
     display: none;
-    animation: fadeIn .2s ease-in-out;
+    -webkit-animation: fadeIn .2s ease-in-out;
+            animation: fadeIn .2s ease-in-out;
+}
+
+/* BREADCRUM */
+
+.breadcrum {
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    background: #fff;
+    border-radius: 2px;
+}
+
+.breadcrum>li {
+    margin-right: 10px;
+}
+
+.breadcrum>li>a {
+    text-decoration: none;
+    color: var(--main-color);
+}
+
+.breadcrum>li:last-child>a {
+    color: var(--text-color);
+}
+
+/* LABEL */
+
+.label-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* BUTTON */
+
+.button-md-main {
+    background-color: var(--main-color);
+    color: var(--text-secondary-color);
+    border: none;
+    outline: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+/* MAP */
+.map {
+    height: 200px;
+    width: 100%;
+}
+
+/* FOOTER */
+
+.bottom-footer {
+    padding: 25px 0;
+    border-top: 1px solid #fff;
 }

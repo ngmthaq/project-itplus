@@ -5,12 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {{-- Directory Link --}}
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/owlcarousel/dist/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/owlcarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    {{-- CDN Link --}}
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.7.0/css/ol.css" type="text/css">
     <title>@yield('title')</title>
     @stack('css')
 </head>
@@ -23,6 +27,10 @@
         @include('web.parts._footer._scroll-to-top')
     </div>
 
+    {{-- CDN Script --}}
+    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.7.0/build/ol.js"></script>
+
+    {{-- Directory Script --}}
     <script src="{{ asset('vendors/jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendors/fontawesome/js/all.min.js') }}"></script>
@@ -31,15 +39,13 @@
     <script>
         $(function() {
             // Scroll event
-            $(window).scroll(function () { 
-                if (document.body.scrollTop > 5 || document.documentElement.scrollTop > 5) {
-                    console.log('a');
+            $(window).scroll(function() {
+                if (document.body.scrollTop > 260 || document.documentElement.scrollTop > 260) {
                     $('header').css('position', 'fixed');
                     $('.top-header').slideUp();
                     $('.main-header').slideUp();
                     $('.scroll-to-top').css('display', 'block');
                 } else {
-                    console.log('b');
                     $('header').css('position', 'relative');
                     $('.top-header').slideDown();
                     $('.main-header').slideDown();
@@ -87,6 +93,22 @@
                 $('#currentTime').html(dayHandle + ", " + date + " " + time);
             }, 1000)
         })
+    </script>
+
+    {{-- Map Script --}}
+    <script type="text/javascript">
+        var map = new ol.Map({
+            target: 'map',
+            layers: [
+                new ol.layer.Tile({
+                    source: new ol.source.OSM()
+                })
+            ],
+            view: new ol.View({
+                center: ol.proj.fromLonLat([105.7750235, 21.0367009]),
+                zoom: 17
+            })
+        });
     </script>
     @stack('js')
 </body>

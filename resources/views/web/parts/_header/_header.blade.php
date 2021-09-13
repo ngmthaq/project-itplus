@@ -6,9 +6,9 @@
                 {{ date('l, d-m-Y H:i:s') }}
             </li>
             <li>
-                <a href="#" class="vi link">Đăng nhập</a>
+                <a href="#" class="vi link @php echo $site == 'login' ? ' active ' : '' @endphp">Đăng nhập</a>
                 <span>/</span>
-                <a href="#" class="vi link">Đăng ký</a>
+                <a href="#" class="vi link @php echo $site == 'register' ? ' active ' : '' @endphp">Đăng ký</a>
             </li>
         </ul>
 

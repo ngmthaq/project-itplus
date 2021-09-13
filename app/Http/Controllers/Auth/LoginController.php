@@ -11,6 +11,7 @@ class LoginController extends Controller
     public function show()
     {
         $categories = Category::all();
-        return view('web.main.login', compact('categories'));
+        $site = 'login';
+        return view('web.main.login', compact('categories', 'site'));
     }
 }
