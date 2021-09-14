@@ -15,20 +15,50 @@
     <div class="login container">
         <div class="row">
             <div class="col-lg-6">
-                <form action="">
+                <form class="login-form" action="{{ route('login') }}" method="POST">
+                    @csrf
                     <div class="form-group">
                         <h2 class="vi">Đăng nhập</h2>
                     </div>
                     <div class="form-group">
-                        <label for="email">Email <small class="required">*</small></label>
+                        <label for="email">
+                            Email
+                            <small class="required">*</small>
+                        </label>
                         <input type="text" name="email" id="email" class="form-control">
+                        <small class="required email-error">
+                            @if ($errors->has('email'))
+                                @foreach ($errors->get('email') as $item)
+                                    {{ $item }} <br>
+                                @endforeach
+                            @endif
+                        </small>
                     </div>
                     <div class="form-group">
                         <div class="label-container">
-                            <label class="vi" for="password">Mật khẩu <small class="required">*</small></label>
+                            <label class="vi" for="password">
+                                Mật khẩu
+                                <small class="required">*</small>
+                            </label>
                             <label class="vi"><a href="#">Quên mật khẩu?</a></label>
                         </div>
                         <input type="password" name="password" id="password" class="form-control">
+                        <small class="password-error @php echo $errors->has('password') ? " required " : "" @endphp">
+                            @if ($errors->has('password'))
+                                @foreach ($errors->get('password') as $item)
+                                    {{ $item }} <br>
+                                @endforeach
+                            @else
+                                Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số
+                            @endif
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input type="checkbox" name="remember-me" id="remember-me" class="form-check-input"
+                                value="true">
+                            <label for="remember-me" class="form-check-label user-select-none">Lưu đăng nhập</label>
+                        </div>
                     </div>
                     <div class="form-group">
                         <div class="label-container">
@@ -47,9 +77,55 @@
         .login form {
             padding: 50px 0;
         }
+
     </style>
 @endpush
 
 @push('js')
+    <script>
+        $(function() {
+            // Email validate
+            function validateEmail(email) {
+                const regex =
+                    /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
+                return regex.test(email);
+            }
 
+            // Password validate: Có ít nhất 8 số, có tối thiểu 1 chữ và 1 số
+            function validatePassword(password) {
+                const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+                return regex.test(password)
+            }
+
+            // Login validate
+            $('form.login-form').submit(function(e) {
+                // Reset
+                $('small.email-error').text("");
+                $('small.password-error').removeClass('required');
+
+                let isValidated = true;
+                let emailErr = [
+                    'Vui lòng nhập email của bạn',
+                ];
+                let passwordErr = [
+                    'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số',
+                    'Please enter your password'
+                ];
+                if (!validateEmail($('input#email').val())) {
+                    console.log('F');
+                    isValidated = false;
+                    $('small.email-error').text(emailErr[0]);
+                }
+                if (!validatePassword($('input#password').val())) {
+                    console.log('F');
+                    isValidated = false;
+                    $('small.password-error').text(passwordErr[0]);
+                    $('small.password-error').addClass('required');
+                }
+                if (!isValidated) {
+                    e.preventDefault();
+                }
+            });
+        })
+    </script>
 @endpush

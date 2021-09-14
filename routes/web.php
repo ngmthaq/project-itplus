@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+    return view('web.main.homepage', [
+        'categories' => Category::all(),
+        'site' => 'homepage'
+    ]);
+});
+
 // Login
 Route::get('/login', [LoginController::class, 'show'])
     ->name('login.show');
-
+Route::post('/login', [LoginController::class, 'login'])
+    ->name('login');
 

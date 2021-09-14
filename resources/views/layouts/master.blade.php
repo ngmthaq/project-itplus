@@ -40,16 +40,14 @@
         $(function() {
             // Scroll event
             $(window).scroll(function() {
-                if (document.body.scrollTop > 260 || document.documentElement.scrollTop > 260) {
-                    $('header').css('position', 'fixed');
+                if (document.body.scrollTop > 140 || document.documentElement.scrollTop > 140) {
                     $('.top-header').slideUp();
                     $('.main-header').slideUp();
-                    $('.scroll-to-top').css('display', 'block');
+                    $('.scroll-to-top').show();
                 } else {
-                    $('header').css('position', 'relative');
                     $('.top-header').slideDown();
                     $('.main-header').slideDown();
-                    $('.scroll-to-top').css('display', 'none');
+                    $('.scroll-to-top').hide();
                 }
             });
 

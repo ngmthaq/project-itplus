@@ -132,11 +132,12 @@ ul.social li a:hover {
 /* HEADER */
 
 header {
-    position: relative;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1;
+    background-color: var(--background-color);
 }
 
 .top-header {
@@ -153,6 +154,7 @@ header {
 
 .my-navbar {
     padding: 10px 0;
+    background-color: var(--background-color);
 }
 
 .my-navbar-list {
@@ -254,6 +256,7 @@ header {
     width: 100%;
     display: flex;
     padding: 10px;
+    margin-top: 205px;
     background: #fff;
     border-radius: 2px;
 }

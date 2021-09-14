@@ -6,9 +6,20 @@
                 {{ date('l, d-m-Y H:i:s') }}
             </li>
             <li>
-                <a href="#" class="vi link @php echo $site == 'login' ? ' active ' : '' @endphp">Đăng nhập</a>
-                <span>/</span>
-                <a href="#" class="vi link @php echo $site == 'register' ? ' active ' : '' @endphp">Đăng ký</a>
+                @if (Auth::check())
+                    <a href="javascript:void(0)" class="link">
+                        {{ Auth::user()->first_name }}
+                        {{ Auth::user()->last_name }}
+                    </a>
+                @else
+                    <a href="{{ route('login.show') }}" class="vi link @php echo $site == 'login' ? ' active ' : '' @endphp">
+                        Đăng nhập
+                    </a>
+                    <span>/</span>
+                    <a href="#" class="vi link @php echo $site == 'register' ? ' active ' : '' @endphp">
+                        Đăng ký
+                    </a>
+                @endif
             </li>
         </ul>
 
@@ -47,6 +58,11 @@
                             <div class="dropdown-container">
                                 <a href="#">Giới thiệu</a>
                                 <a href="#">Liên hệ</a>
+                                @auth
+                                    @if (Auth::user()->role_id == 1)
+                                        <a href="/dashboard">Trang quản lý</a>
+                                    @endif
+                                @endauth
                             </div>
                         </li>
                     </ul>
