@@ -25,7 +25,7 @@
                             Email
                             <small class="required">*</small>
                         </label>
-                        <input type="text" name="email" id="email" class="form-control">
+                        <input type="text" name="email" id="email" class="form-control" value="{{ old('email') }}" placeholder="VD: emailcuaban@emaildomain.com">
                         <small class="required email-error">
                             @if ($errors->has('email'))
                                 @foreach ($errors->get('email') as $item)
@@ -43,13 +43,14 @@
                             <label class="vi"><a href="#">Quên mật khẩu?</a></label>
                         </div>
                         <input type="password" name="password" id="password" class="form-control">
-                        <small class="password-error @php echo $errors->has('password') ? " required " : "" @endphp">
+                        <small class="password-error required">
                             @if ($errors->has('password'))
                                 @foreach ($errors->get('password') as $item)
                                     {{ $item }} <br>
                                 @endforeach
-                            @else
-                                Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số
+                            @endif
+                            @if (session('login_error'))
+                                {{ session('login_error') }}
                             @endif
                         </small>
                     </div>
@@ -63,7 +64,7 @@
                     <div class="form-group">
                         <div class="label-container">
                             <button class="vi button-md-main" type="submit">Đăng nhập</button>
-                            <label><a href="#">Đăng ký tài khoản?</a></label>
+                            <label><a href="{{ route('register.show') }}">Đăng ký tài khoản?</a></label>
                         </div>
                     </div>
                 </form>
@@ -101,23 +102,20 @@
             $('form.login-form').submit(function(e) {
                 // Reset
                 $('small.email-error').text("");
-                $('small.password-error').removeClass('required');
+                $('small.password-error').text("");
 
                 let isValidated = true;
                 let emailErr = [
                     'Vui lòng nhập email của bạn',
                 ];
                 let passwordErr = [
-                    'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số',
-                    'Please enter your password'
+                    'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số'
                 ];
                 if (!validateEmail($('input#email').val())) {
-                    console.log('F');
                     isValidated = false;
                     $('small.email-error').text(emailErr[0]);
                 }
                 if (!validatePassword($('input#password').val())) {
-                    console.log('F');
                     isValidated = false;
                     $('small.password-error').text(passwordErr[0]);
                     $('small.password-error').addClass('required');

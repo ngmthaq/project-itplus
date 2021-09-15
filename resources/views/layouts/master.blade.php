@@ -21,6 +21,7 @@
 
 <body>
     <div id="master">
+        @include('web.parts._header._toast')
         @include('web.parts._header._header')
         @yield('content')
         @include('web.parts._footer._footer')
@@ -55,6 +56,15 @@
             $('.dropdown-button').click(function() {
                 $('.dropdown-container').slideToggle();
             })
+
+            // User action dropdown
+            $('.user-action').hover(function() {
+                // over
+                $('.user-action-container').slideDown();
+            }, function() {
+                // out
+                $('.user-action-container').slideUp();
+            });
 
             // Hiển thị thời gian
             setInterval(function() {

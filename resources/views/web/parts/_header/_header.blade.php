@@ -5,18 +5,28 @@
             <li id="currentTime">
                 {{ date('l, d-m-Y H:i:s') }}
             </li>
-            <li>
+            <li @auth class="user-action" @endauth>
                 @if (Auth::check())
                     <a href="javascript:void(0)" class="link">
-                        {{ Auth::user()->first_name }}
-                        {{ Auth::user()->last_name }}
+                        <span>
+                            {{ Auth::user()->first_name }}
+                            {{ Auth::user()->last_name }}
+                        </span>
+                        <div class="user-action-container">
+                            <a href="#" class="link user-action-item">Xem thông tin cá nhân</a>
+                            <a href="#" class="link user-action-item">Thay đổi thông tin cá nhân</a>
+                            <a href="#" class="link user-action-item">Thay đổi mật khẩu</a>
+                            <a href="{{ route('logout') }}" class="required">Đăng xuất</a>
+                        </div>
                     </a>
                 @else
-                    <a href="{{ route('login.show') }}" class="vi link @php echo $site == 'login' ? ' active ' : '' @endphp">
+                    <a href="{{ route('login.show') }}"
+                        class="vi link @php echo $site == 'login' ? ' active ' : '' @endphp">
                         Đăng nhập
                     </a>
                     <span>/</span>
-                    <a href="#" class="vi link @php echo $site == 'register' ? ' active ' : '' @endphp">
+                    <a href="{{ route('register.show') }}"
+                        class="vi link @php echo $site == 'register' ? ' active ' : '' @endphp">
                         Đăng ký
                     </a>
                 @endif
@@ -60,7 +70,7 @@
                                 <a href="#">Liên hệ</a>
                                 @auth
                                     @if (Auth::user()->role_id == 1)
-                                        <a href="/dashboard">Trang quản lý</a>
+                                        <a href="/dashboard">Quản lý</a>
                                     @endif
                                 @endauth
                             </div>

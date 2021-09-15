@@ -15,9 +15,9 @@ class UserInformation extends Model
     // Fillable
     protected $fillable = [
         'user_id',
-        'dob',
         'is_male',
-        'address'
+        'dob',
+        'address',
     ];
 
     // Belong to user

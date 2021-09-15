@@ -32,6 +32,12 @@ class LoginController extends Controller
             }
             return redirect('/')->with('login_successfully', 'Đăng nhập thành công');
         }
-        return redirect(route('login.show'))->with('login_error', 'Đăng nhập thất bại');
+        return redirect(route('login.show'))->with('login_error', 'Đăng nhập thất bại, kiểm tra lại tài khoản hoặc mật khẩu');
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
     }
 }
