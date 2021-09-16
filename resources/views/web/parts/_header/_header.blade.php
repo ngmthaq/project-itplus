@@ -8,7 +8,7 @@
             <li @auth class="user-action" @endauth>
                 @if (Auth::check())
                     <a href="javascript:void(0)" class="link">
-                        <span>
+                        <span style="padding: 20px 0">
                             {{ Auth::user()->first_name }}
                             {{ Auth::user()->last_name }}
                         </span>

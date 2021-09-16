@@ -31,7 +31,7 @@ class RegisterController extends Controller
             'last_name' => $request->input('last_name'),
             'email' => $request->input('email'),
             'password' => $request->input('password'),
-            'remember_token' => md5($request->input('first_name').$request->input('last_name').$request->input('email').date('Y-m-d H:i:s'))
+            'remember_token' => md5($request->input('first_name') . $request->input('last_name') . $request->input('email') . date('Y-m-d H:i:s'))
         ]);
         if ($user) {
             $userInformation = $user->userInformation()->create([
@@ -42,9 +42,10 @@ class RegisterController extends Controller
         }
         if ($userInformation) {
             Mail::to($user->email)->send(new VerifyEmail($user));
-            return redirect(route('register.show'))->with('error', 'Chúng tôi đã gửi liên kết xác thực vào email của bạn, vui lòng kiểm tra hòm thư của bạn để xác thực tài khoản');
+            return redirect('/')->with('error', 'Chúng tôi đã gửi liên kết xác thực vào email của bạn, vui lòng kiểm tra hòm thư của bạn để xác thực tài khoản');
+        } else {
+            $user->delete();
         }
-        $user->delete();
         return redirect(route('register.show'))->with('error', 'Đăng ký tài khoản thất bại, xin vui lòng thử lại sau ít phút');
     }
 

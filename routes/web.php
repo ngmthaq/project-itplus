@@ -26,20 +26,25 @@ Route::get('/', function() {
 
 // Register
 Route::get('/register', [RegisterController::class, 'show'])
-    ->name('register.show');
+    ->name('register.show')
+    ->middleware('authUserCantAccessToLoginAndRegister');
 Route::post('/register', [RegisterController::class, 'register'])
-    ->name('register');
+    ->name('register')
+    ->middleware('authUserCantAccessToLoginAndRegister');
 
 // Verify email
 Route::get('/verify/{user:remember_token}', [RegisterController::class, 'verify'])
     ->name('verify')
-    ->where(['user' => '[a-zA-Z0-9]+']);
+    ->where(['user' => '[a-zA-Z0-9]+'])
+    ->middleware('authUserCantAccessToLoginAndRegister');
 
 // Login
 Route::get('/login', [LoginController::class, 'show'])
-    ->name('login.show');
+    ->name('login.show')
+    ->middleware('authUserCantAccessToLoginAndRegister');
 Route::post('/login', [LoginController::class, 'login'])
-    ->name('login');
+    ->name('login')
+    ->middleware('authUserCantAccessToLoginAndRegister');
 
 // Logout
 Route::get('/logout', [LoginController::class, 'logout'])

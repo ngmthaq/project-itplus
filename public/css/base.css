@@ -360,6 +360,7 @@ header {
 .my-toast span {
     display: inline-block;
     margin-left: 12px;
+    cursor: pointer;
 }
 
 .my-toast-error {

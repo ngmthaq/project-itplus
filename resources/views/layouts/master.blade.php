@@ -39,22 +39,30 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(function() {
+            // Toast animation
+            $('.my-toast span').click(function() {
+                $(this).parent().fadeOut();
+            })
+            setTimeout(() => {
+                $('.my-toast').fadeOut();
+            }, 5000);
+
             // Scroll event
             $(window).scroll(function() {
                 if (document.body.scrollTop > 140 || document.documentElement.scrollTop > 140) {
-                    $('.top-header').slideUp();
-                    $('.main-header').slideUp();
+                    $('.top-header').slideUp("fast");
+                    $('.main-header').slideUp("fast");
                     $('.scroll-to-top').show();
                 } else {
-                    $('.top-header').slideDown();
-                    $('.main-header').slideDown();
+                    $('.top-header').slideDown("fast");
+                    $('.main-header').slideDown("fast");
                     $('.scroll-to-top').hide();
                 }
             });
 
             // Navbar dropdown
             $('.dropdown-button').click(function() {
-                $('.dropdown-container').slideToggle();
+                $('.dropdown-container').slideToggle("fast");
             })
 
             // User action dropdown
