@@ -93,7 +93,7 @@
                                 <small class="required">*</small>
                             </label>
                             <input type="text" name="email" id="email" class="form-control"
-                                placeholder="VD: emailcuaban@emaildomain.com" value="{{ old('email') }}">
+                                placeholder="VD: dodaitoithieu6kytu@emaildomain.com" value="{{ old('email') }}">
                             <small class="email-error required">
                                 @if ($errors->has('email'))
                                     @foreach ($errors->get('email') as $item)
@@ -144,7 +144,8 @@
                                 Địa chỉ
                                 <small class="required">*</small>
                             </label>
-                            <textarea name="address" id="address" cols="30" rows="5" class="form-control">{{ old('address') }}</textarea>
+                            <textarea name="address" id="address" cols="30" rows="5"
+                                class="form-control">{{ old('address') }}</textarea>
                             <small class="address-error required">
                                 @if ($errors->has('address'))
                                     @foreach ($errors->get('address') as $item)
@@ -228,7 +229,8 @@
                 $('.email-error').text('');
                 $('.password-error').text('Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số');
                 $('.password-error').removeClass('required');
-                $('.confirm-password-error').text('Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số');
+                $('.confirm-password-error').text(
+                'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số');
                 $('.confirm-password-error').removeClass('required');
                 $('.address-error').text('');
                 $('.agree-error').text('');
@@ -243,7 +245,10 @@
                 let lastNameError = ['Vui lòng nhập tên của của bạn'];
                 let genderError = ['Vui lòng chọn giới tính của của bạn'];
                 let dobError = ['Vui lòng nhập ngày sinh của của bạn'];
-                let emailError = ['Vui lòng nhập email có độ dài tên tối thiểu 6 kí tự'];
+                let emailError = [
+                    'Vui lòng nhập đúng định dạng email và email có độ dài tên tối thiểu 6 kí tự',
+                    'Vui lòng nhập email của bạn'
+                ];
                 let passwordError = ['Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số'];
                 let confirmPasswordError = [
                     'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số',
@@ -270,9 +275,14 @@
                     isValidated = false;
                     $('.dob-error').text(dobError[0]);
                 }
-                if (!validateEmail($('#email').val())) {
+                if ($('#email').val() == "") {
                     isValidated = false;
-                    $('.email-error').text(emailError[0]);
+                    $('.email-error').text(emailError[1]);
+                } else {
+                    if (!validateEmail($('#email').val())) {
+                        isValidated = false;
+                        $('.email-error').text(emailError[0]);
+                    }
                 }
                 if (!validatePassword($('#password').val())) {
                     isValidated = false;

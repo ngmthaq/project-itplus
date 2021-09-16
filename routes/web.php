@@ -54,11 +54,9 @@ Route::get('/logout', [LoginController::class, 'logout'])
 // Change password
 Route::get('password/change', [UserController::class, 'changePasswordForm'])
     ->name('user.changePasswordForm')
-    // ->where(['user' => '[1-9]{1}\d{0,}'])
     ->middleware(['authCheck']);
 Route::post('password/change', [UserController::class, 'changePassword'])
     ->name('user.changePassword')
-    // ->where(['user' => '[1-9]{1}\d{0,}'])
     ->middleware('authCheck');
 
 // Reset password

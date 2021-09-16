@@ -26,11 +26,11 @@
                             <small class="required">*</small>
                         </label>
                         <input type="text" name="email" id="email" class="form-control" value="{{ old('email') }}"
-                            placeholder="VD: emailcuaban@emaildomain.com">
+                            placeholder="VD: dodaitoithieu6kytu@emaildomain.com">
                         <small>Nhập email của bạn để nhận đường dẫn đặt lại mật khẩu</small><br>
                         <small class="required email-error">
                             @if ($errors->has('email'))
-                                Vui lòng nhập email có độ dài tên tối thiểu 6 kí tự
+                                Vui lòng nhập email của bạn và email có độ dài tên tối thiểu 6 ký tự
                             @endif
                             @if (session('invalid_email'))
                                 {{ session('invalid_email') }}
@@ -71,15 +71,23 @@
             $('form.login-form').submit(function(e) {
                 // Reset
                 $('small.email-error').text("");
+                $('input#email').val($.trim($('input#email').val()))
 
                 let isValidated = true;
                 let emailErr = [
-                    'Vui lòng nhập email có độ dài tên tối thiểu 6 kí tự',
+                    'Vui lòng nhập đúng định dạng email và email có độ dài tên tối thiểu 6 kí tự',
+                    'Vui lòng nhập email của bạn'
                 ];
-                if (!validateEmail($('input#email').val())) {
+                if ($('input#email').val() == "") {
                     isValidated = false;
-                    $('small.email-error').text(emailErr[0]);
+                    $('small.email-error').text(emailErr[1]);
+                } else {
+                    if (!validateEmail($('input#email').val())) {
+                        isValidated = false;
+                        $('small.email-error').text(emailErr[0]);
+                    }
                 }
+
                 if (!isValidated) {
                     e.preventDefault();
                 }

@@ -74,7 +74,7 @@
                                 <a href="#">Liên hệ</a>
                                 @auth
                                     @if (Auth::user()->role_id == 1)
-                                        <a href="/dashboard">Quản lý</a>
+                                        <a href="{{ route('admin.dashboard') }}">Quản lý</a>
                                     @endif
                                 @endauth
                             </div>

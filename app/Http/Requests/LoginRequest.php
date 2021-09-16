@@ -34,7 +34,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email.required' => 'Vui lòng nhập email của bạn',
-            'email.email' => 'Vui lòng nhập email của bạn',
+            'email.email' => 'Vui lòng nhập đúng định dạng email và email có độ dài tên tối thiểu 6 ký tự',
             'password.required' => 'Vui lòng nhập mật khẩu'
         ];
     }

@@ -49,7 +49,7 @@ class RegisterRequest extends FormRequest
             'dob.required' => 'Vui lòng nhập ngày sinh của bạn',
             'dob.date' => 'Vui lòng nhập ngày sinh của bạn',
             'email.required' => 'Vui lòng nhập email của bạn',
-            'email.email' => 'Vui lòng nhập email của bạn',
+            'email.email' => 'Vui lòng nhập đúng định dạng email và email có độ dài tên tối thiểu 6 ký tự',
             'email.unique' => 'Email này đã tồn tại',
             'password.required' => 'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số',
             'confirm_password.required' => 'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số',

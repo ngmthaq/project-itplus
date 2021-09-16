@@ -25,7 +25,8 @@
                             Email
                             <small class="required">*</small>
                         </label>
-                        <input type="text" name="email" id="email" class="form-control" value="{{ old('email') }}" placeholder="VD: emailcuaban@emaildomain.com">
+                        <input type="text" name="email" id="email" class="form-control" value="{{ old('email') }}"
+                            placeholder="VD: dodaitoithieu6kytu@emaildomain.com">
                         <small class="required email-error">
                             @if ($errors->has('email'))
                                 @foreach ($errors->get('email') as $item)
@@ -40,7 +41,8 @@
                                 Mật khẩu
                                 <small class="required">*</small>
                             </label>
-                            <label class="vi"><a href="{{ route('user.getEmail') }}">Quên mật khẩu?</a></label>
+                            <label class="vi"><a href="{{ route('user.getEmail') }}">Quên mật
+                                    khẩu?</a></label>
                         </div>
                         <input type="password" name="password" id="password" class="form-control">
                         <small class="password-error required">
@@ -108,14 +110,20 @@
 
                 let isValidated = true;
                 let emailErr = [
-                    'Vui lòng nhập email có độ dài tên tối thiểu 6 kí tự',
+                    'Vui lòng nhập đúng định dạng email và email có độ dài tên tối thiểu 6 kí tự',
+                    'Vui lòng nhập email của bạn'
                 ];
                 let passwordErr = [
                     'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số'
                 ];
-                if (!validateEmail($('input#email').val())) {
+                if ($('input#email').val() == "") {
                     isValidated = false;
-                    $('small.email-error').text(emailErr[0]);
+                    $('small.email-error').text(emailErr[1]);
+                } else {
+                    if (!validateEmail($('input#email').val())) {
+                        isValidated = false;
+                        $('small.email-error').text(emailErr[0]);
+                    }
                 }
                 if (!validatePassword($('input#password').val())) {
                     isValidated = false;
