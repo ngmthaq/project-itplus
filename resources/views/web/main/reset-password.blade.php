@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Thay đổi mật khẩu | The Vietnam Newspaper | Trang thông tin - tin tức
+    Đặt lại mật khẩu | The Vietnam Newspaper | Trang thông tin - tin tức
 @endsection
 
 @section('content')
@@ -9,36 +9,16 @@
         <ul class="breadcrum vi">
             <li><a href="/">Trang chủ</a></li>
             <li><i class="fas fa-angle-right"></i></li>
-            <li>Thay đổi mật khẩu</li>
+            <li>Đặt lại mật khẩu</li>
         </ul>
     </div>
     <div class="login container">
         <div class="row">
             <div class="col-lg-6">
-                <form class="login-form" action="{{ route('user.changePassword') }}" method="POST">
+                <form class="login-form" action="{{ route('user.resetPassword', ['user' => $user]) }}" method="POST">
                     @csrf
                     <div class="form-group">
-                        <h2 class="vi">Thay đổi mật khẩu</h2>
-                    </div>
-                    <div class="form-group">
-                        <div class="label-container">
-                            <label class="vi" for="old-password">
-                                Mật khẩu cũ
-                                <small class="required">*</small>
-                            </label>
-                            <label class="vi"><a href="{{ route('user.getEmail') }}">Quên mật khẩu?</a></label>
-                        </div>
-                        <input type="password" name="old_password" id="old-password" class="form-control">
-                        <small class="old-password-error required">
-                            @if ($errors->has('old_password'))
-                                @foreach ($errors->get('old_password') as $item)
-                                    {{ $item }} <br>
-                                @endforeach
-                            @endif
-                            @if (session('incorrect_password'))
-                                {{ session('incorrect_password') }}
-                            @endif
-                        </small>
+                        <h2 class="vi">Đặt lại mật khẩu</h2>
                     </div>
                     <div class="form-group">
                         <div class="label-container">
@@ -74,7 +54,7 @@
                     </div>
                     <div class="form-group">
                         <div class="label-container">
-                            <button class="vi button-md-main" type="submit">Đổi mật khẩu</button>
+                            <button class="vi button-md-main" type="submit">Xác nhận</button>
                         </div>
                     </div>
                 </form>
@@ -104,10 +84,8 @@
             // Change password validate
             $('form.login-form').submit(function(e) {
                 // Reset
-                $('small.old-password-error').text("");
                 $('small.new-password-error').text("");
                 $('small.confirm-password-error').text("");
-                $('input#old-password').val($.trim($('input#old-password').val()));
                 $('input#new-password').val($.trim($('input#new-password').val()));
                 $('input#confirm-password').val($.trim($('input#confirm-password').val()));
 
@@ -115,21 +93,10 @@
                 let passwordErr = [
                     'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số',
                     'Mật khẩu bạn nhập không trùng khớp',
-                    'Mật khẩu mới không được trùng với mật khẩu cũ'
                 ];
 
                 // Validate
                 let isValidated = true;
-                if (!validatePassword($('input#old-password').val())) {
-                    isValidated = false;
-                    $('small.old-password-error').text(passwordErr[0]);
-                    $('small.old-password-error').addClass('required');
-                }
-                if ($('input#old-password').val() == $('input#new-password').val()) {
-                    isValidated = false;
-                    $('small.new-password-error').text(passwordErr[2]);
-                    $('small.new-password-error').addClass('required');
-                }
                 if (!validatePassword($('input#new-password').val())) {
                     isValidated = false;
                     $('small.new-password-error').text(passwordErr[0]);

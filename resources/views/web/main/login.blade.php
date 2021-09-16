@@ -40,7 +40,7 @@
                                 Mật khẩu
                                 <small class="required">*</small>
                             </label>
-                            <label class="vi"><a href="#">Quên mật khẩu?</a></label>
+                            <label class="vi"><a href="{{ route('user.getEmail') }}">Quên mật khẩu?</a></label>
                         </div>
                         <input type="password" name="password" id="password" class="form-control">
                         <small class="password-error required">
@@ -103,10 +103,12 @@
                 // Reset
                 $('small.email-error').text("");
                 $('small.password-error').text("");
+                $('input#email').val($.trim($('input#email').val()));
+                $('input#password').val($.trim($('input#password').val()));
 
                 let isValidated = true;
                 let emailErr = [
-                    'Vui lòng nhập email của bạn',
+                    'Vui lòng nhập email có độ dài tên tối thiểu 6 kí tự',
                 ];
                 let passwordErr = [
                     'Mật khẩu có ít nhất 8 kí tự, có tối thiểu 1 chữ và 1 số'

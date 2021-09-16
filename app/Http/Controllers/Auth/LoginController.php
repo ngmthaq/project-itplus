@@ -21,9 +21,9 @@ class LoginController extends Controller
     public function login(LoginRequest $request)
     {
         $request->flashOnly('email');
-        $email = $request->input('email');
-        $password = $request->input('password');
-        $rememberMe = $request->input('remember-me') == 'true' ? true : false;
+        $email = trim($request->input('email'));
+        $password = trim($request->input('password'));
+        $rememberMe = trim($request->input('remember-me')) == 'true' ? true : false;
         if (Auth::attempt(['email' => $email, 'password' => $password], $rememberMe)) {
             $request->session()->regenerate();
             if (!Auth::user()->email_verified_at) {

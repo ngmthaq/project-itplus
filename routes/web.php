@@ -52,11 +52,23 @@ Route::get('/logout', [LoginController::class, 'logout'])
     ->name('logout');
 
 // Change password
-Route::get('users/password/change', [UserController::class, 'changePasswordForm'])
+Route::get('password/change', [UserController::class, 'changePasswordForm'])
     ->name('user.changePasswordForm')
     // ->where(['user' => '[1-9]{1}\d{0,}'])
     ->middleware(['authCheck']);
-Route::post('users/password/change', [UserController::class, 'changePassword'])
+Route::post('password/change', [UserController::class, 'changePassword'])
     ->name('user.changePassword')
     // ->where(['user' => '[1-9]{1}\d{0,}'])
     ->middleware('authCheck');
+
+// Reset password
+Route::get('password/email', [UserController::class, 'getEmailForm'])
+    ->name('user.getEmail');
+Route::post('password/email', [UserController::class, 'sendEmail'])
+    ->name('user.sendEmail');
+Route::get('password/reset/{user:remember_token}', [UserController::class, 'resetPasswordForm'])
+    ->name('user.resetPasswordForm')
+    ->where(['user' => '[a-zA-Z0-9]+']);
+Route::post('password/reset/{user:remember_token}', [UserController::class, 'resetPassword'])
+    ->name('user.resetPassword')
+    ->where(['user' => '[a-zA-Z0-9]+']);

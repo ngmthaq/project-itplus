@@ -232,6 +232,11 @@
                 $('.confirm-password-error').removeClass('required');
                 $('.address-error').text('');
                 $('.agree-error').text('');
+                $('input#first-name').val($.trim($('input#first-name').val()));
+                $('input#last-name').val($.trim($('input#last-name').val()));
+                $('input#email').val($.trim($('input#email').val()));
+                $('input#password').val($.trim($('input#password').val()));
+                $('input#confirm-password').val($.trim($('input#confirm-password').val()));
 
                 // Error messages
                 let firstNameError = ['Vui lòng nhập họ của của bạn'];

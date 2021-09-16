@@ -27,17 +27,17 @@ class RegisterController extends Controller
         $request->flashExcept(['password', 'confirm_password']);
         $user = User::create([
             'role_id' => 2,
-            'first_name' => $request->input('first_name'),
-            'last_name' => $request->input('last_name'),
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-            'remember_token' => md5($request->input('first_name') . $request->input('last_name') . $request->input('email') . date('Y-m-d H:i:s'))
+            'first_name' => trim($request->input('first_name')),
+            'last_name' => trim($request->input('last_name')),
+            'email' => trim($request->input('email')),
+            'password' => trim($request->input('password')),
+            'remember_token' => md5(trim($request->input('first_name')) . trim($request->input('last_name')) . trim($request->input('email')) . date('Y-m-d H:i:s'))
         ]);
         if ($user) {
             $userInformation = $user->userInformation()->create([
-                'dob' => $request->input('dob'),
-                'is_male' => $request->input('is_male'),
-                'address' => $request->input('address')
+                'dob' => trim($request->input('dob')),
+                'is_male' => trim($request->input('is_male')),
+                'address' => trim($request->input('address'))
             ]);
         }
         if ($userInformation) {
