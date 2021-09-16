@@ -8,15 +8,19 @@
             <li @auth class="user-action" @endauth>
                 @if (Auth::check())
                     <a href="javascript:void(0)" class="link">
-                        <span style="padding: 20px 0">
+                        <span style="padding: 20px 0;">
                             {{ Auth::user()->first_name }}
                             {{ Auth::user()->last_name }}
+                            <i class="fas fa-angle-down"></i>
                         </span>
                         <div class="user-action-container">
                             <a href="#" class="link user-action-item">Xem thông tin cá nhân</a>
                             <a href="#" class="link user-action-item">Thay đổi thông tin cá nhân</a>
-                            <a href="#" class="link user-action-item">Thay đổi mật khẩu</a>
-                            <a href="{{ route('logout') }}" class="required">Đăng xuất</a>
+                            <a href="{{ route('user.changePasswordForm') }}" 
+                                class="link user-action-item @php echo $site == 'changePassword' ? 'active' : '' @endphp">
+                                Thay đổi mật khẩu
+                            </a>
+                            <a href="{{ route('logout') }}" class="required" style="border-top: 1px solid #999; margin-top: 6px;">Đăng xuất</a>
                         </div>
                     </a>
                 @else

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Newspaper | Trang thông tin - tin tức
+    The Vietnam Newspaper | Trang thông tin - tin tức
 @endsection
 
 @section('content')

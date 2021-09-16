@@ -236,7 +236,8 @@ header {
 }
 
 .required:hover {
-    color: rgba(255, 0, 0, 0.6);
+    color: rgba(255, 0, 0, 0.8);
+    user-select: none;
 }
 
 /* SCROLL TO TOP */
@@ -319,7 +320,7 @@ header {
 
 .user-action-container {
     position: absolute;
-    top: 25px;
+    top: 30px;
     right: 0;
     width: 200px;
     z-index: 2;

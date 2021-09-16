@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AuthCheckMiddleware;
 use App\Http\Middleware\AuthUserCantAccessToLoginAndRegister;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -67,5 +68,6 @@ class Kernel extends HttpKernel
 
         // My Middleware
         'authUserCantAccessToLoginAndRegister' => AuthUserCantAccessToLoginAndRegister::class,
+        'authCheck' => AuthCheckMiddleware::class,
     ];
 }

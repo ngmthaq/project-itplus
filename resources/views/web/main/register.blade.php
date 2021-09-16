@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Đăng ký | Newspaper | Trang thông tin - tin tức
+    Đăng ký | The Vietnam Newspaper | Trang thông tin - tin tức
 @endsection
 
 @section('content')
@@ -218,7 +218,7 @@
                 return regex.test(password);
             }
 
-            // Login validate
+            // Register validate
             $('form.register-form').submit(function(e) {
                 // Reset
                 $('.first-name-error').text('');

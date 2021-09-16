@@ -66,12 +66,8 @@
             })
 
             // User action dropdown
-            $('.user-action').hover(function() {
-                // over
-                $('.user-action-container').slideDown();
-            }, function() {
-                // out
-                $('.user-action-container').slideUp();
+            $('.user-action').click(function() {
+                $('.user-action-container').slideToggle();
             });
 
             // Hiển thị thời gian

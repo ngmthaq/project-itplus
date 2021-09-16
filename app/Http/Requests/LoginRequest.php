@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\RequiresAtLeast8CharactersAndContainAtLeast1LetterAnd1Number;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginRequest extends FormRequest
@@ -25,7 +26,7 @@ class LoginRequest extends FormRequest
     {
         return [
             'email' => ['required', 'email'],
-            'password' => ['required', 'regex:/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/']
+            'password' => ['required', new RequiresAtLeast8CharactersAndContainAtLeast1LetterAnd1Number()]
         ];
     }
 
@@ -34,8 +35,7 @@ class LoginRequest extends FormRequest
         return [
             'email.required' => 'Vui lòng nhập email của bạn',
             'email.email' => 'Vui lòng nhập email của bạn',
-            'password.required' => 'Vui lòng nhập mật khẩu',
-            'password.regex' => 'Mật khẩu phải có ít nhất 8 số, có tối thiểu 1 chữ và 1 số'
+            'password.required' => 'Vui lòng nhập mật khẩu'
         ];
     }
 }
