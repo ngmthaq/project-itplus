@@ -45,6 +45,7 @@
     --text-color: #000;
     --text-secondary-color: #fff;
     --main-color: #ff6102;
+    --rgba-main-color: rgba(255, 99, 2, 0.1);
     --secondary-color: #999;
     --border-color: #000;
     --serif: 'Playfair Display', serif;
@@ -98,6 +99,14 @@ a.logo {
 .logo small {
     color: var(--main-color);
     font-family: var(--serif);
+}
+
+.logo.logo-sm h1 {
+    font-size: 24px;
+}
+
+.logo.logo.logo-sm small {
+    font-size: 15px;
 }
 
 ul.social {

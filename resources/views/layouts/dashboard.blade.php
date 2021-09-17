@@ -11,17 +11,20 @@
     <link rel="stylesheet" href="{{ asset('vendors/owlcarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <title>@yield('title')</title>
     @stack('css')
 </head>
 
 <body>
+    {{-- {{ dd($videos) }} --}}
     <div id="dashboard">
-        <div class="row no-gutter">
-            <div class="col-3">
-                @yield('sidebar')
+        <div class="row no-gutters">
+            <div class="col-2 sidebar">
+                @include('admin.parts._sidebar')
             </div>
-            <div class="col-7">
+            <div class="col-2"></div>
+            <div class="col-10">
                 @yield('content')
             </div>
         </div>
