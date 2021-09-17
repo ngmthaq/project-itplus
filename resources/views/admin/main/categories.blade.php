@@ -74,7 +74,7 @@
             </div>
             <div class="row my-3">
                 <div class="col-6">
-                    <div class="count-categories">
+                    <div class="count">
                         <h5>Danh mục bài viết</h5>
                         <table class="table">
                             <thead class="thead-light">
@@ -82,31 +82,44 @@
                                     <th scope="col">Danh mục</th>
                                     <th scope="col">Số bài viết</th>
                                     <th scope="col">Tỷ lệ bài viết</th>
+                                    <th title="Tỉ lệ số lượt tương tác của từng danh mục so với tổng số lượt tương tác"
+                                        scope="col">Tỷ lệ tương tác
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($categories as $category)
                                     <tr>
                                         <td>{{ $category->name_vi }}</td>
-                                        <td class="data-posts" data-posts="{{ $category->posts_count }}">
+                                        <td>
                                             {{ $category->posts_count }}
                                         </td>
-                                        <td>{{ ($category->posts_count / count($posts)) * 100 }}%</td>
+                                        @if (count($posts) > 0)
+                                            <td>{{ ($category->posts_count / count($posts)) * 100 }}%</td>
+                                        @else
+                                            <td>{{ $category->posts_count }}</td>
+                                        @endif
+                                        @if ($totalComments > 0)
+                                            <td>{{ ($category->comments / $totalComments) * 100 }}%</td>
+                                        @else
+                                            <td>{{ $category->comments }}</td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td><strong>Tổng</strong></td>
-                                    <td class="total-posts"></td>
-                                    <td><strong>100%</strong></td>
+                                    <td><strong>{{ count($posts) }}</strong></td>
+                                    <td><strong>@php echo count($posts) > 0 ? '100%' : '0'  @endphp</strong></td>
+                                    <td><strong>@php echo $totalComments > 0 ? '100%' : '0'  @endphp</strong></td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="count-categories">
+                    <div class="count">
                         <h5>Video mới nhất</h5>
                         <table class="table">
                             <thead class="thead-light">
@@ -117,16 +130,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $i = 0; @endphp
-                                @foreach ($videos as $video)
-                                    @php $i++; @endphp
+                                @if (count($videos) > 0)
+                                    @php $i = 0; @endphp
+                                    @foreach ($videos as $video)
+                                        @php $i++; @endphp
+                                        <tr>
+                                            <td class="dashboard-title">{{ $video->title_vi }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($video->created_at)) }}</td>
+                                            <td>
+                                                <a href="#" class="text-decoration-none text-light button-md-main">
+                                                    Xem
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @if ($i >= 5) @break @endif
+                                    @endforeach
+                                @else
                                     <tr>
-                                        <td class="dashboard-title">{{ $video->title_vi }}</td>
-                                        <td>{{ date('d/m/Y', strtotime($video->created_at)) }}</td>
-                                        <td><a href="#" class="text-decoration-none text-light button-md-main">Xem</a></td>
+                                        <td colspan="3">Không có video</td>
                                     </tr>
-                                    @if ($i >= 5) @break @endif
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -137,14 +160,5 @@
 @endsection
 
 @push('js')
-    <script>
-        $(function() {
-            var totals = 0;
-            $('td.data-posts').each(function(index, element) {
-                // element == this
-                totals += parseInt($(this).attr('data-posts'));
-            });
-            $('td.total-posts').html('<strong>' + totals + '</strong>');
-        })
-    </script>
+    
 @endpush

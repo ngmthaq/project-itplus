@@ -60,7 +60,7 @@
                             <span><i class="far fa-comments"></i></span>
                         </div>
                         <div class="count-record-content">
-                            <h5>{{ $comments }}</h5>
+                            <h5>{{ $totalComments }}</h5>
                             <p>Tổng số tương tác</p>
                         </div>
                     </div>
@@ -68,8 +68,13 @@
             </div>
             <div class="row my-3">
                 <div class="col-6">
-                    <div class="count-categories">
-                        <h5>Danh mục bài viết</h5>
+                    <div class="count">
+                        <h5 class="d-flex justify-content-between">
+                            <span>Danh mục bài viết</span>
+                            <a href="{{ route('admin.categories') }}" class="link">
+                                <small>Xem chi tiết</small>
+                            </a>
+                        </h5>
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
@@ -81,7 +86,7 @@
                                 @foreach ($categories as $category)
                                     <tr>
                                         <td>{{ $category->name_vi }}</td>
-                                        <td class="data-posts" data-posts="{{ $category->posts_count }}">
+                                        <td>
                                             {{ $category->posts_count }}
                                         </td>
                                     </tr>
@@ -90,14 +95,14 @@
                             <tfoot>
                                 <tr>
                                     <td><strong>Tổng</strong></td>
-                                    <td class="total-posts"></td>
+                                    <td><strong>{{ count($posts) }}</strong></td>
                                 </tr>
                             </tfoot>
                         </table>
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="count-categories">
+                    <div class="count">
                         <h5>Người dùng mới</h5>
                         <table class="table">
                             <thead class="thead-light">
@@ -131,7 +136,7 @@
             </div>
             <div class="row my-3">
                 <div class="col-12">
-                    <div class="count-categories">
+                    <div class="count">
                         <h5>Bài viết mới</h5>
                         <table class="table">
                             <thead class="thead-light">
@@ -142,16 +147,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $i = 0; @endphp
-                                @foreach ($posts as $post)
-                                    @php $i++; @endphp
+                                @if (count($posts) > 0)
+                                    @php $i = 0; @endphp
+                                    @foreach ($posts as $post)
+                                        @php $i++; @endphp
+                                        <tr>
+                                            <td class="dashboard-title">{{ $post->title_vi }}</td>
+                                            <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
+                                            <td>
+                                                <a href="#" class="text-decoration-none text-light button-md-main">Xem</a>
+                                            </td>
+                                        </tr>
+                                        @if ($i >= 5) @break @endif
+                                    @endforeach
+                                @else
                                     <tr>
-                                        <td class="dashboard-title">{{ $post->title_vi }}</td>
-                                        <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
-                                        <td><a href="#" class="text-decoration-none text-light button-md-main">Xem</a></td>
+                                        <td colspan="3">Không có bài viết</td>
                                     </tr>
-                                    @if ($i >= 5) @break @endif
-                                @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -162,14 +175,5 @@
 @endsection
 
 @push('js')
-    <script>
-        $(function() {
-            var totals = 0;
-            $('td.data-posts').each(function(index, element) {
-                // element == this
-                totals += parseInt($(this).attr('data-posts'));
-            });
-            $('td.total-posts').html('<strong>' + totals + '</strong>');
-        })
-    </script>
+
 @endpush

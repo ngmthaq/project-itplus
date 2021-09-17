@@ -30,4 +30,13 @@ class Comment extends Model
     {
         return $this->belongsTo(Post::class);
     }
+
+    public static function getCommentOfCategory(Category $category)
+    {
+        $total = 0;
+        foreach ($category->posts as $post) {
+            $total += count($post->comments);
+        }
+        return $total;
+    }
 }

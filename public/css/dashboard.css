@@ -88,8 +88,8 @@
     text-align: right;
 }
 
-.count-categories {
-    padding: 12px 6px;
+.count {
+    padding: 12px;
     background: #fff;
     border-radius: 5px;
 }
@@ -100,5 +100,4 @@ td.dashboard-title {
     -webkit-line-clamp: 1;
     overflow: hidden;
     height: 40px;
-    /* max-width: 350px; */
 }
