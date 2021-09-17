@@ -1,9 +1,3 @@
-/* @import url('base.css'); */
-
-body {
-    /* overflow-x: hidden; */
-}
-
 #dashboard .sidebar {
     position: fixed;
     top: 0;
