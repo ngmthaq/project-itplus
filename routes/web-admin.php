@@ -14,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])
-    ->name('admin.dashboard')
-    ->middleware('authCheck');
+Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () {
+    // Dashboard
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])
+        ->name('admin.dashboard');
+
+    // Categories Management
+    Route::get('/categories', [AdminController::class, 'categories'])
+        ->name('admin.categories');
+});

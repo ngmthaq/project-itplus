@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Dashboard | The Vietnam Newspaper | Trang thông tin - tin tức
+    Quản lý danh mục | The Vietnam Newspaper | Trang thông tin - tin tức
 @endsection
 
 @push('css')
@@ -14,24 +14,52 @@
             <div class="row">
                 <div class="col-12">
                     <ul class="breadcrum vi my-3">
-                        <li><a href="javascript:void(0)">Dashboard</a></li>
-                        {{-- <li><i class="fas fa-angle-right"></i></li> --}}
-                        {{-- <li>Đăng nhập</li> --}}
+                        <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
+                        <li><i class="fas fa-angle-right"></i></li>
+                        <li>Quản lý danh mục</li>
                     </ul>
                 </div>
             </div>
             <div class="row">
-                <div class="col-3">
-                    <div class="count-record">
-                        <div class="count-record-icon">
-                            <span><i class="far fa-file-alt"></i></span>
-                        </div>
-                        <div class="count-record-content">
-                            <h5>{{ count($texts) }}</h5>
-                            <p>Tổng số bài viết</p>
+                @foreach ($categories as $category)
+                    <div class="col-3 mb-3">
+                        <div class="count-record">
+                            <div class="count-record-icon">
+                                <span>
+                                    @switch($category->id)
+                                        @case(1)
+                                            <i class="far fa-newspaper"></i>
+                                        @break
+                                        @case(2)
+                                            <i class="fas fa-balance-scale-left"></i>
+                                        @break
+                                        @case(3)
+                                            <i class="fas fa-chart-line"></i>
+                                        @break
+                                        @case(4)
+                                            <i class="fas fa-cogs"></i>
+                                        @break
+                                        @case(5)
+                                            <i class="fas fa-heartbeat"></i>
+                                        @break
+                                        @case(6)
+                                            <i class="fas fa-umbrella-beach"></i>
+                                        @break
+                                        @case(7)
+                                            <i class="fas fa-futbol"></i>
+                                        @break
+                                        @default
+                                            <i class="far fa-file"></i>
+                                    @endswitch
+                                </span>
+                            </div>
+                            <div class="count-record-content">
+                                <h5>{{ $category->posts_count }}</h5>
+                                <p>{{ $category->name_vi }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
                 <div class="col-3">
                     <div class="count-record">
                         <div class="count-record-icon">
@@ -39,29 +67,7 @@
                         </div>
                         <div class="count-record-content">
                             <h5>{{ count($videos) }}</h5>
-                            <p>Tổng số video</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="count-record">
-                        <div class="count-record-icon">
-                            <span><i class="fas fa-users"></i></span>
-                        </div>
-                        <div class="count-record-content">
-                            <h5>{{ count($users) }}</h5>
-                            <p>Tổng số người dùng</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div class="count-record">
-                        <div class="count-record-icon">
-                            <span><i class="far fa-comments"></i></span>
-                        </div>
-                        <div class="count-record-content">
-                            <h5>{{ $comments }}</h5>
-                            <p>Tổng số tương tác</p>
+                            <p>Video</p>
                         </div>
                     </div>
                 </div>
@@ -75,6 +81,7 @@
                                 <tr>
                                     <th scope="col">Danh mục</th>
                                     <th scope="col">Số bài viết</th>
+                                    <th scope="col">Tỷ lệ bài viết</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -84,6 +91,7 @@
                                         <td class="data-posts" data-posts="{{ $category->posts_count }}">
                                             {{ $category->posts_count }}
                                         </td>
+                                        <td>{{ ($category->posts_count / count($posts)) * 100 }}%</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -91,6 +99,7 @@
                                 <tr>
                                     <td><strong>Tổng</strong></td>
                                     <td class="total-posts"></td>
+                                    <td><strong>100%</strong></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -98,41 +107,7 @@
                 </div>
                 <div class="col-6">
                     <div class="count-categories">
-                        <h5>Người dùng mới</h5>
-                        <table class="table">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">Họ tên</th>
-                                    <th scope="col">Giới tính</th>
-                                    <th scope="col">Ngày sinh</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $i = 0; @endphp
-                                @foreach ($users as $user)
-                                    @php $i++; @endphp
-                                    <tr>
-                                        <td>{{ $user->first_name }} {{ $user->last_name }}</td>
-                                        <td>
-                                            @if ($user->userInformation->is_male == 1)
-                                                Nam
-                                            @else
-                                                Nữ
-                                            @endif
-                                        </td>
-                                        <td>{{ date('d/m/Y', strtotime($user->userInformation->dob)) }}</td>
-                                    </tr>
-                                    @if ($i >= 8) @break @endif
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="col-12">
-                    <div class="count-categories">
-                        <h5>Bài viết mới</h5>
+                        <h5>Video mới nhất</h5>
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
@@ -143,11 +118,11 @@
                             </thead>
                             <tbody>
                                 @php $i = 0; @endphp
-                                @foreach ($posts as $post)
+                                @foreach ($videos as $video)
                                     @php $i++; @endphp
                                     <tr>
-                                        <td class="dashboard-title">{{ $post->title_vi }}</td>
-                                        <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
+                                        <td class="dashboard-title">{{ $video->title_vi }}</td>
+                                        <td>{{ date('d/m/Y', strtotime($video->created_at)) }}</td>
                                         <td><a href="#" class="text-decoration-none text-light button-md-main">Xem</a></td>
                                     </tr>
                                     @if ($i >= 5) @break @endif

@@ -246,6 +246,9 @@ header {
 
 .required:hover {
     color: rgba(255, 0, 0, 0.8);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
 }
 
@@ -262,7 +265,7 @@ header {
     border-radius: 2px;
     display: none;
     -webkit-animation: fadeIn .2s ease-in-out;
-            animation: fadeIn .2s ease-in-out;
+    animation: fadeIn .2s ease-in-out;
 }
 
 /* BREADCRUM */
@@ -309,6 +312,7 @@ header {
 }
 
 /* MAP */
+
 .map {
     height: 200px;
     width: 100%;
@@ -350,6 +354,7 @@ header {
 }
 
 /* TOAST */
+
 .my-toast-container {
     position: fixed;
     top: 0;

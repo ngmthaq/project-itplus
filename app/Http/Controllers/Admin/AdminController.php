@@ -30,4 +30,16 @@ class AdminController extends Controller
             'comments' => $comments
         ]);
     }
+
+    public function categories()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->get();
+        $videos = $posts->where('type_id', '=', '2');
+        return view('admin.main.categories', [
+            'posts' => $posts,
+            'videos' => $videos,
+            'categories' => Category::withCount('posts')->get(),
+            'site' => 'categories',
+        ]);
+    }
 }

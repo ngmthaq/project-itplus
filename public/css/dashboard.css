@@ -35,7 +35,7 @@
     align-items: center;
 }
 
-.aside-menu li a > span > .aside-icon {
+.aside-menu li a>span>.aside-icon {
     width: 20px;
     display: inline-block;
     text-align: center;
@@ -63,11 +63,11 @@
 }
 
 .count-record {
-    padding: 12px 6px;
+    padding: 12px 18px;
     background: #fff;
     border-radius: 5px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -92,4 +92,13 @@
     padding: 12px 6px;
     background: #fff;
     border-radius: 5px;
+}
+
+td.dashboard-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    height: 40px;
+    /* max-width: 350px; */
 }

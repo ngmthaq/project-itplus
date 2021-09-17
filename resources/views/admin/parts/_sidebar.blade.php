@@ -6,7 +6,8 @@
         </a>
         <ul class="aside-menu">
             <li>
-                <a href="#" class="link user-action-item @php echo $site == 'dashboard' ? 'active' : '' @endphp">
+                <a href="{{ route('admin.dashboard') }}" 
+                    class="link user-action-item @php echo $site == 'dashboard' ? 'active' : '' @endphp">
                     <span>
                         <span class="aside-icon"><i class="fas fa-tachometer-alt"></i></span>
                         <span>Dashboard</span>
@@ -14,12 +15,12 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="link user-action-item">
+                <a href="{{ route('admin.categories') }}" 
+                    class="link user-action-item @php echo $site == 'categories' ? 'active' : '' @endphp">
                     <span>
                         <span class="aside-icon"><i class="far fa-list-alt"></i></span>
                         <span>Quản lý danh mục</span>
                     </span>
-                    <i class="fas fa-angle-down"></i>
                 </a>
             </li>
             <li>
