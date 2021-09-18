@@ -17,6 +17,7 @@
             <div class="col-lg-6">
                 <form class="login-form" action="{{ route('user.changePassword') }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <h2 class="vi">Thay đổi mật khẩu</h2>
                     </div>

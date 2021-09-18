@@ -17,6 +17,7 @@
             <div class="col-lg-6">
                 <form class="login-form" action="{{ route('user.resetPassword', ['user' => $user]) }}" method="POST">
                     @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <h2 class="vi">Đặt lại mật khẩu</h2>
                     </div>

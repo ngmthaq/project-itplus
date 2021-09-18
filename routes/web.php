@@ -55,7 +55,7 @@ Route::get('/logout', [LoginController::class, 'logout'])
 Route::get('password/change', [UserController::class, 'changePasswordForm'])
     ->name('user.changePasswordForm')
     ->middleware(['authCheck']);
-Route::post('password/change', [UserController::class, 'changePassword'])
+Route::put('password/change', [UserController::class, 'changePassword'])
     ->name('user.changePassword')
     ->middleware('authCheck');
 
@@ -67,6 +67,6 @@ Route::post('password/email', [UserController::class, 'sendEmail'])
 Route::get('password/reset/{user:remember_token}', [UserController::class, 'resetPasswordForm'])
     ->name('user.resetPasswordForm')
     ->where(['user' => '[a-zA-Z0-9]+']);
-Route::post('password/reset/{user:remember_token}', [UserController::class, 'resetPassword'])
+Route::put('password/reset/{user:remember_token}', [UserController::class, 'resetPassword'])
     ->name('user.resetPassword')
     ->where(['user' => '[a-zA-Z0-9]+']);
