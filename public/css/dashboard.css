@@ -40,7 +40,7 @@
     display: inline-block;
     text-align: center;
     font-size: 16px;
-    font-weight: 300;
+    font-weight: 350;
 }
 
 .admin-aside-action {
@@ -48,7 +48,7 @@
 }
 
 .admin-aside-action a {
-    font-weight: 300;
+    font-weight: 350;
     font-size: 16px;
 }
 
@@ -100,4 +100,21 @@ td.dashboard-title {
     -webkit-line-clamp: 1;
     overflow: hidden;
     height: 40px;
+}
+
+.aside-dropdown {
+    display: none;
+}
+
+.aside-dropdown ul {
+    margin-left: 36px;
+}
+
+.aside-dropdown a {
+    padding: 6px 0 !important;
+    font-size: 17px !important;
+}
+
+.link.admin-action-item:hover {
+    color: rgba(0, 0, 0, 0.6);
 }

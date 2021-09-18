@@ -36,7 +36,12 @@
     <script src="{{ asset('vendors/owlcarousel/dist/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-
+        $(function() {
+            $('.aside-item').click(function() {
+                $(this).siblings('.aside-item').find('.aside-dropdown').slideUp("fast");
+                $(this).find('.aside-dropdown').slideToggle("fast");
+            })
+        })
     </script>
     @stack('js')
 </body>
