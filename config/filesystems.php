@@ -42,10 +42,17 @@ return [
             'visibility' => 'public',
         ],
 
-        'media' => [
+        'videos' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage/media',
+            'url' => env('APP_URL').'/storage/videos',
+            'visibility' => 'public',
+        ],
+
+        'images' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public'),
+            'url' => env('APP_URL').'/storage/images',
             'visibility' => 'public',
         ],
 
