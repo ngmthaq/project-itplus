@@ -22,4 +22,19 @@ Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () 
     // Categories Management
     Route::get('/categories', [AdminController::class, 'categories'])
         ->name('admin.categories');
+
+    // Media
+    Route::prefix('/media')->group(function () {
+        // Add image
+        Route::get('/image', [AdminController::class, 'addImageForm'])
+            ->name('admin.addImageForm');
+
+        // Add video
+        Route::get('/video', [AdminController::class, 'addVideoForm'])
+            ->name('admin.addVideoForm');
+
+        // Media store
+        Route::get('/', [AdminController::class, 'mediaStore'])
+            ->name('admin.mediaStore');
+    });
 });

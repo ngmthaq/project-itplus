@@ -15,6 +15,12 @@ class UserInformationSeeder extends Seeder
     public function run()
     {
         UserInformation::truncate();
-        UserInformation::factory(10)->create();
+        UserInformation::create([
+            'user_id' => '1',
+            'dob' => '2000-12-01',
+            'is_male' => true,
+            'address' => "Hanoi"
+        ]);
+        UserInformation::factory(3)->create();
     }
 }

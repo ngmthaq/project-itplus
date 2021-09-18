@@ -6,7 +6,7 @@
         </a>
         <ul class="aside-menu">
             <li class="aside-item">
-                <a href="{{ route('admin.dashboard') }}" 
+                <a href="{{ route('admin.dashboard') }}"
                     class="link admin-action-item @php echo $site == 'dashboard' ? 'active' : '' @endphp">
                     <span>
                         <span class="aside-icon"><i class="fas fa-tachometer-alt"></i></span>
@@ -15,7 +15,7 @@
                 </a>
             </li>
             <li class="aside-item">
-                <a href="{{ route('admin.categories') }}" 
+                <a href="{{ route('admin.categories') }}"
                     class="link admin-action-item @php echo $site == 'categories' ? 'active' : '' @endphp">
                     <span>
                         <span class="aside-icon"><i class="far fa-list-alt"></i></span>
@@ -23,8 +23,10 @@
                     </span>
                 </a>
             </li>
-            <li class="aside-item">
-                <a href="javascript:void(0)" class="link admin-action-item">
+            <li class="aside-item add-image add-video media-store">
+                <a href="javascript:void(0)"
+                    class="link admin-action-item 
+                        @php echo $site == 'add-image' || $site == 'add-video' || $site == 'media-store' ? 'active' : '' @endphp">
                     <span>
                         <span class="aside-icon"><i class="far fa-file-image"></i></span>
                         <span>Quản lý đa phương tiện</span>
@@ -34,13 +36,22 @@
                 <div class="aside-dropdown">
                     <ul>
                         <li>
-                            <a class="link admin-action-item" href="#">Thêm hình ảnh</a>
+                            <a class="link admin-action-item @php echo $site == 'add-image' ? 'active' : '' @endphp" 
+                                href="{{ route('admin.addImageForm') }}">
+                                Thêm hình ảnh
+                            </a>
                         </li>
                         <li>
-                            <a class="link admin-action-item" href="#">Thêm video</a>
+                            <a class="link admin-action-item @php echo $site == 'add-video' ? 'active' : '' @endphp" 
+                                href="{{ route('admin.addVideoForm') }}">
+                                Thêm video
+                            </a>
                         </li>
                         <li>
-                            <a class="link admin-action-item" href="#">Kho lưu trữ</a>
+                            <a class="link admin-action-item @php echo $site == 'media-store' ? 'active' : '' @endphp" 
+                                href="{{ route('admin.mediaStore') }}">
+                                Kho lưu trữ
+                            </a>
                         </li>
                     </ul>
                 </div>
@@ -126,7 +137,8 @@
                 {{ Auth::user()->last_name }}
             </li>
             <li>
-                <a title="Trang chủ" href="/" class="link admin-action-item d-inline-block px-2"><i class="fas fa-home"></i></a>
+                <a title="Trang chủ" href="/" class="link admin-action-item d-inline-block px-2"><i
+                        class="fas fa-home"></i></a>
                 <a title="Đăng xuất" href="{{ route('logout') }}" class="link d-inline-block px-2"><i
                         class="fas fa-power-off"></i></a>
             </li>

@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-    
+
     <script src="{{ asset('vendors/jquery/jquery-3.6.0.min.js') }}"></script>
     <script src="{{ asset('vendors/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('vendors/fontawesome/js/all.min.js') }}"></script>
@@ -40,7 +40,10 @@
             $('.aside-item').click(function() {
                 $(this).siblings('.aside-item').find('.aside-dropdown').slideUp("fast");
                 $(this).find('.aside-dropdown').slideToggle("fast");
-            })
+            });
+
+            let site = {!! json_encode($site, JSON_HEX_TAG) !!};
+            $('.' + site).click();
         })
     </script>
     @stack('js')

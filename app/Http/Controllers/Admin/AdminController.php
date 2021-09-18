@@ -46,4 +46,25 @@ class AdminController extends Controller
             'totalComments' => $totalComments
         ]);
     }
+
+    public function addImageForm()
+    {
+        return view('admin.main.add-image', [
+            'site' => 'add-image'
+        ]);
+    }
+
+    public function addVideoForm()
+    {
+        return view('admin.main.add-image', [
+            'site' => 'add-video'
+        ]);
+    }
+
+    public function mediaStore()
+    {
+        return view('admin.main.add-image', [
+            'site' => 'media-store'
+        ]);
+    }
 }

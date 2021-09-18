@@ -18,13 +18,13 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('category_id');
             $table->foreignId('type_id');
-            $table->text('title_vi');
-            $table->text('title_en');
-            $table->text('subtitle_vi');
-            $table->text('subtitle_en');
             $table->string('cover_url');
+            $table->text('title_vi');
+            $table->text('title_en')->nullable(true);
+            $table->text('subtitle_vi');
+            $table->text('subtitle_en')->nullable(true);
             $table->text('content_vi');
-            $table->text('content_en');
+            $table->text('content_en')->nullable(true);
             $table->timestamps();
         });
     }
