@@ -9,6 +9,7 @@ use App\Mail\ResetPasswordMail;
 use App\Models\Category;
 use App\Models\User;
 use App\Rules\RequiresAtLeast8CharactersAndContainAtLeast1LetterAnd1Number;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -68,8 +69,19 @@ class UserController extends Controller
 
     public function resetPassword(User $user, ResetPasswordRequest $request)
     {
+        $passwordReset = DB::table('password_resets')->updateOrInsert(
+            [
+                'email' => $user->email
+            ],
+            [
+                'token' => $user->remember_token,
+                'created_at' => Carbon::now()
+            ]
+        );
         $user->password = trim($request->input('confirm_password'));
+        $user->remember_token = md5($user->first_name . $user->last_name . $user->email . date('Y-m-d H:i:s'));
         $user->save();
-        return redirect('/')->with('success', 'Đặt lại mật khẩu thành công');
+        Auth::logout();
+        return redirect(route('login.show'))->with('success', 'Đặt lại mật khẩu thành công, vui lòng đăng nhập lại bằng mật khẩu mới');
     }
 }

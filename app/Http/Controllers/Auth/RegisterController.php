@@ -10,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class RegisterController extends Controller
@@ -51,7 +52,17 @@ class RegisterController extends Controller
 
     public function verify(User $user)
     {
+        $passwordReset = DB::table('password_resets')->updateOrInsert(
+            [
+                'email' => $user->email
+            ],
+            [
+                'token' => $user->remember_token,
+                'created_at' => Carbon::now()
+            ]
+        );
         $user->email_verified_at = Carbon::now();
+        $user->remember_token = md5($user->first_name . $user->last_name . $user->email . date('Y-m-d H:i:s'));
         $user->save();
         Auth::login($user);
         return redirect('/')->with('success', 'Xác thực tài khoản thành công');
