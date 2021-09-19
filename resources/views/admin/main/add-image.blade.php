@@ -5,14 +5,7 @@
 @endsection
 
 @push('css')
-    <style>
-        .img-container {
-            padding: 12px;
-            background-color: #fff;
-            border-radius: 2px;
-        }
 
-    </style>
 @endpush
 
 @section('content')
@@ -72,7 +65,7 @@
             @if (session('image'))
                 <div class="row">
                     <h5 class="col-12">
-                        <div class="img-container">
+                        <div class="media-container">
                             <div class="label-container">
                                 <span>Ảnh vừa tải lên</span>
                                 <a href="{{ route('admin.mediaStore') }}" class="link">
@@ -85,7 +78,7 @@
                 <div class="row no-gutters img-uploaded">
                     @foreach (session('image') as $image)
                         <div class="col-4">
-                            <div class="img-container">
+                            <div class="media-container">
                                 <img width="100%" src="{{ asset($image['path'] . '/' . $image['name']) }}" alt="ảnh">
                             </div>
                         </div>

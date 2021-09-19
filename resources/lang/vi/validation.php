@@ -44,7 +44,7 @@ return [
     'email' => 'The :attribute must be a valid email address.',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'exists' => 'The selected :attribute is invalid.',
-    'file' => 'The :attribute must be a file.',
+    'file' => 'Vui lòng chọn tệp tin.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
         'numeric' => 'The :attribute must be greater than :value.',

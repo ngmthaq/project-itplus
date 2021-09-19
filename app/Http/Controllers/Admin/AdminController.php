@@ -84,6 +84,24 @@ class AdminController extends Controller
         ]);
     }
 
+    public function addVideo(Request $request)
+    {
+        $fileUploadSuccessfully = [];
+        $video = $request->file('video');
+        $videoName = md5(Auth::user()->id . $video->getClientOriginalName() . date('Y-m-d H:i:s')) . '.mp4';
+        $video->storeAs('', $videoName, 'videos');
+        Media::create([
+            'media_type' => 'video',
+            'media_path' => 'storage/videos',
+            'media_name' => $videoName
+        ]);
+        $fileUploadSuccessfully = [
+            'path' => 'storage/videos',
+            'name' => $videoName
+        ];
+        return redirect(route('admin.addVideoForm'))->with('video', $fileUploadSuccessfully);
+    }
+
     public function mediaStore()
     {
         return view('admin.main.media-store', [

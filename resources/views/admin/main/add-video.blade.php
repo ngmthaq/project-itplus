@@ -24,13 +24,25 @@
             </div>
             <div class="row">
                 <div class="col-12 mb-3">
-                    <form action="{{ route('admin.addVideo') }}" method="post" class="media-form" enctype="multipart/form-data">
+                    <form action="{{ route('admin.addVideo') }}" method="post" class="media-form"
+                        enctype="multipart/form-data">
+                        @csrf
                         <div class="form-group">
                             <label for="video">
                                 Chọn video
                                 <small class="required">*</small>
                             </label>
                             <input type="file" name="video" id="video" class="form-control-file">
+                            <small class="required video-error">
+                                @if ($errors->has('video'))
+                                    @foreach ($errors->get('video') as $item)
+                                        {{ $item }} <br>
+                                    @endforeach
+                                @endif
+                                @if (session('file_error'))
+                                    {{ session('file_error') }}
+                                @endif
+                            </small>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="button-md-main">Thêm</button>
@@ -44,10 +56,43 @@
                     </ul>
                 </div>
             </div>
+            @if (session('video'))
+                <div class="row">
+                    <h5 class="col-12">
+                        <div class="media-container">
+                            <div class="label-container">
+                                <span>Video vừa tải lên</span>
+                                <a href="{{ route('admin.mediaStore') }}" class="link">
+                                    <small>Kho lưu trữ</small>
+                                </a>
+                            </div>
+                        </div>
+                    </h5>
+                    <div class="col-12">
+                        <div class="media-container">
+                            <video src="{{ asset(session('video')['path'] . '/' . session('video')['name']) }}" muted controls></video>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </section>
 @endsection
 
 @push('js')
-
+    <script>
+        $(function() {
+            $('form').submit(function(e) {
+                $('.video-error').text('');
+                let isValidate = true;
+                if ($('#video').val() == "") {
+                    isValidate = false;
+                    $('.video-error').text('Không bỏ trống trường này');
+                }
+                if (!isValidate) {
+                    e.preventDefault();
+                }
+            });
+        })
+    </script>
 @endpush

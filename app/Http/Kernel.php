@@ -6,6 +6,7 @@ use App\Http\Middleware\AuthCheckMiddleware;
 use App\Http\Middleware\AuthUserCantAccessToLoginAndRegister;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsImage;
+use App\Http\Middleware\IsVideoMp4;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -73,5 +74,6 @@ class Kernel extends HttpKernel
         'authCheck' => AuthCheckMiddleware::class,
         'isAdmin' => IsAdmin::class,
         'isImage' => IsImage::class,
+        'isVideoMp4' => IsVideoMp4::class
     ];
 }

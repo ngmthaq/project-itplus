@@ -36,7 +36,8 @@ Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () 
         Route::get('/video', [AdminController::class, 'addVideoForm'])
             ->name('admin.addVideoForm');
         Route::post('/video', [AdminController::class, 'addVideo'])
-            ->name('admin.addVideo');
+            ->name('admin.addVideo')
+            ->middleware('isVideoMp4');
 
         // Media store
         Route::get('/', [AdminController::class, 'mediaStore'])
