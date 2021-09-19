@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\AuthCheckMiddleware;
 use App\Http\Middleware\AuthUserCantAccessToLoginAndRegister;
 use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\IsImage;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -71,5 +72,6 @@ class Kernel extends HttpKernel
         'authUserCantAccessToLoginAndRegister' => AuthUserCantAccessToLoginAndRegister::class,
         'authCheck' => AuthCheckMiddleware::class,
         'isAdmin' => IsAdmin::class,
+        'isImage' => IsImage::class,
     ];
 }

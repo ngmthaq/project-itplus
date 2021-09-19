@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Media;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -54,16 +57,36 @@ class AdminController extends Controller
         ]);
     }
 
+    public function addImage(Request $request)
+    {
+        $images = $request->file('image');
+        $fileUploadSuccessfully = [];
+        foreach ($images as $index => $image) {
+            $fileName = md5(Auth::user()->id . $index . $image->getClientOriginalName() . date('Y-m-d H:i:s')) . '.png';
+            $image->storeAs('', $fileName, 'images');
+            Media::create([
+                'media_type' => 'image',
+                'media_path' => 'storage/images',
+                'media_name' => $fileName
+            ]);
+            $fileUploadSuccessfully[$index] = [
+                'path' => 'storage/images',
+                'name' => $fileName
+            ];
+        }
+        return redirect(route('admin.addImageForm'))->with('image', $fileUploadSuccessfully);
+    }
+
     public function addVideoForm()
     {
-        return view('admin.main.add-image', [
+        return view('admin.main.add-video', [
             'site' => 'add-video'
         ]);
     }
 
     public function mediaStore()
     {
-        return view('admin.main.add-image', [
+        return view('admin.main.media-store', [
             'site' => 'media-store'
         ]);
     }

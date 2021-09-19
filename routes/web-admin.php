@@ -28,13 +28,21 @@ Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () 
         // Add image
         Route::get('/image', [AdminController::class, 'addImageForm'])
             ->name('admin.addImageForm');
+        Route::post('/image', [AdminController::class, 'addImage'])
+            ->name('admin.addImage')
+            ->middleware('isImage');
 
         // Add video
         Route::get('/video', [AdminController::class, 'addVideoForm'])
             ->name('admin.addVideoForm');
+        Route::post('/video', [AdminController::class, 'addVideo'])
+            ->name('admin.addVideo');
 
         // Media store
         Route::get('/', [AdminController::class, 'mediaStore'])
             ->name('admin.mediaStore');
     });
+
+    // Posts with text and image
+
 });

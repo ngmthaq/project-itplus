@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    {{-- {{ dd($videos) }} --}}
+    @include('web.parts._header._toast')
     <div id="dashboard">
         <div class="row no-gutters">
             <div class="col-2 sidebar">
@@ -37,6 +37,15 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(function() {
+            // Toast animation
+            $('.my-toast span').click(function() {
+                $(this).parent().fadeOut();
+            })
+            setTimeout(() => {
+                $('.my-toast').fadeOut();
+            }, 5000);
+
+            // Sidebar dropdown
             $('.aside-item').click(function() {
                 $(this).siblings('.aside-item').find('.aside-dropdown').slideUp("fast");
                 $(this).find('.aside-dropdown').slideToggle("fast");

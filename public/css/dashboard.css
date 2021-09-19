@@ -118,3 +118,19 @@ td.dashboard-title {
 .link.admin-action-item:hover {
     color: rgba(0, 0, 0, 0.6);
 }
+
+.media-form {
+    padding: 12px;
+    border-radius: 2px;
+    background-color: #fff;
+}
+
+.row.img-uploaded .img-container {
+    height: 300px;
+}
+
+.row.img-uploaded .img-container img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}

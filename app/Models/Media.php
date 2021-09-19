@@ -14,6 +14,7 @@ class Media extends Model
 
     // Fillable
     protected $fillable = [
+        'media_type',
         'media_path',
         'media_name'
     ];
