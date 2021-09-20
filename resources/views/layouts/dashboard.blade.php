@@ -18,6 +18,7 @@
 
 <body>
     @include('web.parts._header._toast')
+    @include('web.parts._header._modal')
     <div id="dashboard">
         <div class="row no-gutters">
             <div class="col-2 sidebar">

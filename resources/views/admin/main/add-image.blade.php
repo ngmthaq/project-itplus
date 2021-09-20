@@ -65,7 +65,7 @@
             @if (session('image'))
                 <div class="row">
                     <h5 class="col-12">
-                        <div class="media-container">
+                        <div class="padding-12">
                             <div class="label-container">
                                 <span>Ảnh vừa tải lên</span>
                                 <a href="{{ route('admin.mediaStore') }}" class="link">

@@ -104,8 +104,13 @@ class AdminController extends Controller
 
     public function mediaStore()
     {
+        $media = Media::all();
+        $images = $media->where('media_type', '=', 'image');
+        $videos = $media->where('media_type', '=', 'video');
         return view('admin.main.media-store', [
-            'site' => 'media-store'
+            'site' => 'media-store',
+            'images' => $images,
+            'videos' => $videos
         ]);
     }
 }

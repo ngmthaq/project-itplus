@@ -53,13 +53,14 @@
                     <ul style="padding: 12px; background: #fff;">
                         <h5>Lưu ý:</h5>
                         <li>Tệp tin là video, có định dạng mp4</li>
+                        <li>Khuyên dùng video có tỉ lệ 16:9 hoặc 4:3</li>
                     </ul>
                 </div>
             </div>
             @if (session('video'))
                 <div class="row">
                     <h5 class="col-12">
-                        <div class="media-container">
+                        <div class="padding-12">
                             <div class="label-container">
                                 <span>Video vừa tải lên</span>
                                 <a href="{{ route('admin.mediaStore') }}" class="link">
@@ -69,8 +70,8 @@
                         </div>
                     </h5>
                     <div class="col-12">
-                        <div class="media-container">
-                            <video src="{{ asset(session('video')['path'] . '/' . session('video')['name']) }}" muted controls></video>
+                        <div>
+                            <video style="width:100%; height:100%;" src="{{ asset(session('video')['path'] . '/' . session('video')['name']) }}" muted controls></video>
                         </div>
                     </div>
                 </div>
