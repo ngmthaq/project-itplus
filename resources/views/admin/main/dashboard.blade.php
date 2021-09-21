@@ -87,7 +87,11 @@
                                     <tr>
                                         <td>{{ $category->name_vi }}</td>
                                         <td>
-                                            {{ $category->posts_count }}
+                                            @if ($category->valid_posts)
+                                                {{ $category->valid_posts }}
+                                            @else
+                                                0
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

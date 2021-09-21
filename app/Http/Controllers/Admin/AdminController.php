@@ -21,12 +21,25 @@ class AdminController extends Controller
         $posts = Post::whereNull('deleted_at')->orderBy('created_at', 'desc')->get();
         $texts = $posts->where('type_id', '=', '1');
         $videos = $posts->where('type_id', '=', '2');
+        $categories = Category::with('posts')->get();
+        foreach ($categories as $category) {
+            $category->comments = Comment::getCommentOfCategory($category);
+            $validPost = 0;
+            if (count($category->posts) > 0) {
+                foreach ($category->posts as $post) {
+                    if (!$post->deleted_at) {
+                        $validPost++;
+                        $category->valid_posts = $validPost;
+                    }
+                }
+            }
+        }
         return view('admin.main.dashboard', [
             'users' => $users,
             'posts' => $posts,
             'texts' => $texts,
             'videos' => $videos,
-            'categories' => Category::withCount('posts')->get(),
+            'categories' => $categories,
             'site' => 'dashboard',
             'totalComments' => $totalComments
         ]);
@@ -34,8 +47,8 @@ class AdminController extends Controller
 
     public function categories()
     {
-        $categories = Category::with('posts')->get();
         $totalComments = count(Comment::all());
+        $categories = Category::with('posts')->get();
         foreach ($categories as $category) {
             $category->comments = Comment::getCommentOfCategory($category);
             $validPost = 0;
