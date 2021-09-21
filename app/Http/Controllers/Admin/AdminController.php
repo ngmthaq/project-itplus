@@ -18,7 +18,7 @@ class AdminController extends Controller
     {
         $users = User::with(['comments', 'userInformation'])->orderBy('id', 'desc')->get();
         $totalComments = count(Comment::all());
-        $posts = Post::orderBy('created_at', 'desc')->get();
+        $posts = Post::whereNull('deleted_at')->orderBy('created_at', 'desc')->get();
         $texts = $posts->where('type_id', '=', '1');
         $videos = $posts->where('type_id', '=', '2');
         return view('admin.main.dashboard', [
@@ -34,12 +34,21 @@ class AdminController extends Controller
 
     public function categories()
     {
-        $categories = Category::withCount('posts')->get();
+        $categories = Category::with('posts')->get();
         $totalComments = count(Comment::all());
         foreach ($categories as $category) {
             $category->comments = Comment::getCommentOfCategory($category);
+            $validPost = 0;
+            if (count($category->posts) > 0) {
+                foreach ($category->posts as $post) {
+                    if (!$post->deleted_at) {
+                        $validPost++;
+                        $category->valid_posts = $validPost;
+                    }
+                }
+            }
         }
-        $posts = Post::with('comments')->orderBy('created_at', 'desc')->get();
+        $posts = Post::with('comments')->whereNull('deleted_at')->orderBy('created_at', 'desc')->get();
         $videos = $posts->where('type_id', '=', '2');
         return view('admin.main.categories', [
             'posts' => $posts,

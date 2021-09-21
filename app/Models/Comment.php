@@ -31,7 +31,7 @@ class Comment extends Model
         return $this->belongsTo(Post::class);
     }
 
-    public static function getCommentOfCategory(Category $category)
+    public static function getCommentOfCategory($category)
     {
         $total = 0;
         foreach ($category->posts as $post) {

@@ -54,7 +54,7 @@
                                 </span>
                             </div>
                             <div class="count-record-content">
-                                <h5>{{ $category->posts_count }}</h5>
+                                <h5>{{ $category->valid_posts }}</h5>
                                 <p>{{ $category->name_vi }}</p>
                             </div>
                         </div>
@@ -92,12 +92,12 @@
                                     <tr>
                                         <td>{{ $category->name_vi }}</td>
                                         <td>
-                                            {{ $category->posts_count }}
+                                            {{ $category->valid_posts }}
                                         </td>
                                         @if (count($posts) > 0)
-                                            <td>{{ ($category->posts_count / count($posts)) * 100 }}%</td>
+                                            <td>{{ ($category->valid_posts / count($posts)) * 100 }}%</td>
                                         @else
-                                            <td>{{ $category->posts_count }}</td>
+                                            <td>{{ $category->valid_posts }}</td>
                                         @endif
                                         @if ($totalComments > 0)
                                             <td>{{ ($category->comments / $totalComments) * 100 }}%</td>

@@ -54,7 +54,7 @@
                         </ul>
                     </div>
                     <div class="padding-12">
-                        <form action="{{ route('post.createCasualPost') }}" method="post">
+                        <form action="{{ route('post.editCasualPostForm', ['post' => $post->id]) }}" method="post">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-12">
@@ -65,9 +65,12 @@
                                 <div class="form-group col-6">
                                     <label for="category-id">Danh mục <small class="required">*</small></label>
                                     <select name="category_id" id="category-id" class="form-control">
-                                        <option value="">Chọn danh mục ...</option>
+                                        <option value="{{ $post->category->id }}">{{ $post->category->name_vi }}</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name_vi }}</option>
+                                            @if ($post->category->id == $category->id)
+                                                @continue
+                                                <option value="{{ $category->id }}">{{ $category->name_vi }}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                     <small class="required category-error">
@@ -81,7 +84,7 @@
                                 <div class="form-group col-6">
                                     <label for="cover-url">Ảnh bìa <small class="required">*</small></label>
                                     <input type="text" name="cover_url" id="cover-url" class="form-control"
-                                        placeholder="VD: domainexample.com/image-name.png" value="{{ old('cover_url') }}">
+                                        placeholder="VD: domainexample.com/image-name.png" value="{{ $post->cover_url }}">
                                     <small class="required cover-url-error">
                                         @if ($errors->has('cover_url'))
                                             @foreach ($errors->get('cover_url') as $message)
@@ -95,7 +98,7 @@
                                 <div class="form-group col-12">
                                     <label for="title-vi">Tiêu đề <small class="required">*</small></label>
                                     <textarea name="title_vi" id="title-vi" cols="30" rows="2"
-                                        class="form-control">{{ old('title_vi') }}</textarea>
+                                        class="form-control">{{ $post->title_vi }}</textarea>
                                     <small class="required title-vi-error">
                                         @if ($errors->has('title_vi'))
                                             @foreach ($errors->get('title_vi') as $message)
@@ -107,7 +110,7 @@
                                 <div class="form-group col-12">
                                     <label for="title-vi">Tiêu đề phụ <small class="required">*</small></label>
                                     <textarea name="subtitle_vi" id="subtitle-vi" cols="30" rows="4"
-                                        class="form-control">{{ old('subtitle_vi') }}</textarea>
+                                        class="form-control">{{ $post->subtitle_vi }}</textarea>
                                     <small class="required subtitle-vi-error">
                                         @if ($errors->has('subtitle_vi'))
                                             @foreach ($errors->get('subtitle_vi') as $message)
@@ -121,7 +124,7 @@
                                 <div class="form-group col-12">
                                     <label for="content-vi">Nội dung <small class="required">*</small></label>
                                     <textarea name="content_vi" id="content-vi" cols="30" rows="10"
-                                        class="editor">{{ old('content_vi') }}</textarea>
+                                        class="editor">{{ $post->content_vi }}</textarea>
                                     <small>Copy đường dẫn ảnh vào sẽ tự động nhận hình ảnh</small><br>
                                     <small class="required content-vi-error">
                                         @if ($errors->has('content_vi'))
@@ -134,7 +137,7 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <button type="submit" class="button-md-main">Đăng bài</button>
+                                    <button type="submit" class="button-md-main">Sửa bài</button>
                                 </div>
                             </div>
                         </form>

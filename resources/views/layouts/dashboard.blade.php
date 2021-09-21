@@ -51,9 +51,6 @@
                 $(this).siblings('.aside-item').find('.aside-dropdown').slideUp("fast");
                 $(this).find('.aside-dropdown').slideToggle("fast");
             });
-
-            let site = {!! json_encode($site, JSON_HEX_TAG) !!};
-            $('.' + site).click();
         })
     </script>
     @stack('js')

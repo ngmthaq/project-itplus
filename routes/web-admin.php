@@ -45,16 +45,45 @@ Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () 
             ->name('admin.mediaStore');
     });
 
-    // Posts with text and image => casual post
-    Route::prefix('/post')->group(function () {
-        // Create casual post
+    // Posts
+    Route::prefix('/posts')->group(function () {
+        /** Create casual post */
         Route::get('/create', [PostController::class, 'createCasualPostForm'])
             ->name('post.createCasualPostForm');
         Route::post('/create', [PostController::class, 'createCasualPost'])
             ->name('post.createCasualPost');
+        /****************END********************** */
 
-        // All casual posts
-        Route::get('/', [PostController::class, 'manageCasualPost'])
+        /** All casual posts - Manage casual post */
+        Route::get('/casual', [PostController::class, 'manageCasualPost'])
             ->name('post.manageCasualPost');
+        /******************END********************* */
+
+        /** Video posts */
+        Route::prefix('/video')->group(function () {
+            // Manage posts
+            Route::get('/', [PostController::class, 'manageVideoPost'])
+                ->name('post.manageVideoPost');
+        });
+        /******************END******************** */
+
+        /** Edit post */
+        Route::middleware(['postWasNotDeleted'])->group(function () {
+            /** Edit casual post */
+            Route::get('/casual/{post}/edit', [PostController::class, 'editCasualPostForm'])
+                ->name('post.editCasualPostForm')
+                ->where(['post' => '[0-9]+']);
+            Route::post('/casual/{post}/edit', [PostController::class, 'editCasualPost'])
+                ->name('post.editCasualPost')
+                ->where(['post' => '[0-9]+']);
+            /***************END******************* */
+            
+            /** Delete post */
+            Route::put('/{post}/delete', [PostController::class, 'deletePost'])
+                ->name('post.deletePost')
+                ->where(['post' => '[0-9]+']);
+            /*************END******************* */
+        });
+        /*****************END******************* */
     });
 });

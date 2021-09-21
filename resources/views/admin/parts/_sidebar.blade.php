@@ -26,7 +26,9 @@
             <li class="aside-item add-image add-video media-store">
                 <a href="javascript:void(0)"
                     class="link admin-action-item 
-                        @php echo $site == 'add-image' || $site == 'add-video' || $site == 'media-store' ? 'active' : '' @endphp">
+                    @php echo $site == 'add-image' || $site == 'add-video' 
+                        || $site == 'media-store' ? 'active' : '' 
+                    @endphp">
                     <span>
                         <span class="aside-icon"><i class="far fa-file-image"></i></span>
                         <span>Quản lý đa phương tiện</span>
@@ -59,7 +61,9 @@
             <li class="aside-item">
                 <a href="javascript:void(0)"
                     class="link admin-action-item
-                    @php echo $site == 'create-casual-post' || $site == 'manage-casual-post' ? 'active' : '' @endphp">
+                    @php echo $site == 'create-casual-post' || $site == 'manage-casual-post' 
+                        || $site == 'edit-casual-post' ? 'active' : '' 
+                    @endphp">
                     <span>
                         <span class="aside-icon"><i class="far fa-file-alt"></i></span>
                         <span>Quản lý bài viết</span>

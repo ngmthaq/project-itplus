@@ -25,6 +25,7 @@ class CreatePostsTable extends Migration
             $table->text('subtitle_en')->nullable(true);
             $table->text('content_vi');
             $table->text('content_en')->nullable(true);
+            $table->timestamp('deleted_at')->nullable(true);
             $table->timestamps();
         });
     }
