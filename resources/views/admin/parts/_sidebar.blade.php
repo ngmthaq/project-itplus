@@ -36,19 +36,19 @@
                 <div class="aside-dropdown">
                     <ul>
                         <li>
-                            <a class="link admin-action-item @php echo $site == 'add-image' ? 'active' : '' @endphp" 
+                            <a class="link admin-action-item @php echo $site == 'add-image' ? 'active' : '' @endphp"
                                 href="{{ route('admin.addImageForm') }}">
                                 Thêm hình ảnh
                             </a>
                         </li>
                         <li>
-                            <a class="link admin-action-item @php echo $site == 'add-video' ? 'active' : '' @endphp" 
+                            <a class="link admin-action-item @php echo $site == 'add-video' ? 'active' : '' @endphp"
                                 href="{{ route('admin.addVideoForm') }}">
                                 Thêm video
                             </a>
                         </li>
                         <li>
-                            <a class="link admin-action-item @php echo $site == 'media-store' ? 'active' : '' @endphp" 
+                            <a class="link admin-action-item @php echo $site == 'media-store' ? 'active' : '' @endphp"
                                 href="{{ route('admin.mediaStore') }}">
                                 Kho lưu trữ
                             </a>
@@ -57,7 +57,9 @@
                 </div>
             </li>
             <li class="aside-item">
-                <a href="javascript:void(0)" class="link admin-action-item">
+                <a href="javascript:void(0)"
+                    class="link admin-action-item
+                    @php echo $site == 'create-casual-post' || $site == 'manage-casual-post' ? 'active' : '' @endphp">
                     <span>
                         <span class="aside-icon"><i class="far fa-file-alt"></i></span>
                         <span>Quản lý bài viết</span>
@@ -67,16 +69,14 @@
                 <div class="aside-dropdown">
                     <ul>
                         <li>
-                            <a class="link admin-action-item" href="#">Thêm bài viết</a>
+                            <a class="link admin-action-item
+                            @php echo $site == 'create-casual-post' ? 'active' : '' @endphp"
+                                href="{{ route('post.createCasualPostForm') }}">Thêm bài viết</a>
                         </li>
                         <li>
-                            <a class="link admin-action-item" href="#">Sửa bài viết</a>
-                        </li>
-                        <li>
-                            <a class="link admin-action-item" href="#">Xoá bài viết</a>
-                        </li>
-                        <li>
-                            <a class="link admin-action-item" href="#">Xem tất cả</a>
+                            <a class="link admin-action-item
+                            @php echo $site == 'manage-casual-post' ? 'active' : '' @endphp"
+                                href="{{ route('post.manageCasualPost') }}">Xem tất cả</a>
                         </li>
                     </ul>
                 </div>
@@ -93,12 +93,6 @@
                     <ul>
                         <li>
                             <a class="link admin-action-item" href="#">Thêm bài viết</a>
-                        </li>
-                        <li>
-                            <a class="link admin-action-item" href="#">Sửa bài viết</a>
-                        </li>
-                        <li>
-                            <a class="link admin-action-item" href="#">Xoá bài viết</a>
                         </li>
                         <li>
                             <a class="link admin-action-item" href="#">Xem tất cả</a>

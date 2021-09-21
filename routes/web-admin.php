@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Post\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,16 @@ Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () 
             ->name('admin.mediaStore');
     });
 
-    // Posts with text and image
+    // Posts with text and image => casual post
+    Route::prefix('/post')->group(function () {
+        // Create casual post
+        Route::get('/create', [PostController::class, 'createCasualPostForm'])
+            ->name('post.createCasualPostForm');
+        Route::post('/create', [PostController::class, 'createCasualPost'])
+            ->name('post.createCasualPost');
 
+        // All casual posts
+        Route::get('/', [PostController::class, 'manageCasualPost'])
+            ->name('post.manageCasualPost');
+    });
 });

@@ -130,6 +130,7 @@ td.dashboard-title {
     background-color: #fff;
     border-radius: 2px;
     height: 300px;
+    cursor: pointer;
 }
 
 .media-container img {
