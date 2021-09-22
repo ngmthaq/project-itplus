@@ -35,7 +35,9 @@
                     <div class="padding-12">
                         <div class="label-container mb-2">
                             <h5>Tất cả bài viết</h5>
-                            <h5>{{ count($posts) }} bài viết</h5>
+                            <h5>
+                                {{ $validPosts }}/{{ count($posts) }} bài viết
+                            </h5>
                         </div>
                         <table class="table">
                             <thead class="thead-light">
@@ -74,18 +76,10 @@
                                                         class="btn btn-sm btn-outline-warning" title="Sửa bài viết">
                                                         <i class="fas fa-pencil-ruler"></i>
                                                     </a>
-                                                    {{-- <a href="javascript:void(0)" data-id="{{ $post->id }}"
-                                                        class="btn btn-sm btn-outline-danger" title="Xoá bài viết">
+                                                    <a href="javascript:void(0)" data-id="{{ $post->id }}"
+                                                        class="btn btn-sm btn-outline-danger" title="Xoá bài viết" onclick="deletePost(this)">
                                                         <i class="far fa-trash-alt"></i>
-                                                    </a> --}}
-                                                    <form action="{{ route('post.deletePost', ['post' => $post->id]) }}"
-                                                        method="post" class="d-inline" onsubmit="return confirm('Bạn muốn xoá bài viết này?')">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button type="submit" class="btn btn-sm btn-outline-danger">
-                                                            <i class="far fa-trash-alt"></i>
-                                                        </button>
-                                                    </form>
+                                                    </a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -106,18 +100,17 @@
 
 @push('js')
     <script>
-        // function deletePost(e) {
-        //     const CONFIRM = confirm('Bạn muốn xoá bài viết này?');
-        //     if (CONFIRM) {
-        //         let id = e.getAttribute('data-id');
-        //         console.log(id);
-        //         axios.put('admin/posts/' + id + '/delete')
-        //             .then((result) => {
-        //                 console.log(result);
-        //             }).catch((err) => {
-        //                 console.log(err);
-        //             });
-        //     }
-        // }
+        function deletePost(e) {
+            const CONFIRM = confirm('Bạn muốn xoá bài viết này?');
+            if (CONFIRM) {
+                let id = e.getAttribute('data-id');
+                axios.put(id + '/delete')
+                    .then((result) => {
+                        e.parentElement.parentElement.innerHTML = result.data
+                    }).catch((err) => {
+                        console.log(err);
+                    });
+            }
+        }
     </script>
 @endpush

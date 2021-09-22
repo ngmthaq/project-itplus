@@ -16,23 +16,23 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
+        // Lấy số người dùng hiện tại
         $users = User::with(['comments', 'userInformation'])->orderBy('id', 'desc')->get();
+        // Lấy số comments hiện tại
         $totalComments = count(Comment::all());
+        // Lấy tất cả bài viết chưa bị xoá
         $posts = Post::whereNull('deleted_at')->orderBy('created_at', 'desc')->get();
+        // Lấy những bài viết cơ bản
         $texts = $posts->where('type_id', '=', '1');
+        // Lấy những bài viết dạng video
         $videos = $posts->where('type_id', '=', '2');
+        // Lấy danh sách danh mục
         $categories = Category::with('posts')->get();
+        // Đếm số bài viết chưa bị xoá ở mỗi danh mục
         foreach ($categories as $category) {
             $category->comments = Comment::getCommentOfCategory($category);
-            $validPost = 0;
-            if (count($category->posts) > 0) {
-                foreach ($category->posts as $post) {
-                    if (!$post->deleted_at) {
-                        $validPost++;
-                        $category->valid_posts = $validPost;
-                    }
-                }
-            }
+            $validPosts = Post::countValidPosts($category->posts);
+            $category->valid_posts = $validPosts;
         }
         return view('admin.main.dashboard', [
             'users' => $users,
@@ -47,21 +47,19 @@ class AdminController extends Controller
 
     public function categories()
     {
+        // Lấy comments
         $totalComments = count(Comment::all());
+        // Lấy danh mục
         $categories = Category::with('posts')->get();
+        // Đếm số bài viết còn lại mỗi danh mục
         foreach ($categories as $category) {
             $category->comments = Comment::getCommentOfCategory($category);
-            $validPost = 0;
-            if (count($category->posts) > 0) {
-                foreach ($category->posts as $post) {
-                    if (!$post->deleted_at) {
-                        $validPost++;
-                        $category->valid_posts = $validPost;
-                    }
-                }
-            }
+            $validPosts = Post::countValidPosts($category->posts);
+            $category->valid_posts = $validPosts;
         }
+        // Lấy tất cả bài viết chưa bị xoá
         $posts = Post::with('comments')->whereNull('deleted_at')->orderBy('created_at', 'desc')->get();
+        // Lấy bài viết dạng video
         $videos = $posts->where('type_id', '=', '2');
         return view('admin.main.categories', [
             'posts' => $posts,

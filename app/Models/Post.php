@@ -49,4 +49,17 @@ class Post extends Model
     {
         return $this->belongsTo(Type::class);
     }
+
+    public static function countValidPosts($posts)
+    {
+        $result = 0;
+        if (count($posts) > 0) {
+            foreach ($posts as $post) {
+                if (!$post->deleted_at) {
+                    $result++;
+                }
+            }
+        }
+        return $result;
+    }
 }

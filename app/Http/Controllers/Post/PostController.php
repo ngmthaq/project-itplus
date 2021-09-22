@@ -10,6 +10,7 @@ use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PostController extends Controller
 {
@@ -25,9 +26,11 @@ class PostController extends Controller
     public function createCasualPost(CreateCasualPostRequest $request)
     {
         $request->flash();
+        // Replace kí tự đặc biệt
         $contentHandled = str_replace("'", "\'", $request->input('content_vi'));
         $titleViHandled = str_replace("'", "\'", $request->input('title_vi'));
         $subtitleViHandled = str_replace("'", "\'", $request->input('subtitle_vi'));
+        // Thêm post
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'category_id' => $request->input('category_id'),
@@ -45,15 +48,20 @@ class PostController extends Controller
 
     public function manageCasualPost()
     {
+        // Lấy tất cả các post kể cả post đã bị xoá
+        $posts = Post::where('type_id', '=', '1')->orderBy('id', 'desc')->get();
+        // Lấy số lượng post chưa bị xoá
+        $validPosts = Post::countValidPosts($posts);
         return view('admin.main.manage-casual-post', [
             'site' => 'manage-casual-post',
-            'posts' => Post::where('type_id', '=', '1')->orderBy('id', 'desc')->get()
+            'posts' => $posts,
+            'validPosts' => $validPosts
         ]);
     }
 
     public function editCasualPostForm(Post $post)
     {
-        $post->load('category')->get();
+        $post->load('category');
         return view('admin.main.edit-casual-post', [
             'site' => 'edit-casual-post',
             'post' => $post,
@@ -88,11 +96,9 @@ class PostController extends Controller
         $post->deleted_at = Carbon::now();
         $post->save();
         if ($post->deleted_at) {
-            if ($post->type_id == 1) {
-                return redirect(route('post.manageCasualPost'))->with('success', 'Xoá bài viết thành công');
-            } else {
-                return redirect(route('post.manageVideoPost'))->with('success', 'Xoá bài viết thành công');
-            }
+            return view('admin.parts.deleted-post', [
+                'post' => $post
+            ]);
         }
         if ($post->type_id == 1) {
             return redirect(route('post.manageCasualPost'))->with('error', 'Xoá bài viết thất bại, vui lòng thử lại');

@@ -75,7 +75,10 @@
             <div class="row my-3">
                 <div class="col-6">
                     <div class="count">
-                        <h5>Danh mục bài viết</h5>
+                        <div class="label-container">
+                            <h5>Danh mục bài viết</h5>
+                            <a href="{{ route('post.manageCasualPost') }}" class="link">Xem tất cả</a>
+                        </div>
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
@@ -120,7 +123,10 @@
                 </div>
                 <div class="col-6">
                     <div class="count">
-                        <h5>Video mới nhất</h5>
+                        <div class="label-container">
+                            <h5>Danh mục bài viết</h5>
+                            <a href="{{ route('post.manageVideoPost') }}" class="link">Xem tất cả</a>
+                        </div>
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>

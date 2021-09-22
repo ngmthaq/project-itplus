@@ -28,7 +28,7 @@
                         </div>
                         <div class="count-record-content">
                             <h5>{{ count($texts) }}</h5>
-                            <p>Tổng số bài viết</p>
+                            <p>Tổng số bài viết cơ bản</p>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
                         </div>
                         <div class="count-record-content">
                             <h5>{{ count($videos) }}</h5>
-                            <p>Tổng số video</p>
+                            <p>Tổng số bài viết video</p>
                         </div>
                     </div>
                 </div>

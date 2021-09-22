@@ -36,9 +36,9 @@
                     <ul class="breadcrum vi my-3">
                         <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                         <li><i class="fas fa-angle-right"></i></li>
-                        <li>Quản lý bài viết</li>
+                        <li><a href="{{ route('post.manageCasualPost') }}">Tất cả bài viết</a></li>
                         <li><i class="fas fa-angle-right"></i></li>
-                        <li>Đăng bài</li>
+                        <li>Sửa bài</li>
                     </ul>
                 </div>
             </div>
@@ -69,8 +69,8 @@
                                         @foreach ($categories as $category)
                                             @if ($post->category->id == $category->id)
                                                 @continue
-                                                <option value="{{ $category->id }}">{{ $category->name_vi }}</option>
                                             @endif
+                                            <option value="{{ $category->id }}">{{ $category->name_vi }}</option>
                                         @endforeach
                                     </select>
                                     <small class="required category-error">
