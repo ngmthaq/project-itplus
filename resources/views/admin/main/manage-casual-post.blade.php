@@ -34,11 +34,21 @@
                 <div class="col-12">
                     <div class="padding-12">
                         <div class="label-container mb-2">
-                            <h5>Tất cả bài viết</h5>
-                            <h5>
-                                {{ $validPosts }}/{{ count($posts) }} bài viết
-                            </h5>
+                            <h5>Tất cả bài viết: {{ $validPosts }}/{{ count($posts) }} bài viết</h5>
                         </div>
+                        <form class="d-flex justify-content-between">
+                            <div class="form-group">
+                                <input type="text" id="post-search-input" class="form-control" placeholder="Tìm kiếm"
+                                    style="width: 200%;">
+                            </div>
+                            <div class="form-group">
+                                <div class="form-check">
+                                    <input type="checkbox" id="hideDeletedPost" class="form-check-input" value="hidden">
+                                    <label style="user-select: none;" for="hideDeletedPost" class="form-check-label">Ẩn bài
+                                        viết đã xoá</label>
+                                </div>
+                            </div>
+                        </form>
                         <table class="table">
                             <thead class="thead-light">
                                 <tr>
@@ -52,7 +62,7 @@
                             <tbody>
                                 @if (count($posts) > 0)
                                     @foreach ($posts as $post)
-                                        <tr>
+                                        <tr class="post-row @php echo ($post->deleted_at) ? 'hidden' : 'visible'  @endphp">
                                             <th scope="row">{{ $post->id }}</th>
                                             <td class="title_vi">{{ $post->title_vi }}</td>
                                             <td>{{ date('d/m/Y H:i:s', strtotime($post->created_at)) }}</td>
@@ -77,7 +87,8 @@
                                                         <i class="fas fa-pencil-ruler"></i>
                                                     </a>
                                                     <a href="javascript:void(0)" data-id="{{ $post->id }}"
-                                                        class="btn btn-sm btn-outline-danger" title="Xoá bài viết" onclick="deletePost(this)">
+                                                        class="btn btn-sm btn-outline-danger" title="Xoá bài viết"
+                                                        onclick="deletePost(this)">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
                                                 @endif
@@ -112,5 +123,24 @@
                     });
             }
         }
+        $(function() {
+            $('#post-search-input').keyup(function() {
+                var value = $(this).val().toLowerCase();
+                console.log(value);
+                $("tr.post-row").filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            })
+
+            $('#hideDeletedPost').change(function() {
+                if ($(this).val() == 'hidden') {
+                    $('tr.post-row.hidden').hide();
+                    $(this).val('visible');
+                } else {
+                    $('tr.post-row.hidden').show();
+                    $(this).val('hidden');
+                }
+            })
+        })
     </script>
 @endpush
