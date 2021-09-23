@@ -59,7 +59,7 @@
         {{-- Navbar --}}
         <nav class="my-navbar">
             <div class="row align-items-center">
-                <div class="col-9">
+                <div class="col-11">
                     <ul class="my-navbar-list">
                         @foreach ($categories as $category)
                             <li>
@@ -81,10 +81,10 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-3 d-flex justify-content-end">
+                <div class="col-1 d-flex justify-content-end">
                     <form action="" class="search-form">
-                        <input type="text" name="search" id="search" class="search-input" placeholder="Tìm kiếm ...">
-                        <button type="submit" class="search-button"><i class="fas fa-search"></i></button>
+                        {{-- <input type="text" name="search" id="search" class="search-input" placeholder="Tìm kiếm ..."> --}}
+                        <button type="button" class="search-button"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
             </div>

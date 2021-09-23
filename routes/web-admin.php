@@ -25,7 +25,7 @@ Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () 
         ->name('admin.categories');
 
     // Media
-    Route::prefix('/media')->group(function () {
+    Route::prefix('media')->group(function () {
         // Add image
         Route::get('/image', [AdminController::class, 'addImageForm'])
             ->name('admin.addImageForm');
@@ -46,38 +46,59 @@ Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () 
     });
 
     // Posts
-    Route::prefix('/posts')->group(function () {
-        /** Create casual post */
-        Route::get('/create', [PostController::class, 'createCasualPostForm'])
-            ->name('post.createCasualPostForm');
-        Route::post('/create', [PostController::class, 'createCasualPost'])
-            ->name('post.createCasualPost');
-        /****************END********************** */
+    Route::prefix('posts')->group(function () {
+        /** Casual post */
+        Route::prefix('casual')->group(function () {
+            /** Create casual post */
+            Route::get('/create', [PostController::class, 'createCasualPostForm'])
+                ->name('post.createCasualPostForm');
+            Route::post('/create', [PostController::class, 'createCasualPost'])
+                ->name('post.createCasualPost');
 
-        /** All casual posts - Manage casual post */
-        Route::get('/casual', [PostController::class, 'manageCasualPost'])
-            ->name('post.manageCasualPost');
-        /******************END********************* */
+            /** All casual posts - Manage casual post */
+            Route::get('/', [PostController::class, 'manageCasualPost'])
+                ->name('post.manageCasualPost');
+        });
+        /****************END********************** */
 
         /** Video posts */
         Route::prefix('/video')->group(function () {
             // Manage posts
             Route::get('/', [PostController::class, 'manageVideoPost'])
                 ->name('post.manageVideoPost');
+            
+            // Create casual post
+            Route::get('/create', [PostController::class, 'createVideoPostForm'])
+                ->name('post.createVideoPostForm');
+            Route::post('/create', [PostController::class, 'createVideoPost'])
+                ->name('post.createVideoPost');
         });
         /******************END******************** */
 
         /** Edit post */
         Route::middleware(['postWasNotDeleted'])->group(function () {
             /** Edit casual post */
-            Route::get('/casual/{post}/edit', [PostController::class, 'editCasualPostForm'])
-                ->name('post.editCasualPostForm')
-                ->where(['post' => '[0-9]+']);
-            Route::post('/casual/{post}/edit', [PostController::class, 'editCasualPost'])
-                ->name('post.editCasualPost')
-                ->where(['post' => '[0-9]+']);
+            Route::prefix('casual')->group(function () {
+                Route::get('/{post}/edit', [PostController::class, 'editCasualPostForm'])
+                    ->name('post.editCasualPostForm')
+                    ->where(['post' => '[0-9]+']);
+                Route::post('/{post}/edit', [PostController::class, 'editCasualPost'])
+                    ->name('post.editCasualPost')
+                    ->where(['post' => '[0-9]+']);
+            });
             /***************END******************* */
-            
+
+            /** Edit video post */
+            Route::prefix('video')->group(function () {
+                Route::get('/{post}/edit', [PostController::class, 'editVideoPostForm'])
+                    ->name('post.editVideoPostForm')
+                    ->where(['post' => '[0-9]+']);
+                Route::post('/{post}/edit', [PostController::class, 'editVideoPost'])
+                    ->name('post.editVideoPost')
+                    ->where(['post' => '[0-9]+']);
+            });
+            /*******************END************** */
+
             /** Delete post */
             Route::put('/{post}/delete', [PostController::class, 'deletePost'])
                 ->name('post.deletePost')

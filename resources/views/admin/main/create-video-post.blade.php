@@ -19,9 +19,14 @@
             background-color: rgba(255, 255, 255, 0.2);
             visibility: hidden;
             border-radius: 2px;
+            z-index: 1;
         }
 
         .media-image:hover .copy-button {
+            visibility: visible;
+        }
+
+        .media-video:hover .copy-button {
             visibility: visible;
         }
 
@@ -50,11 +55,13 @@
                             <li>VD cho đường dẫn ảnh:
                                 <i>https://i.pinimg.com/564x/2e/5b/92/2e5b9287665c03aa6ad808d439282c4e.jpg</i>
                             </li>
-                            <li>VD cho đường dẫn video: <i>https://www.youtube.com/watch?v=iEeq2TO-IgI</i></li>
+                            <li>VD cho đường dẫn video:
+                                <i>http://127.0.0.1:8000/storage/videos/3c4ee14e63631bbbf1b61e347dcfe622.mp4</i>
+                            </li>
                         </ul>
                     </div>
                     <div class="padding-12">
-                        <form action="{{ route('post.createCasualPost') }}" method="post">
+                        <form action="{{ route('post.createVideoPost') }}" method="post">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-12">
@@ -119,9 +126,9 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <label for="content-vi">Nội dung <small class="required">*</small></label>
-                                    <textarea name="content_vi" id="content-vi" cols="30" rows="10"
-                                        class="editor">{{ old('content_vi') }}</textarea>
+                                    <label for="content-vi">Đường dẫn video <small class="required">*</small></label>
+                                    <textarea name="content_vi" id="content-vi" cols="30" rows="1"
+                                        class="form-control">{{ old('content_vi') }}</textarea>
                                     <small>Copy đường dẫn ảnh vào sẽ tự động nhận hình ảnh</small><br>
                                     <small class="required content-vi-error">
                                         @if ($errors->has('content_vi'))
@@ -142,13 +149,14 @@
                 </div>
             </div>
             <div class="row no-gutters mb-3">
-                <div class="col-12">
-                    <div class="padding-12">
+                <div class="col-12 image-dropdown-button">
+                    <div class="padding-12 label-container">
                         <h5>Kho lưu trữ ảnh</h5>
+                        <span><i class="fas fa-chevron-down"></i></span>
                     </div>
                 </div>
                 @foreach ($images as $image)
-                    <div class="col-4">
+                    <div class="col-4 image-dropdown">
                         <div style="max-height: 630px;">
                             <div class="media-container media-image" style="position: relative;">
                                 <div class="copy-button">
@@ -163,83 +171,43 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="col-12 mt-3 video-dropdown-button">
+                    <div class="padding-12 label-container">
+                        <h5>Kho lưu trữ video</h5>
+                        <span><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                </div>
+                @foreach ($videos as $video)
+                    <div class="col-4 video-dropdown">
+                        <div style="max-height: 666px;">
+                            <div class="media-container media-video" style="position: relative;">
+                                <div class="copy-button">
+                                    <button class="button-md-main"
+                                        data-url="{{ asset($video->media_path . '/' . $video->media_name) }}">
+                                        Copy
+                                    </button>
+                                </div>
+                                <video src="{{ asset($video->media_path . '/' . $video->media_name) }}" controls></video>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
 @endsection
 
 @push('js')
-    <script src="{{ asset('vendors/ckeditor5/build/ckeditor.js') }}"></script>
-    {{-- <script src="{{ asset('vendors/ckeditor5/src/ckeditor.js') }}"></script> --}}
-    <script>
-        ClassicEditor
-            .create(document.querySelector('.editor'), {
-                toolbar: {
-                    items: [
-                        'heading',
-                        '|',
-                        'fontSize',
-                        'fontFamily',
-                        'fontColor',
-                        'highlight',
-                        '|',
-                        'bold',
-                        'italic',
-                        'underline',
-                        'subscript',
-                        'superscript',
-                        '|',
-                        'alignment',
-                        'bulletedList',
-                        'numberedList',
-                        '|',
-                        'outdent',
-                        'indent',
-                        '|',
-                        'imageInsert',
-                        'mediaEmbed',
-                        'blockQuote',
-                        'insertTable',
-                        'link',
-                        'undo',
-                        'redo',
-                        'codeBlock',
-                        'htmlEmbed'
-                    ]
-                },
-                language: 'vi',
-                image: {
-                    toolbar: [
-                        'imageTextAlternative',
-                        'imageStyle:inline',
-                        'imageStyle:block',
-                        'imageStyle:side',
-                        'linkImage'
-                    ]
-                },
-                table: {
-                    contentToolbar: [
-                        'tableColumn',
-                        'tableRow',
-                        'mergeTableCells'
-                    ]
-                },
-                licenseKey: '',
-            })
-            .then(editor => {
-                window.editor = editor;
-            })
-            .catch(error => {
-                console.error('Oops, something went wrong!');
-                console.error(
-                    'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:'
-                );
-                console.warn('Build id: cscr9cv8n6pf-vob47t2vtrqt');
-                console.error(error);
-            });
-    </script>
     <script>
         $(function() {
+            // Dropdown
+            $('.image-dropdown-button').click(function() {
+                $('.image-dropdown').slideToggle();
+            })
+            $('.video-dropdown-button').click(function() {
+                $('.video-dropdown').slideToggle();
+            })
+
             // Copy link
             $('.copy-button button').click(function() {
                 console.log($(this));

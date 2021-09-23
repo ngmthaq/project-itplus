@@ -17,7 +17,7 @@ class CategorySeeder extends Seeder
         Category::truncate();
 
         Category::create([
-            'name_vi' => 'Tin nóng',
+            'name_vi' => 'Tin mới',
             'name_en' => 'Breaking News',
             'description' => 'categories'
         ]);
@@ -41,8 +41,8 @@ class CategorySeeder extends Seeder
         ]);
 
         Category::create([
-            'name_vi' => 'Sức khoẻ',
-            'name_en' => 'Health',
+            'name_vi' => 'Sức khoẻ & Công đồng',
+            'name_en' => 'Health & Community',
             'description' => 'categories'
         ]);
 

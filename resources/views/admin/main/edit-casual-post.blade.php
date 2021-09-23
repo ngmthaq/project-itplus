@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="row mb-3">
-                <div class="col-8">
+                <div class="col-12">
                     <div class="padding-12">
                         <h5>Lưu ý</h5>
                         <ul>
@@ -65,7 +65,8 @@
                                 <div class="form-group col-6">
                                     <label for="category-id">Danh mục <small class="required">*</small></label>
                                     <select name="category_id" id="category-id" class="form-control">
-                                        <option value="{{ $post->category->id }}">{{ $post->category->name_vi }}</option>
+                                        <option value="{{ $post->category->id }}">{{ $post->category->name_vi }}
+                                        </option>
                                         @foreach ($categories as $category)
                                             @if ($post->category->id == $category->id)
                                                 @continue
@@ -143,10 +144,16 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-4">
-                    <h5 class="padding-12">Kho lưu trữ ảnh</h5>
-                    <div style="height: 666px; overflow-y: scroll;">
-                        @foreach ($images as $image)
+            </div>
+            <div class="row no-gutters mb-3">
+                <div class="col-12">
+                    <div class="padding-12">
+                        <h5>Kho lưu trữ ảnh</h5>
+                    </div>
+                </div>
+                @foreach ($images as $image)
+                    <div class="col-4">
+                        <div style="max-height: 630px;">
                             <div class="media-container media-image" style="position: relative;">
                                 <div class="copy-button">
                                     <button class="button-md-main"
@@ -157,9 +164,9 @@
                                 <img width="100%" src="{{ asset($image->media_path . '/' . $image->media_name) }}"
                                     alt="ảnh">
                             </div>
-                        @endforeach
+                        </div>
                     </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

@@ -19,9 +19,14 @@
             background-color: rgba(255, 255, 255, 0.2);
             visibility: hidden;
             border-radius: 2px;
+            z-index: 1;
         }
 
         .media-image:hover .copy-button {
+            visibility: visible;
+        }
+
+        .media-video:hover .copy-button {
             visibility: visible;
         }
 
@@ -50,23 +55,29 @@
                             <li>VD cho đường dẫn ảnh:
                                 <i>https://i.pinimg.com/564x/2e/5b/92/2e5b9287665c03aa6ad808d439282c4e.jpg</i>
                             </li>
-                            <li>VD cho đường dẫn video: <i>https://www.youtube.com/watch?v=iEeq2TO-IgI</i></li>
+                            <li>VD cho đường dẫn video:
+                                <i>http://127.0.0.1:8000/storage/videos/3c4ee14e63631bbbf1b61e347dcfe622.mp4</i>
+                            </li>
                         </ul>
                     </div>
                     <div class="padding-12">
-                        <form action="{{ route('post.createCasualPost') }}" method="post">
+                        <form action="{{ route('post.editVideoPost', ['post' => $post->id]) }}" method="post">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <h5>Đăng bài viết</h5>
+                                    <h5>Sửa bài viết</h5>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-6">
                                     <label for="category-id">Danh mục <small class="required">*</small></label>
                                     <select name="category_id" id="category-id" class="form-control">
-                                        <option value="">Chọn danh mục ...</option>
+                                        <option value="{{ $post->category->id }}">{{ $post->category->name_vi }}
+                                        </option>
                                         @foreach ($categories as $category)
+                                            @if ($post->category->id == $category->id)
+                                                @continue
+                                            @endif
                                             <option value="{{ $category->id }}">{{ $category->name_vi }}</option>
                                         @endforeach
                                     </select>
@@ -81,7 +92,7 @@
                                 <div class="form-group col-6">
                                     <label for="cover-url">Ảnh bìa <small class="required">*</small></label>
                                     <input type="text" name="cover_url" id="cover-url" class="form-control"
-                                        placeholder="VD: domainexample.com/image-name.png" value="{{ old('cover_url') }}">
+                                        placeholder="VD: domainexample.com/image-name.png" value="{{ $post->cover_url }}">
                                     <small class="required cover-url-error">
                                         @if ($errors->has('cover_url'))
                                             @foreach ($errors->get('cover_url') as $message)
@@ -95,7 +106,7 @@
                                 <div class="form-group col-12">
                                     <label for="title-vi">Tiêu đề <small class="required">*</small></label>
                                     <textarea name="title_vi" id="title-vi" cols="30" rows="2"
-                                        class="form-control">{{ old('title_vi') }}</textarea>
+                                        class="form-control">{{ $post->title_vi }}</textarea>
                                     <small class="required title-vi-error">
                                         @if ($errors->has('title_vi'))
                                             @foreach ($errors->get('title_vi') as $message)
@@ -107,7 +118,7 @@
                                 <div class="form-group col-12">
                                     <label for="title-vi">Tiêu đề phụ <small class="required">*</small></label>
                                     <textarea name="subtitle_vi" id="subtitle-vi" cols="30" rows="4"
-                                        class="form-control">{{ old('subtitle_vi') }}</textarea>
+                                        class="form-control">{{ $post->subtitle_vi }}</textarea>
                                     <small class="required subtitle-vi-error">
                                         @if ($errors->has('subtitle_vi'))
                                             @foreach ($errors->get('subtitle_vi') as $message)
@@ -119,10 +130,9 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <label for="content-vi">Nội dung <small class="required">*</small></label>
-                                    <textarea name="content_vi" id="content-vi" cols="30" rows="10"
-                                        class="editor">{{ old('content_vi') }}</textarea>
-                                    <small>Copy đường dẫn ảnh vào sẽ tự động nhận hình ảnh</small><br>
+                                    <label for="content-vi">Đường dẫn video <small class="required">*</small></label>
+                                    <textarea name="content_vi" id="content-vi" cols="30" rows="1"
+                                        class="form-control">{{ $post->content_vi }}</textarea>
                                     <small class="required content-vi-error">
                                         @if ($errors->has('content_vi'))
                                             @foreach ($errors->get('content_vi') as $message)
@@ -134,7 +144,17 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <button type="submit" class="button-md-main">Đăng bài</button>
+                                    <video src="{{ $post->content_vi }}" controls muted width="100%" height="100%"></video>
+                                </div>
+                                <div class="form-group col-12">
+                                    <a href="javascript:void(0)" onclick="location.reload();">
+                                        Nhấn vào đây nếu không hiển thị video
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-12">
+                                    <button type="submit" class="button-md-main">Sửa bài</button>
                                 </div>
                             </div>
                         </form>
@@ -142,13 +162,14 @@
                 </div>
             </div>
             <div class="row no-gutters mb-3">
-                <div class="col-12">
-                    <div class="padding-12">
+                <div class="col-12 image-dropdown-button">
+                    <div class="padding-12 label-container">
                         <h5>Kho lưu trữ ảnh</h5>
+                        <span><i class="fas fa-chevron-down"></i></span>
                     </div>
                 </div>
                 @foreach ($images as $image)
-                    <div class="col-4">
+                    <div class="col-4 image-dropdown">
                         <div style="max-height: 630px;">
                             <div class="media-container media-image" style="position: relative;">
                                 <div class="copy-button">
@@ -163,83 +184,50 @@
                         </div>
                     </div>
                 @endforeach
+                <div class="col-12 mt-3 video-dropdown-button">
+                    <div class="padding-12 label-container">
+                        <h5>Kho lưu trữ video</h5>
+                        <span><i class="fas fa-chevron-down"></i></span>
+                    </div>
+                </div>
+                @foreach ($videos as $video)
+                    <div class="col-4 video-dropdown">
+                        <div style="max-height: 666px;">
+                            <div class="media-container media-video" style="position: relative;">
+                                <div class="copy-button">
+                                    <button class="button-md-main"
+                                        data-url="{{ asset($video->media_path . '/' . $video->media_name) }}">
+                                        Copy
+                                    </button>
+                                </div>
+                                <video class="video-sample" src="{{ asset($video->media_path . '/' . $video->media_name) }}" controls></video>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             </div>
         </div>
     </section>
 @endsection
 
 @push('js')
-    <script src="{{ asset('vendors/ckeditor5/build/ckeditor.js') }}"></script>
-    {{-- <script src="{{ asset('vendors/ckeditor5/src/ckeditor.js') }}"></script> --}}
-    <script>
-        ClassicEditor
-            .create(document.querySelector('.editor'), {
-                toolbar: {
-                    items: [
-                        'heading',
-                        '|',
-                        'fontSize',
-                        'fontFamily',
-                        'fontColor',
-                        'highlight',
-                        '|',
-                        'bold',
-                        'italic',
-                        'underline',
-                        'subscript',
-                        'superscript',
-                        '|',
-                        'alignment',
-                        'bulletedList',
-                        'numberedList',
-                        '|',
-                        'outdent',
-                        'indent',
-                        '|',
-                        'imageInsert',
-                        'mediaEmbed',
-                        'blockQuote',
-                        'insertTable',
-                        'link',
-                        'undo',
-                        'redo',
-                        'codeBlock',
-                        'htmlEmbed'
-                    ]
-                },
-                language: 'vi',
-                image: {
-                    toolbar: [
-                        'imageTextAlternative',
-                        'imageStyle:inline',
-                        'imageStyle:block',
-                        'imageStyle:side',
-                        'linkImage'
-                    ]
-                },
-                table: {
-                    contentToolbar: [
-                        'tableColumn',
-                        'tableRow',
-                        'mergeTableCells'
-                    ]
-                },
-                licenseKey: '',
-            })
-            .then(editor => {
-                window.editor = editor;
-            })
-            .catch(error => {
-                console.error('Oops, something went wrong!');
-                console.error(
-                    'Please, report the following error on https://github.com/ckeditor/ckeditor5/issues with the build id and the error stack trace:'
-                );
-                console.warn('Build id: cscr9cv8n6pf-vob47t2vtrqt');
-                console.error(error);
-            });
-    </script>
     <script>
         $(function() {
+            // Dropdown
+            $('.image-dropdown-button').click(function() {
+                $('.image-dropdown').slideToggle();
+            })
+            $('.video-dropdown-button').click(function() {
+                $('.video-dropdown').slideToggle();
+            })
+
+            // Video handle
+            // $('#content-vi').change(function() {
+            //     let src = $(this).val();
+            //     console.log(src);
+            //     $('.video-sample').attr('src', src);
+            // })
+
             // Copy link
             $('.copy-button button').click(function() {
                 console.log($(this));
@@ -264,6 +252,11 @@
                 return REGEX.test(value);
             }
 
+            function videoUrlValidate(value) {
+                const REGEX = /^((http:\/\/)|(https:\/\/))(.+)\.(mp4)$/;
+                return REGEX.test(value);
+            }
+
             $('form').submit(function(e) {
                 // Reset
                 let coverUrl = $.trim($('#cover-url').val());
@@ -283,7 +276,8 @@
                 // Messages
                 let messages = [
                     'Vui lòng không để trống mục này',
-                    'Vui lòng nhập đúng định dạng đường dẫn ảnh'
+                    'Vui lòng nhập đúng định dạng đường dẫn ảnh',
+                    'Vui lòng nhập đúng định dạng đường dẫn video',
                 ];
 
                 // Validate
@@ -316,6 +310,11 @@
                 if (contentVi == "") {
                     isValidated = false;
                     $('.content-vi-error').text(messages[0]);
+                } else {
+                    if (!videoUrlValidate(contentVi)) {
+                        isValidated = false;
+                        $('.content-vi-error').text(messages[2]);
+                    }
                 }
 
                 if (!isValidated) {

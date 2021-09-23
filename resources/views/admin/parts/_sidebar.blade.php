@@ -86,7 +86,8 @@
                 </div>
             </li>
             <li class="aside-item">
-                <a href="javascript:void(0)" class="link admin-action-item">
+                <a href="javascript:void(0)" class="link admin-action-item @php echo $site == 'manage-video-post' 
+                    || $site == 'create-video-post' || $site == 'edit-video-post' ? 'active' : '' @endphp">
                     <span>
                         <span class="aside-icon"><i class="far fa-file-video"></i></span>
                         <span>Quản lý video</span>
@@ -96,10 +97,12 @@
                 <div class="aside-dropdown">
                     <ul>
                         <li>
-                            <a class="link admin-action-item" href="#">Thêm bài viết</a>
+                            <a class="link admin-action-item @php echo $site == 'create-video-post' ? 'active' : '' @endphp" 
+                                href="{{ route('post.createVideoPostForm') }}">Thêm bài viết</a>
                         </li>
                         <li>
-                            <a class="link admin-action-item" href="#">Xem tất cả</a>
+                            <a class="link admin-action-item @php echo $site == 'manage-video-post' ? 'active' : '' @endphp" 
+                                href="{{ route('post.manageVideoPost') }}">Xem tất cả</a>
                         </li>
                     </ul>
                 </div>

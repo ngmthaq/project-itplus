@@ -201,7 +201,7 @@ header {
     display: flex;
     justify-content: flex-end;
     padding: 0 3px 6px;
-    border-bottom: 1px solid #000;
+    /* border-bottom: 1px solid #000; */
     width: 85%;
 }
 
