@@ -144,7 +144,9 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-12">
-                                    <video src="{{ $post->content_vi }}" controls muted width="100%" height="100%"></video>
+                                    <video controls muted width="100%" height="100%">
+                                        <source src="{{ $post->content_vi }}" type="video/mp4">
+                                    </video>
                                 </div>
                                 <div class="form-group col-12">
                                     <a href="javascript:void(0)" onclick="location.reload();">

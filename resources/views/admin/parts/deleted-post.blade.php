@@ -1,4 +1,3 @@
-<tr>
     {{-- Xoá bài viết bằng axios --}}
     <th scope="row">{{ $post->id }}</th>
     <td class="title_vi">{{ $post->title_vi }}</td>
@@ -29,4 +28,3 @@
             </a>
         @endif
     </td>
-</tr>

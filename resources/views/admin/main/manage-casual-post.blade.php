@@ -117,7 +117,8 @@
                 let id = e.getAttribute('data-id');
                 axios.put(id + '/delete')
                     .then((result) => {
-                        e.parentElement.parentElement.innerHTML = result.data
+                        e.parentElement.parentElement.className = 'post-row hidden';
+                        e.parentElement.parentElement.innerHTML = result.data;
                     }).catch((err) => {
                         console.log(err);
                     });
