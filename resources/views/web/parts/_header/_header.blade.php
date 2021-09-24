@@ -61,6 +61,7 @@
             <div class="row align-items-center">
                 <div class="col-11">
                     <ul class="my-navbar-list">
+                        <li><a href="#">Tin mới</a></li>
                         @foreach ($categories as $category)
                             <li>
                                 <a href="#">{{ $category->name_vi }}</a>
