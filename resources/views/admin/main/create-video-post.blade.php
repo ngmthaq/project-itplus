@@ -129,7 +129,7 @@
                                     <label for="content-vi">Đường dẫn video <small class="required">*</small></label>
                                     <textarea name="content_vi" id="content-vi" cols="30" rows="1"
                                         class="form-control">{{ old('content_vi') }}</textarea>
-                                    <small>Copy đường dẫn ảnh vào sẽ tự động nhận hình ảnh</small><br>
+                                    <small>Copy đường dẫn video ở phía dưới</small><br>
                                     <small class="required content-vi-error">
                                         @if ($errors->has('content_vi'))
                                             @foreach ($errors->get('content_vi') as $message)
@@ -232,6 +232,11 @@
                 return REGEX.test(value);
             }
 
+            function videoUrlValidate(value) {
+                const REGEX = /^((http:\/\/)|(https:\/\/))(.+)\.(mp4)$/;
+                return REGEX.test(value);
+            }
+
             $('form').submit(function(e) {
                 // Reset
                 let coverUrl = $.trim($('#cover-url').val());
@@ -251,7 +256,8 @@
                 // Messages
                 let messages = [
                     'Vui lòng không để trống mục này',
-                    'Vui lòng nhập đúng định dạng đường dẫn ảnh'
+                    'Vui lòng nhập đúng định dạng đường dẫn ảnh',
+                    'Vui lòng nhập đúng định dạng đường dẫn video',
                 ];
 
                 // Validate
@@ -284,6 +290,11 @@
                 if (contentVi == "") {
                     isValidated = false;
                     $('.content-vi-error').text(messages[0]);
+                } else {
+                    if (!videoUrlValidate(contentVi)) {
+                        isValidated = false;
+                        $('.content-vi-error').text(messages[2]);
+                    }
                 }
 
                 if (!isValidated) {

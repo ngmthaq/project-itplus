@@ -139,9 +139,9 @@ class PostController extends Controller
             'content_vi' => $request->input('content_vi')
         ]);
         if ($post) {
-            return redirect()->route('post.manageCasualPost')->with('success', 'Đăng bài viết thành công');
+            return redirect()->route('post.manageVideoPost')->with('success', 'Đăng bài viết thành công');
         }
-        return redirect()->route('post.createCasualPostForm')->with('error', 'Đăng bài viết không thành công, xin vui lòng thử lại');
+        return redirect()->route('post.createVideoPostForm')->with('error', 'Đăng bài viết không thành công, xin vui lòng thử lại');
     }
 
     public function editVideoPostForm(Post $post)

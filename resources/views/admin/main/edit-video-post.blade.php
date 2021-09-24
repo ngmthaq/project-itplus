@@ -133,6 +133,7 @@
                                     <label for="content-vi">Đường dẫn video <small class="required">*</small></label>
                                     <textarea name="content_vi" id="content-vi" cols="30" rows="1"
                                         class="form-control">{{ $post->content_vi }}</textarea>
+                                    <small>Copy đường dẫn video ở phía dưới</small><br>
                                     <small class="required content-vi-error">
                                         @if ($errors->has('content_vi'))
                                             @foreach ($errors->get('content_vi') as $message)
@@ -202,7 +203,8 @@
                                         Copy
                                     </button>
                                 </div>
-                                <video class="video-sample" src="{{ asset($video->media_path . '/' . $video->media_name) }}" controls></video>
+                                <video class="video-sample"
+                                    src="{{ asset($video->media_path . '/' . $video->media_name) }}" controls></video>
                             </div>
                         </div>
                     </div>
