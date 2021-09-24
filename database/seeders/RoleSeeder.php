@@ -27,5 +27,11 @@ class RoleSeeder extends Seeder
             'name_en' => 'Readers',
             'description' => 'roles'
         ]);
+
+        Role::create([
+            'name_vi' => 'Quản lý',
+            'name_en' => 'Mod',
+            'description' => 'roles'
+        ]);
     }
 }

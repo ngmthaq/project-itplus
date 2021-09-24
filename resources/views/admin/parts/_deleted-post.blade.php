@@ -1,5 +1,5 @@
     {{-- Xoá bài viết bằng axios --}}
-    <th scope="row">{{ $post->id }}</th>
+    <th scope="row">P{{ $post->id }}</th>
     <td class="title_vi">{{ $post->title_vi }}</td>
     <td>{{ date('d/m/Y H:i:s', strtotime($post->created_at)) }}</td>
     <td>

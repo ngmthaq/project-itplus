@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () {
+Route::prefix('admin')->middleware(['authCheck', 'isAdminOrMod'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])
         ->name('admin.dashboard');
@@ -66,7 +67,7 @@ Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () 
             // Manage posts
             Route::get('/', [PostController::class, 'manageVideoPost'])
                 ->name('post.manageVideoPost');
-            
+
             // Create casual post
             Route::get('/create', [PostController::class, 'createVideoPostForm'])
                 ->name('post.createVideoPostForm');
@@ -106,5 +107,37 @@ Route::prefix('admin')->middleware(['authCheck', 'isAdmin'])->group(function () 
             /*************END******************* */
         });
         /*****************END******************* */
+    });
+
+    /** User manager */
+    Route::prefix('user')->middleware(['isAdmin'])->group(function () {
+        // Giao diện quản lý
+        Route::get('/', [AdminController::class, 'userManagerForm'])
+            ->name('admin.userManagerForm');
+
+        // Phân quyền lên admin
+        Route::put('{user}/admin', [AdminController::class, 'grandAdmin'])
+            ->name('admin.grandAdmin')
+            ->where(['user' => '[0-9]+']);
+
+        // Phân quyền làm mod
+        Route::put('{user}/mod', [AdminController::class, 'grandMod'])
+            ->name('admin.grandMod')
+            ->where(['user' => '[0-9]+']);
+
+        // Phân quyền xuống người dùng
+        Route::put('{user}/reader', [AdminController::class, 'grandReader'])
+            ->name('admin.grandReader')
+            ->where(['user' => '[0-9]+']);
+
+        // Xoá người dùng
+        Route::put('{user}/delete', [AdminController::class, 'deleteUser'])
+            ->name('admin.deleteUser')
+            ->where(['user' => '[0-9]+']);
+
+        // Xem thông tin chi tiết người dùng
+        Route::get('{user}/show', [AdminController::class, 'showUser'])
+            ->name('admin.showUser')
+            ->where(['user' => '[0-9]+']);
     });
 });

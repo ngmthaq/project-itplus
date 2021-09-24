@@ -8,6 +8,7 @@ use App\Models\Comment;
 use App\Models\Media;
 use App\Models\Post;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -131,6 +132,69 @@ class AdminController extends Controller
             'site' => 'media-store',
             'images' => $images,
             'videos' => $videos
+        ]);
+    }
+
+    public function userManagerForm()
+    {
+        $users = User::with(['role', 'userInformation'])->get();
+        $admins = $users->where('role_id', '=', '1');
+        $readers = $users->where('role_id', '=', '2');
+        $mods = $users->where('role_id', '=', '3');
+        return view('admin.main.manage-user', [
+            'site' => 'manage-user',
+            'admins' => $admins,
+            'readers' => $readers,
+            'mods' => $mods
+        ]);
+    }
+
+    public function grandAdmin(User $user)
+    {
+        $user->role_id = 1;
+        $user->save();
+        $users = User::with(['role', 'userInformation'])
+            ->where('role_id', '=', '1')
+            ->get();
+        // dd($users);
+        return view('admin.parts._user-role', compact('users'));
+    }
+
+    public function grandReader(User $user)
+    {
+        $user->role_id = 2;
+        $user->save();
+        $users = User::with(['role', 'userInformation'])
+            ->where('role_id', '=', '2')
+            ->get();
+        // dd($users);
+        return view('admin.parts._user-role', compact('users'));
+    }
+
+    public function grandMod(User $user)
+    {
+        $user->role_id = 3;
+        $user->save();
+        $users = User::with(['role', 'userInformation'])
+            ->where('role_id', '=', '3')
+            ->get();
+        // dd($users);
+        return view('admin.parts._user-role', compact('users'));
+    }
+
+    public function deleteUser(User $user)
+    {
+        $user->deleted_at = Carbon::now();
+        $user->save();
+        return view('admin.parts._deleted-user', compact('user'));
+    }
+
+    public function showUser(User $user)
+    {
+        $user->load(['userInformation', 'comments', 'posts']);
+        return view('admin.main.show-user', [
+            'site' => 'manage-user',
+            'user' => $user
         ]);
     }
 }

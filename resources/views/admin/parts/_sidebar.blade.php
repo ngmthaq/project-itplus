@@ -108,26 +108,13 @@
                 </div>
             </li>
             <li class="aside-item">
-                <a href="javascript:void(0)" class="link admin-action-item">
+                <a href="{{ route('admin.userManagerForm') }}" 
+                    class="link admin-action-item @php echo $site == 'manage-user' ? 'active' : '' @endphp">
                     <span>
                         <span class="aside-icon"><i class="far fa-user"></i></span>
                         <span>Quản lý người dùng</span>
                     </span>
-                    <i class="fas fa-angle-down"></i>
                 </a>
-                <div class="aside-dropdown">
-                    <ul>
-                        <li>
-                            <a class="link admin-action-item" href="#">Xoá người dùng vi phạm</a>
-                        </li>
-                        <li>
-                            <a class="link admin-action-item" href="#">Quyền quản trị viên</a>
-                        </li>
-                        <li>
-                            <a class="link admin-action-item" href="#">Xem tất cả</a>
-                        </li>
-                    </ul>
-                </div>
             </li>
         </ul>
     </div>

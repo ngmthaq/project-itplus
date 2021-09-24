@@ -73,7 +73,7 @@
                                 <a href="#">Giới thiệu</a>
                                 <a href="#">Liên hệ</a>
                                 @auth
-                                    @if (Auth::user()->role_id == 1)
+                                    @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
                                         <a href="{{ route('admin.dashboard') }}">Quản lý</a>
                                     @endif
                                 @endauth

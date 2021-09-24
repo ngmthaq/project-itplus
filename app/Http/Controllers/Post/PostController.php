@@ -97,7 +97,7 @@ class PostController extends Controller
         $post->deleted_at = Carbon::now();
         $post->save();
         if ($post->deleted_at) {
-            return view('admin.parts.deleted-post', [
+            return view('admin.parts._deleted-post', [
                 'post' => $post
             ]);
         }

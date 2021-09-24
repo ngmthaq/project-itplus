@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsAdmin
+class IsAdminOrMod
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,9 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->role_id == 1) {
+        if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3) {
             return $next($request);
         }
-        return redirect('/')->with('error', 'Không thể truy cập vào đường dẫn');
+        return redirect(route('admin.dashboard'))->with('error', 'Bạn không được sử dụng chức năng này');
     }
 }
