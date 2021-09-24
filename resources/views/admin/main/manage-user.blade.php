@@ -276,6 +276,7 @@
                 let id = e.getAttribute('data-id');
                 axios.put('user/' + id + '/delete')
                     .then((result) => {
+                        e.parentElement.parentElement.className = "user-row hidden";
                         e.parentElement.innerHTML = result.data;
                     }).catch((err) => {
                         console.error(err);
