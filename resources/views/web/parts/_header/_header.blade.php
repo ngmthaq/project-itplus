@@ -16,11 +16,12 @@
                         <div class="user-action-container">
                             <a href="#" class="link user-action-item">Xem thông tin cá nhân</a>
                             <a href="#" class="link user-action-item">Thay đổi thông tin cá nhân</a>
-                            <a href="{{ route('user.changePasswordForm') }}" 
+                            <a href="{{ route('user.changePasswordForm') }}"
                                 class="link user-action-item @php echo $site == 'changePassword' ? 'active' : '' @endphp">
                                 Thay đổi mật khẩu
                             </a>
-                            <a href="{{ route('logout') }}" class="required" style="border-top: 1px solid #999; margin-top: 6px;">Đăng xuất</a>
+                            <a href="{{ route('logout') }}" class="required"
+                                style="border-top: 1px solid #999; margin-top: 6px;">Đăng xuất</a>
                         </div>
                     </a>
                 @else
@@ -61,7 +62,11 @@
             <div class="row align-items-center">
                 <div class="col-11">
                     <ul class="my-navbar-list">
-                        <li><a href="#">Tin mới</a></li>
+                        <li>
+                            <a href="{{ route('default.breakingNews') }}" class="@php echo $site == "breaking-news" ? 'active' : ''  @endphp">
+                                Tin mới
+                            </a>
+                        </li>
                         @foreach ($categories as $category)
                             <li>
                                 <a href="#">{{ $category->name_vi }}</a>

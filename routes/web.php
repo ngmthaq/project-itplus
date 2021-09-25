@@ -66,3 +66,12 @@ Route::get('password/reset/{user:remember_token}', [UserController::class, 'rese
 Route::put('password/reset/{user:remember_token}', [UserController::class, 'resetPassword'])
     ->name('user.resetPassword')
     ->where(['user' => '[a-zA-Z0-9]+']);
+
+// Breaking news
+Route::get('/breaking-news', [DefaultController::class, 'breakingNews'])
+    ->name('default.breakingNews');
+
+// Load more breaking news posts
+Route::post('/breaking-news/{post}', [DefaultController::class, 'loadmoreBreakingNews'])
+    ->name('default.loadmoreBreakingNews')
+    ->where(['post' => '[0-9]+']);

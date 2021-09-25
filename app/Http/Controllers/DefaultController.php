@@ -15,7 +15,7 @@ class DefaultController extends Controller
         // Categories
         $categories = Category::all();
         // All posts
-        $posts = Post::with(['category', 'type', 'comments'])->orderBy('created_at', 'desc')->get();
+        $posts = Post::with(['category', 'type', 'comments'])->whereNull('deleted_at')->orderBy('created_at', 'desc')->get();
         // Slider data
         $firstSliders = $posts->where('type_id', '=', '1')->take(5);
         // Video posts
@@ -53,5 +53,30 @@ class DefaultController extends Controller
             'firstTravel', 'travels', 'travelTopComments',
             'firstSport', 'sports', 'sportTopComments',
         ));
+    }
+
+    public function breakingNews()
+    {
+        $categories = Category::all();
+        $site = 'breaking-news';
+        $posts = Post::with(['category', 'comments', 'type'])
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')
+            ->take(6)
+            ->get();
+        return view('web.main.breaking-new', compact(
+            'site', 'categories', 'posts'
+        ));
+    }
+
+    public function loadmoreBreakingNews($post)
+    {
+        $posts = Post::with(['category', 'comments', 'type'])
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')
+            ->skip($post)
+            ->take(6)
+            ->get();
+        return view('web.parts.posts._breaking-news', compact('posts'));
     }
 }

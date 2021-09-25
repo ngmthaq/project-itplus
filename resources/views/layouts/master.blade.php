@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="{{ asset('vendors/owlcarousel/dist/assets/owl.theme.default.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/base.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    {{-- CDN Link --}}
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.7.0/css/ol.css" type="text/css">
     <title>@yield('title')</title>
     @stack('css')
 </head>
@@ -61,14 +58,30 @@
             });
 
             // Navbar dropdown
-            $('.dropdown-button').click(function() {
-                $('.dropdown-container').slideToggle("fast");
-            })
+            // $('.dropdown-button').click(function() {
+            //     $('.dropdown-container').slideToggle("fast");
+            // })
+            $('.dropdown-button').hover(function () {
+                    // over
+                    $('.dropdown-container').slideDown('fast');
+                }, function () {
+                    // out
+                    $('.dropdown-container').slideUp('fast');
+                }
+            );
 
             // User action dropdown
-            $('.user-action').click(function() {
-                $('.user-action-container').slideToggle();
-            });
+            // $('.user-action').click(function() {
+            //     $('.user-action-container').slideToggle();
+            // });
+            $('.user-action').hover(function () {
+                    // over
+                    $('.user-action-container').slideDown('fast');
+                }, function () {
+                    // out
+                    $('.user-action-container').slideUp('fast');
+                }
+            );
 
             // Hiển thị thời gian
             setInterval(function() {
@@ -105,22 +118,6 @@
                 $('#currentTime').html(dayHandle + ", " + date + " " + time);
             }, 1000)
         })
-    </script>
-
-    {{-- Map Script --}}
-    <script type="text/javascript">
-        var map = new ol.Map({
-            target: 'map',
-            layers: [
-                new ol.layer.Tile({
-                    source: new ol.source.OSM()
-                })
-            ],
-            view: new ol.View({
-                center: ol.proj.fromLonLat([105.7750235, 21.0367009]),
-                zoom: 17
-            })
-        });
     </script>
     @stack('js')
 </body>
