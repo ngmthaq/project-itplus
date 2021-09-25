@@ -575,10 +575,11 @@
         .title-container .title {
             color: #000;
             padding: 12px 6px 6px;
-            height: 40px;
+            height: 60px;
             overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
             font-weight: 600;
             font-size: 18px;
         }
