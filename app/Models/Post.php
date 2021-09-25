@@ -50,6 +50,14 @@ class Post extends Model
         return $this->belongsTo(Type::class);
     }
 
+    /**
+     * Đếm số lượng post chưa bị xoá
+     * (Count valid post)
+     * 
+     * @param array $posts
+     * 
+     * @return int
+     */
     public static function countValidPosts($posts)
     {
         $result = 0;
@@ -58,6 +66,33 @@ class Post extends Model
                 if (!$post->deleted_at) {
                     $result++;
                 }
+            }
+        }
+        return $result;
+    }
+
+    /**
+     * Đếm số lượng comment của từng post. Sử dụng totalComments để gọi tổng số comments.
+     * (Count comment of each post)
+     * 
+     * @param array|object|collection $posts
+     * 
+     * @return array
+     */
+    public static function postWithComments($posts)
+    {
+        // Comment của bài viết
+        foreach ($posts as $post) {
+            $post->totalComments = count($post->comments);
+        }
+        $sorted = $posts->sortByDesc('totalComments');
+        $index = 0;
+        $result = [];
+        foreach ($sorted as $post) {
+            $result[] = $post;
+            $index++;
+            if ($index > 4) {
+                break;
             }
         }
         return $result;

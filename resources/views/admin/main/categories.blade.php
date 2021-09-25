@@ -28,24 +28,21 @@
                                 <span>
                                     @switch($category->id)
                                         @case(1)
-                                            <i class="far fa-newspaper"></i>
-                                        @break
-                                        @case(2)
                                             <i class="fas fa-balance-scale-left"></i>
                                         @break
-                                        @case(3)
+                                        @case(2)
                                             <i class="fas fa-chart-line"></i>
                                         @break
-                                        @case(4)
+                                        @case(3)
                                             <i class="fas fa-cogs"></i>
                                         @break
-                                        @case(5)
+                                        @case(4)
                                             <i class="fas fa-heartbeat"></i>
                                         @break
-                                        @case(6)
+                                        @case(5)
                                             <i class="fas fa-umbrella-beach"></i>
                                         @break
-                                        @case(7)
+                                        @case(6)
                                             <i class="fas fa-futbol"></i>
                                         @break
                                         @default
@@ -68,6 +65,17 @@
                         <div class="count-record-content">
                             <h5>{{ count($videos) }}</h5>
                             <p>Video</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="count-record">
+                        <div class="count-record-icon">
+                            <i class="far fa-newspaper"></i>
+                        </div>
+                        <div class="count-record-content">
+                            <h5>{{ count($monthlyPosts) }}</h5>
+                            <p>Số tin mới trong tháng</p>
                         </div>
                     </div>
                 </div>
@@ -98,12 +106,12 @@
                                             {{ $category->valid_posts }}
                                         </td>
                                         @if (count($posts) > 0)
-                                            <td>{{ ($category->valid_posts / count($posts)) * 100 }}%</td>
+                                            <td>⁓{{ round(($category->valid_posts / count($posts)) * 100, 3) }}%</td>
                                         @else
                                             <td>{{ $category->valid_posts }}</td>
                                         @endif
                                         @if ($totalComments > 0)
-                                            <td>{{ ($category->comments / $totalComments) * 100 }}%</td>
+                                            <td>⁓{{ round(($category->comments / $totalComments) * 100, 3) }}%</td>
                                         @else
                                             <td>{{ $category->comments }}</td>
                                         @endif

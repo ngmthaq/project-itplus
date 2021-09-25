@@ -7,7 +7,7 @@
 @push('css')
     <style>
         .title_vi {
-            max-width: 600px;
+            max-width: 500px;
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
@@ -54,6 +54,7 @@
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Tiêu đề</th>
+                                    <th scope="col">Danh mục</th>
                                     <th scope="col">Ngày đăng bài</th>
                                     <th scope="col">Lần sửa bài gần nhất</th>
                                     <th scope="col"></th>
@@ -65,6 +66,7 @@
                                         <tr class="post-row @php echo ($post->deleted_at) ? 'hidden' : 'visible'  @endphp">
                                             <th scope="row">P{{ $post->id }}</th>
                                             <td class="title_vi">{{ $post->title_vi }}</td>
+                                            <td class="title_vi">{{ $post->category->name_vi }}</td>
                                             <td>{{ date('d/m/Y H:i:s', strtotime($post->created_at)) }}</td>
                                             <td>
                                                 @if (strcmp($post->created_at, $post->updated_at) == 0)

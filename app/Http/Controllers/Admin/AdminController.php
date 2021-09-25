@@ -62,12 +62,15 @@ class AdminController extends Controller
         $posts = Post::with('comments')->whereNull('deleted_at')->orderBy('created_at', 'desc')->get();
         // Lấy bài viết dạng video
         $videos = $posts->where('type_id', '=', '2');
+        // Số bài viết mới trong tháng
+        $monthlyPosts = Post::where('created_at', 'like', '%' . date('Y-m') . '%')->get();
         return view('admin.main.categories', [
             'posts' => $posts,
             'videos' => $videos,
             'categories' => $categories,
             'site' => 'categories',
-            'totalComments' => $totalComments
+            'totalComments' => $totalComments,
+            'monthlyPosts' => $monthlyPosts
         ]);
     }
 

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -18,12 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Homepage
-Route::get('/', function() {
-    return view('web.main.homepage', [
-        'categories' => Category::all(),
-        'site' => 'homepage'
-    ]);
-});
+Route::get('/', [DefaultController::class, 'index']);
 
 // Register
 Route::get('/register', [RegisterController::class, 'show'])
