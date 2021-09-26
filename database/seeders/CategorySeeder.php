@@ -17,8 +17,8 @@ class CategorySeeder extends Seeder
         Category::truncate();
 
         Category::create([
-            'name_vi' => 'Chính trị',
-            'name_en' => 'Politics',
+            'name_vi' => 'Chính trị & Pháp luật',
+            'name_en' => 'Politics & Law',
             'description' => 'categories'
         ]);
 

@@ -106,3 +106,13 @@ Route::get('videos', [CategoryController::class, 'showVideos'])
 // Load more video in video page
 Route::post('/videos/{total}', [CategoryController::class, 'loadmoreVideoPage'])
     ->where(['total' => '[0-9]+']);
+
+// Show post detail
+Route::get('/posts/{post}', [PostController::class, 'showPostDetail'])
+    ->name('post.showPostDetail')
+    ->where(['post' => '[0-9]+']);
+
+// Show post detail
+Route::get('/videos/{post}', [PostController::class, 'showVideoDetail'])
+    ->name('post.showVideoDetail')
+    ->where(['post' => '[0-9]+']);

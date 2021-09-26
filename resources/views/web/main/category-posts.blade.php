@@ -123,7 +123,7 @@
                 @endif
                 <div class="row" id="video">
                     <div class="col-12">
-                        <h5 class="py-3">Video</h5>
+                        <h5 class="py-3" style="border-top: 1px solid #999;">Video</h5>
                     </div>
                     @if (count($videoPosts) > 0)
                         @foreach ($videoPosts as $post)
@@ -166,7 +166,8 @@
                 @endif
             </div>
             <div class="col-3">
-                <div class="my-3">
+                <h5 class="py-3">&nbsp;</h5>
+                <div class="mb-3">
                     <h5 class="py-3 px-1 bg-blue text-center">Danh mục</h5>
                     <div class="category-count-container p-1 bg-light">
                         <ul>

@@ -22,27 +22,27 @@ class DefaultController extends Controller
         $videoPosts = $posts->where('type_id', '=', '2')->take(2);
         // Chính trị
         $firstPolitic = $posts->where('category_id', '=', '1')->take(1)->first();
-        $politics = $posts->where('category_id', '=', '1')->skip(1)->take(5);
+        $politics = $posts->where('category_id', '=', '1')->skip(1)->take(4);
         $politicTopComments = Post::postWithComments($posts->where('category_id', '=', '1'));
         // Kinh doanh
         $firstBusiness = $posts->where('category_id', '=', '2')->take(1)->first();
-        $business = $posts->where('category_id', '=', '2')->skip(1)->take(5);
+        $business = $posts->where('category_id', '=', '2')->skip(1)->take(4);
         $businessTopComments = Post::postWithComments($posts->where('category_id', '=', '2'));
         // KH & CN => Science & Technology => SnT
         $firstSnT = $posts->where('category_id', '=', '3')->take(1)->first();
-        $SnTs = $posts->where('category_id', '=', '3')->skip(1)->take(5);
+        $SnTs = $posts->where('category_id', '=', '3')->skip(1)->take(4);
         $SnTTopComments = Post::postWithComments($posts->where('category_id', '=', '3'));
         // SK & CĐ => Health & Community => HnC
         $firstHnC = $posts->where('category_id', '=', '4')->take(1)->first();
-        $HnCs = $posts->where('category_id', '=', '4')->skip(1)->take(5);
+        $HnCs = $posts->where('category_id', '=', '4')->skip(1)->take(4);
         $HnCTopComments = Post::postWithComments($posts->where('category_id', '=', '4'));
         // Du lịch
         $firstTravel = $posts->where('category_id', '=', '5')->take(1)->first();
-        $travels = $posts->where('category_id', '=', '5')->skip(1)->take(5);
+        $travels = $posts->where('category_id', '=', '5')->skip(1)->take(4);
         $travelTopComments = Post::postWithComments($posts->where('category_id', '=', '5'));
         // Thể thao
         $firstSport = $posts->where('category_id', '=', '6')->take(1)->first();
-        $sports = $posts->where('category_id', '=', '6')->skip(1)->take(5);
+        $sports = $posts->where('category_id', '=', '6')->skip(1)->take(4);
         $sportTopComments = Post::postWithComments($posts->where('category_id', '=', '6'));
         return view('web.main.homepage', compact(
             'site', 'categories', 'firstSliders', 'videoPosts',

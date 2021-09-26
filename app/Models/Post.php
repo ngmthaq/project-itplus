@@ -92,7 +92,7 @@ class Post extends Model
         foreach ($sorted as $post) {
             $result[] = $post;
             $index++;
-            if ($index > 4) {
+            if ($index > 3) {
                 break;
             }
         }

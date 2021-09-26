@@ -1,6 +1,7 @@
     {{-- Xoá bài viết bằng axios --}}
     <th scope="row">P{{ $post->id }}</th>
     <td class="title_vi">{{ $post->title_vi }}</td>
+    <td>{{ $post->category->name_vi }}</td>
     <td>{{ date('d/m/Y H:i:s', strtotime($post->created_at)) }}</td>
     <td>
         @if (strcmp($post->created_at, $post->updated_at) == 0)

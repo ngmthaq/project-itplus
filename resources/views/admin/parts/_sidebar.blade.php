@@ -31,7 +31,7 @@
                     @endphp">
                     <span>
                         <span class="aside-icon"><i class="far fa-file-image"></i></span>
-                        <span>Quản lý đa phương tiện</span>
+                        <span>Quản lý media</span>
                     </span>
                     <i class="fas fa-angle-down"></i>
                 </a>
