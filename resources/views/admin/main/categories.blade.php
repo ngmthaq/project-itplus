@@ -132,7 +132,7 @@
                 <div class="col-6">
                     <div class="count">
                         <div class="label-container">
-                            <h5>Danh mục bài viết</h5>
+                            <h5>Bài đăng video mới</h5>
                             <a href="{{ route('post.manageVideoPost') }}" class="link">Xem tất cả</a>
                         </div>
                         <table class="table">
@@ -149,7 +149,7 @@
                                     @foreach ($videos as $video)
                                         @php $i++; @endphp
                                         <tr>
-                                            <td class="dashboard-title">{{ $video->title_vi }}</td>
+                                            <td class="dashboard-title" title="{{ $video->title_vi }}">{{ $video->title_vi }}</td>
                                             <td>{{ date('d/m/Y', strtotime($video->created_at)) }}</td>
                                             <td>
                                                 <a href="#" class="text-decoration-none text-light button-md-main">

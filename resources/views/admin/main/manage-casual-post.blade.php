@@ -65,7 +65,7 @@
                                     @foreach ($posts as $post)
                                         <tr class="post-row @php echo ($post->deleted_at) ? 'hidden' : 'visible'  @endphp">
                                             <th scope="row">P{{ $post->id }}</th>
-                                            <td class="title_vi">{{ $post->title_vi }}</td>
+                                            <td class="title_vi" title="{{ $post->title_vi }}">{{ $post->title_vi }}</td>
                                             <td class="title_vi">{{ $post->category->name_vi }}</td>
                                             <td>{{ date('d/m/Y H:i:s', strtotime($post->created_at)) }}</td>
                                             <td>

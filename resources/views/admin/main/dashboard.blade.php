@@ -156,7 +156,7 @@
                                     @foreach ($posts as $post)
                                         @php $i++; @endphp
                                         <tr>
-                                            <td class="dashboard-title">{{ $post->title_vi }}</td>
+                                            <td class="dashboard-title" title="{{ $post->title_vi }}">{{ $post->title_vi }}</td>
                                             <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
                                             <td>
                                                 <a href="#" class="text-decoration-none text-light button-md-main">Xem</a>
