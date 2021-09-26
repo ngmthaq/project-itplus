@@ -63,16 +63,25 @@
                 <div class="col-11">
                     <ul class="my-navbar-list">
                         <li>
-                            <a href="{{ route('default.breakingNews') }}" class="@php echo $site == "breaking-news" ? 'active' : ''  @endphp">
+                            <a href="{{ route('default.breakingNews') }}" 
+                                class="@php echo $site == "breaking-news" ? 'active' : '' @endphp">
                                 Tin mới
                             </a>
                         </li>
                         @foreach ($categories as $category)
                             <li>
-                                <a href="#">{{ $category->name_vi }}</a>
+                                <a href="{{ route('category.showPosts', ['category' => $category->id]) }}"
+                                    class="@php echo $site == $category->id ? 'active' : ''  @endphp">
+                                    {{ $category->name_vi }}
+                                </a>
                             </li>
                         @endforeach
-                        <li><a href="#">Video</a></li>
+                        <li>
+                            <a href="{{ route('category.showVideos') }}" 
+                                class="@php echo $site == 'videos' ? 'active' : '' @endphp">
+                                Video
+                            </a>
+                        </li>
                         <li class="dropdown-button">
                             <a href="javascript:void(0)">Thêm <i class="fas fa-angle-down"></i></a>
                             <div class="dropdown-container">

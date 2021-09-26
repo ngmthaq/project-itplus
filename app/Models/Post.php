@@ -72,7 +72,8 @@ class Post extends Model
     }
 
     /**
-     * Đếm số lượng comment của từng post. Sử dụng totalComments để gọi tổng số comments.
+     * Đếm số lượng comment của từng post, lấy ra 4 post có nhiều comment nhất.
+     * Sử dụng totalComments để gọi tổng số comments.
      * (Count comment of each post)
      * 
      * @param array|object|collection $posts

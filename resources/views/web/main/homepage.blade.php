@@ -11,8 +11,14 @@
                 <div class="owl-carousel owl-theme">
                     @foreach ($firstSliders as $slider)
                         <div class="item">
-                            <small class="category-name">{{ $slider->category->name_vi }} -
-                                {{ $slider->type->name_vi }}</small>
+                            <small class="category-name">
+                                <a href="{{ route('category.showPosts', ['category' => $slider->category->id]) }}"
+                                    class="text-light text-decoration-none">
+                                    {{ $slider->category->name_vi }}
+                                </a>
+                                -
+                                {{ $slider->type->name_vi }}
+                            </small>
                             <div class="title-container">
                                 <h5 class="title">
                                     <a href="#" class="link" title="{{ $slider->title_vi }}">
@@ -31,8 +37,14 @@
             @foreach ($videoPosts as $post)
                 <div class="col-3">
                     <div class="item">
-                        <small class="category-name">{{ $post->category->name_vi }} -
-                            {{ $post->type->name_vi }}</small>
+                        <small class="category-name">
+                            <a href="{{ route('category.showPosts', ['category' => $post->category->id]) }}"
+                                class="text-light text-decoration-none">
+                                {{ $post->category->name_vi }}
+                            </a>
+                            -
+                            {{ $post->type->name_vi }}
+                        </small>
                         <div class="title-container">
                             <h5 class="title">
                                 <a href="#" class="link" title="{{ $post->title_vi }}">
@@ -51,7 +63,12 @@
         <div class="row mb-3">
             <div class="col-9">
                 <div class="categories-container politics">
-                    <h5>{{ $firstPolitic->category->name_vi }}</h5>
+                    <h5 class="bg-blue">
+                        <a href="{{ route('category.showPosts', ['category' => $firstPolitic->category->id]) }}"
+                            class="text-light text-decoration-none">
+                            {{ $firstPolitic->category->name_vi }}
+                        </a>
+                    </h5>
                     <div class="row">
                         <div class="col-7 category-post-container">
                             <div class="item">
@@ -95,7 +112,7 @@
             </div>
             <div class="col-3 bg-light">
                 <div class="categories-container">
-                    <p class="title">Phổ biến - {{ $firstPolitic->category->name_vi }}</p>
+                    <p class="title bg-secondary">Phổ biến - {{ $firstPolitic->category->name_vi }}</p>
                     @foreach ($politicTopComments as $post)
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -119,7 +136,7 @@
                                 </small>
                             </div>
                         </div>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -127,7 +144,12 @@
         <div class="row mb-3">
             <div class="col-9">
                 <div class="categories-container politics">
-                    <h5>{{ $firstBusiness->category->name_vi }}</h5>
+                    <h5 class="bg-blue">
+                        <a href="{{ route('category.showPosts', ['category' => $firstBusiness->category->id]) }}"
+                            class="text-light text-decoration-none">
+                            {{ $firstBusiness->category->name_vi }}
+                        </a>
+                    </h5>
                     <div class="row">
                         <div class="col-7 category-post-container">
                             <div class="item">
@@ -171,7 +193,7 @@
             </div>
             <div class="col-3 bg-light">
                 <div class="categories-container">
-                    <p class="title">Phổ biến - {{ $firstBusiness->category->name_vi }}</p>
+                    <p class="title bg-secondary">Phổ biến - {{ $firstBusiness->category->name_vi }}</p>
                     @foreach ($businessTopComments as $post)
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -195,7 +217,7 @@
                                 </small>
                             </div>
                         </div>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -203,7 +225,12 @@
         <div class="row mb-3">
             <div class="col-9">
                 <div class="categories-container politics">
-                    <h5>{{ $firstSnT->category->name_vi }}</h5>
+                    <h5 class="bg-blue">
+                        <a href="{{ route('category.showPosts', ['category' => $firstSnT->category->id]) }}"
+                            class="text-light text-decoration-none">
+                            {{ $firstSnT->category->name_vi }}
+                        </a>
+                    </h5>
                     <div class="row">
                         <div class="col-7 category-post-container">
                             <div class="item">
@@ -247,7 +274,7 @@
             </div>
             <div class="col-3 bg-light">
                 <div class="categories-container">
-                    <p class="title">Phổ biến - {{ $firstSnT->category->name_vi }}</p>
+                    <p class="title bg-secondary">Phổ biến - {{ $firstSnT->category->name_vi }}</p>
                     @foreach ($SnTTopComments as $post)
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -271,7 +298,7 @@
                                 </small>
                             </div>
                         </div>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -279,7 +306,12 @@
         <div class="row mb-3">
             <div class="col-9">
                 <div class="categories-container politics">
-                    <h5>{{ $firstHnC->category->name_vi }}</h5>
+                    <h5 class="bg-blue">
+                        <a href="{{ route('category.showPosts', ['category' => $firstHnC->category->id]) }}"
+                            class="text-light text-decoration-none">
+                            {{ $firstHnC->category->name_vi }}
+                        </a>
+                    </h5>
                     <div class="row">
                         <div class="col-7 category-post-container">
                             <div class="item">
@@ -323,7 +355,7 @@
             </div>
             <div class="col-3 bg-light">
                 <div class="categories-container">
-                    <p class="title">Phổ biến - {{ $firstHnC->category->name_vi }}</p>
+                    <p class="title bg-secondary">Phổ biến - {{ $firstHnC->category->name_vi }}</p>
                     @foreach ($HnCTopComments as $post)
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -347,7 +379,7 @@
                                 </small>
                             </div>
                         </div>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -355,7 +387,12 @@
         <div class="row mb-3">
             <div class="col-9">
                 <div class="categories-container politics">
-                    <h5>{{ $firstTravel->category->name_vi }}</h5>
+                    <h5 class="bg-blue">
+                        <a href="{{ route('category.showPosts', ['category' => $firstTravel->category->id]) }}"
+                            class="text-light text-decoration-none">
+                            {{ $firstTravel->category->name_vi }}
+                        </a>
+                    </h5>
                     <div class="row">
                         <div class="col-7 category-post-container">
                             <div class="item">
@@ -399,7 +436,7 @@
             </div>
             <div class="col-3 bg-light">
                 <div class="categories-container">
-                    <p class="title">Phổ biến - {{ $firstTravel->category->name_vi }}</p>
+                    <p class="title bg-secondary">Phổ biến - {{ $firstTravel->category->name_vi }}</p>
                     @foreach ($travelTopComments as $post)
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -423,7 +460,7 @@
                                 </small>
                             </div>
                         </div>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -431,7 +468,12 @@
         <div class="row mb-5">
             <div class="col-9">
                 <div class="categories-container politics">
-                    <h5>{{ $firstSport->category->name_vi }}</h5>
+                    <h5 class="bg-blue">
+                        <a href="{{ route('category.showPosts', ['category' => $firstSport->category->id]) }}"
+                            class="text-light text-decoration-none">
+                            {{ $firstSport->category->name_vi }}
+                        </a>
+                    </h5>
                     <div class="row">
                         <div class="col-7 category-post-container">
                             <div class="item">
@@ -475,7 +517,7 @@
             </div>
             <div class="col-3 bg-light">
                 <div class="categories-container">
-                    <p class="title">Phổ biến - {{ $firstSport->category->name_vi }}</p>
+                    <p class="title bg-secondary">Phổ biến - {{ $firstSport->category->name_vi }}</p>
                     @foreach ($sportTopComments as $post)
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -499,7 +541,7 @@
                                 </small>
                             </div>
                         </div>
-                        @endforeach
+                    @endforeach
                 </div>
             </div>
         </div>

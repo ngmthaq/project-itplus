@@ -62,13 +62,13 @@
                 <ul class="breadcrum vi mt-0">
                     <li><a href="/">Trang chủ</a></li>
                     <li><i class="fas fa-angle-right"></i></li>
-                    <li>Tin mới</li>
+                    <li>Video</li>
                 </ul>
             </div>
         </div>
         <div class="row mb-3" id="posts">
             <div class="col-12 my-3">
-                <h5>TIN MỚI</h5>
+                <h5>VIDEO</h5>
             </div>
             @foreach ($posts as $post)
                 <div class="col-4">
@@ -102,7 +102,7 @@
     <script>
         function loadmore(e) {
             let totalPost = document.querySelectorAll('.post-container').length;
-            axios.post('/breaking-news/' + totalPost)
+            axios.post('/videos/' + totalPost)
             .then((result) => {
                 let postParent = document.querySelector('#posts');
                 postParent.innerHTML = postParent.innerHTML += result.data;

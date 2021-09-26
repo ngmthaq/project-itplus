@@ -3,6 +3,8 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DefaultController;
+use App\Http\Controllers\Post\CategoryController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -75,3 +77,32 @@ Route::get('/breaking-news', [DefaultController::class, 'breakingNews'])
 Route::post('/breaking-news/{post}', [DefaultController::class, 'loadmoreBreakingNews'])
     ->name('default.loadmoreBreakingNews')
     ->where(['post' => '[0-9]+']);
+
+// Categories with post
+Route::get('/categories/{category}/posts', [CategoryController::class, 'showPosts'])
+    ->name('category.showPosts')
+    ->where(['category' => '[0-9]+']);
+
+// Load more casual posts
+Route::post('/categories/{category}/casual/{total}', [CategoryController::class, 'loadmoreCasualPosts'])
+    ->name('category.loadmoreCasualPosts')
+    ->where([
+        'category' => '[0-9]+',
+        'total' => '[0-9]+'
+    ]);
+
+// Load more video posts
+Route::post('/categories/{category}/video/{total}', [CategoryController::class, 'loadmoreVideoPosts'])
+    ->name('category.loadmoreVideoPosts')
+    ->where([
+        'category' => '[0-9]+',
+        'total' => '[0-9]+'
+    ]);
+
+// Video page
+Route::get('videos', [CategoryController::class, 'showVideos'])
+    ->name('category.showVideos');
+
+// Load more video in video page
+Route::post('/videos/{total}', [CategoryController::class, 'loadmoreVideoPage'])
+    ->where(['total' => '[0-9]+']);
