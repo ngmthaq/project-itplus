@@ -7,6 +7,8 @@ use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Mail\ResetPasswordMail;
 use App\Models\Category;
+use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use App\Rules\RequiresAtLeast8CharactersAndContainAtLeast1LetterAnd1Number;
 use Carbon\Carbon;
@@ -83,5 +85,16 @@ class UserController extends Controller
         $user->save();
         Auth::logout();
         return redirect(route('login.show'))->with('success', 'Đặt lại mật khẩu thành công, vui lòng đăng nhập lại bằng mật khẩu mới');
+    }
+
+    public function addComment(Request $request, Post $post)
+    {
+        $comment = Comment::create([
+            'user_id' => Auth::user()->id,
+            'post_id' => $post->id,
+            'content' => $request->content
+        ]);
+        $comments = Comment::getSixComments($post);
+        return view('web.parts.comment._new-comment', compact('comments'));
     }
 }

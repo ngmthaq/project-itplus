@@ -152,7 +152,8 @@
                                             <td class="dashboard-title" title="{{ $video->title_vi }}">{{ $video->title_vi }}</td>
                                             <td>{{ date('d/m/Y', strtotime($video->created_at)) }}</td>
                                             <td>
-                                                <a href="#" class="text-decoration-none text-light button-md-main">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $video->id]) }}" 
+                                                    class="text-decoration-none text-light button-md-main" target="_blank">
                                                     Xem
                                                 </a>
                                             </td>

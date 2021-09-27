@@ -63,8 +63,14 @@
                 <div class="col-11">
                     <ul class="my-navbar-list">
                         <li>
+                            <a href="/"
+                                class="@php echo $site == 'homepage' ? 'active' : '' @endphp">
+                                <i class="fas fa-home"></i>
+                            </a>
+                        </li>
+                        <li>
                             <a href="{{ route('default.breakingNews') }}" 
-                                class="@php echo $site == "breaking-news" ? 'active' : '' @endphp">
+                                class="@php echo $site == 'breaking-news' ? 'active' : '' @endphp">
                                 Tin mới
                             </a>
                         </li>
@@ -76,15 +82,16 @@
                                 </a>
                             </li>
                         @endforeach
-                        <li>
-                            <a href="{{ route('category.showVideos') }}" 
-                                class="@php echo $site == 'videos' ? 'active' : '' @endphp">
-                                Video
-                            </a>
-                        </li>
                         <li class="dropdown-button">
-                            <a href="javascript:void(0)">Thêm <i class="fas fa-angle-down"></i></a>
+                            <a href="javascript:void(0)" 
+                                class="@php echo $site == 'videos' || $site == 'about' || $site == 'contact' ? 'active' : '' @endphp">
+                                Thêm <i class="fas fa-angle-down"></i>
+                            </a>
                             <div class="dropdown-container">
+                                <a href="{{ route('category.showVideos') }}"
+                                    class="@php echo $site == 'videos' ? 'active' : '' @endphp">
+                                    Video
+                                </a>
                                 <a href="#">Giới thiệu</a>
                                 <a href="#">Liên hệ</a>
                                 @auth

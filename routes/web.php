@@ -44,6 +44,9 @@ Route::get('/login', [LoginController::class, 'show'])
 Route::post('/login', [LoginController::class, 'login'])
     ->name('login')
     ->middleware(['authUserCantAccessToLoginAndRegister']);
+Route::post('/login-modal', [LoginController::class, 'modalLogin'])
+    ->name('login.modalLogin')
+    ->middleware(['authUserCantAccessToLoginAndRegister']);
 
 // Logout
 Route::get('/logout', [LoginController::class, 'logout'])
@@ -112,7 +115,7 @@ Route::get('/posts/{post}', [PostController::class, 'showPostDetail'])
     ->name('post.showPostDetail')
     ->where(['post' => '[0-9]+']);
 
-// Show post detail
-Route::get('/videos/{post}', [PostController::class, 'showVideoDetail'])
-    ->name('post.showVideoDetail')
-    ->where(['post' => '[0-9]+']);
+
+// Add comment
+Route::post('/add-comment/{post}', [UserController::class, 'addComment'])
+    ->name('user.addComment');

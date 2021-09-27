@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCasualPostRequest;
 use App\Http\Requests\CreateVideoPostRequest;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Media;
 use App\Models\Post;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -188,5 +190,18 @@ class PostController extends Controller
             'posts' => $posts,
             'validPosts' => $validPosts
         ]);
+    }
+
+    public function showPostDetail(Post $post)
+    {
+        $post->load(['category', 'type', 'user']);
+        $comments = Comment::getSixComments($post);
+        $site = $post->category->id;
+        $category = $post->category;
+        $popularPosts = Post::postWithComments(Post::with('type')->where('category_id', '=', $category->id)->whereNull('deleted_at')->get());
+        $categories = Category::countValidPostWithCategory();
+        return view('web.main.post-detail', compact(
+            'site', 'categories', 'post', 'category', 'popularPosts', 'comments'
+        ));
     }
 }

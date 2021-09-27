@@ -159,7 +159,10 @@
                                             <td class="dashboard-title" title="{{ $post->title_vi }}">{{ $post->title_vi }}</td>
                                             <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
                                             <td>
-                                                <a href="#" class="text-decoration-none text-light button-md-main">Xem</a>
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" 
+                                                    class="text-decoration-none text-light button-md-main" target="_blank">
+                                                    Xem
+                                                </a>
                                             </td>
                                         </tr>
                                         @if ($i >= 5) @break @endif

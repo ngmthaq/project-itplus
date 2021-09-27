@@ -21,7 +21,7 @@
                             </small>
                             <div class="title-container">
                                 <h5 class="title">
-                                    <a href="#" class="link" title="{{ $slider->title_vi }}">
+                                    <a href="{{ route('post.showPostDetail', ['post' => $slider->id]) }}" class="link" title="{{ $slider->title_vi }}">
                                         {{ $slider->title_vi }}
                                     </a>
                                 </h5>
@@ -47,7 +47,7 @@
                         </small>
                         <div class="title-container">
                             <h5 class="title">
-                                <a href="#" class="link" title="{{ $post->title_vi }}">
+                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                     {{ $post->title_vi }}
                                 </a>
                             </h5>
@@ -75,7 +75,7 @@
                                 <small class="category-name">{{ $firstPolitic->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="#" class="link" title="{{ $firstPolitic->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstPolitic->id]) }}" class="link" title="{{ $firstPolitic->title_vi }}">
                                             {{ $firstPolitic->title_vi }}
                                         </a>
                                     </h5>
@@ -96,7 +96,7 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="#" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -122,7 +122,7 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="#" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -156,7 +156,7 @@
                                 <small class="category-name">{{ $firstBusiness->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="#" class="link" title="{{ $firstBusiness->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstBusiness->id]) }}" class="link" title="{{ $firstBusiness->title_vi }}">
                                             {{ $firstBusiness->title_vi }}
                                         </a>
                                     </h5>
@@ -177,7 +177,7 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="#" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -203,7 +203,7 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="#" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -237,7 +237,7 @@
                                 <small class="category-name">{{ $firstSnT->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="#" class="link" title="{{ $firstSnT->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstSnT->id]) }}" class="link" title="{{ $firstSnT->title_vi }}">
                                             {{ $firstSnT->title_vi }}
                                         </a>
                                     </h5>
@@ -258,7 +258,7 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="#" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -284,7 +284,7 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="#" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -318,7 +318,7 @@
                                 <small class="category-name">{{ $firstHnC->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="#" class="link" title="{{ $firstHnC->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstHnC->id]) }}" class="link" title="{{ $firstHnC->title_vi }}">
                                             {{ $firstHnC->title_vi }}
                                         </a>
                                     </h5>
@@ -339,7 +339,7 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="#" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -365,7 +365,7 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="#" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -399,7 +399,7 @@
                                 <small class="category-name">{{ $firstTravel->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="#" class="link" title="{{ $firstTravel->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstTravel->id]) }}" class="link" title="{{ $firstTravel->title_vi }}">
                                             {{ $firstTravel->title_vi }}
                                         </a>
                                     </h5>
@@ -420,7 +420,7 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="#" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -446,7 +446,7 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="#" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -480,7 +480,7 @@
                                 <small class="category-name">{{ $firstSport->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="#" class="link" title="{{ $firstSport->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstSport->id]) }}" class="link" title="{{ $firstSport->title_vi }}">
                                             {{ $firstSport->title_vi }}
                                         </a>
                                     </h5>
@@ -501,7 +501,7 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="#" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -527,7 +527,7 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="#" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>

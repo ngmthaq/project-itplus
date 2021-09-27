@@ -28,10 +28,7 @@ class CategoryController extends Controller
             ->get();
         $site = $category->id;
         $popularPosts = Post::postWithComments(Post::with('type')->where('category_id', '=', $category->id)->whereNull('deleted_at')->get());
-        $categories = Category::withCount([
-            'posts' => function(Builder $query) {
-                $query->whereNull('deleted_at');
-            }])->get();
+        $categories = Category::countValidPostWithCategory();
         return view('web.main.category-posts', compact(
             'site', 'category', 'categories', 'casualPosts', 'videoPosts', 'popularPosts'
         ));

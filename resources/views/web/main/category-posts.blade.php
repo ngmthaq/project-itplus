@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="content-container">
                                         <h5 class="title" title="{{ $post->title_vi }}">
-                                            <a href="#" class="link">{{ $post->title_vi }}</a>
+                                            <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link">{{ $post->title_vi }}</a>
                                         </h5>
                                         <p class="subtitle" title="{{ $post->subtitle_vi }}">
                                             {{ $post->subtitle_vi }}
@@ -138,7 +138,7 @@
                                     </div>
                                     <div class="content-container">
                                         <h5 class="title" title="{{ $post->title_vi }}">
-                                            <a href="#" class="link">{{ $post->title_vi }}</a>
+                                            <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link">{{ $post->title_vi }}</a>
                                         </h5>
                                         <p class="subtitle" title="{{ $post->subtitle_vi }}">
                                             {{ $post->subtitle_vi }}
@@ -195,7 +195,7 @@
                                 <div class="content-container" style="flex: 1;">
                                     <p>
                                         <strong>
-                                            <a href="#" class="link title">
+                                            <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link title">
                                                 {{ $post->title_vi }}
                                             </a>
                                             <small>{{ date('d/m/Y', strtotime($post->created_at)) }}</small><br>
@@ -221,7 +221,7 @@
             axios.post('/categories/' + category + '/casual/' + totalPosts)
                 .then((result) => {
                     casualContainer.innerHTML = casualContainer.innerHTML += result.data;
-                    if (totalPosts % 6 != 0) {
+                    if (result.data == "") {
                         e.style.display = 'none';
                     }
                 }).catch((err) => {
@@ -236,7 +236,7 @@
             axios.post('/categories/' + category + '/video/' + totalPosts)
                 .then((result) => {
                     videoContainer.innerHTML = videoContainer.innerHTML += result.data;
-                    if (totalPosts % 6 != 0) {
+                    if (result.data == "") {
                         e.style.display = 'none';
                     }
                 }).catch((err) => {

@@ -81,7 +81,8 @@
                                                         Đã xoá
                                                     </button>
                                                 @else
-                                                    <a href="#" class="btn btn-sm btn-outline-primary" title="Xem bài viết">
+                                                    <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" target="_blank"
+                                                        class="btn btn-sm btn-outline-primary" title="Xem bài viết">
                                                         <i class="fas fa-eye"></i>
                                                     </a>
                                                     <a href="{{ route('post.editCasualPostForm', ['post' => $post->id]) }}"
