@@ -52,7 +52,7 @@ class PostController extends Controller
     public function manageCasualPost()
     {
         // Lấy tất cả các post kể cả post đã bị xoá
-        $posts = Post::with('category')->where('type_id', '=', '1')->orderBy('id', 'desc')->get();
+        $posts = Post::with(['category', 'comments'])->where('type_id', '=', '1')->orderBy('id', 'desc')->get();
         // Lấy số lượng post chưa bị xoá
         $validPosts = Post::countValidPosts($posts);
         return view('admin.main.manage-casual-post', [
@@ -182,7 +182,7 @@ class PostController extends Controller
     public function manageVideoPost()
     {
         // Lấy tất cả các post kể cả post đã bị xoá
-        $posts = Post::with('category')->where('type_id', '=', '2')->orderBy('id', 'desc')->get();
+        $posts = Post::with(['category', 'comments'])->where('type_id', '=', '2')->orderBy('id', 'desc')->get();
         // Lấy số lượng post chưa bị xoá
         $validPosts = Post::countValidPosts($posts);
         return view('admin.main.manage-video-post', [
@@ -195,7 +195,7 @@ class PostController extends Controller
     public function showPostDetail(Post $post)
     {
         $post->load(['category', 'type', 'user']);
-        $comments = Comment::getSixComments($post);
+        $comments = Comment::getComments($post);
         $site = $post->category->id;
         $category = $post->category;
         $popularPosts = Post::postWithComments(Post::with('type')->where('category_id', '=', $category->id)->whereNull('deleted_at')->get());

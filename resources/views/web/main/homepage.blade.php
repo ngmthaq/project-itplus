@@ -110,7 +110,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 bg-light">
+            <div class="col-3">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstPolitic->category->name_vi }}</p>
                     @foreach ($politicTopComments as $post)
@@ -191,7 +191,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 bg-light">
+            <div class="col-3">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstBusiness->category->name_vi }}</p>
                     @foreach ($businessTopComments as $post)
@@ -272,7 +272,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 bg-light">
+            <div class="col-3">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstSnT->category->name_vi }}</p>
                     @foreach ($SnTTopComments as $post)
@@ -353,7 +353,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 bg-light">
+            <div class="col-3">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstHnC->category->name_vi }}</p>
                     @foreach ($HnCTopComments as $post)
@@ -434,7 +434,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 bg-light">
+            <div class="col-3">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstTravel->category->name_vi }}</p>
                     @foreach ($travelTopComments as $post)
@@ -515,7 +515,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3 bg-light">
+            <div class="col-3">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstSport->category->name_vi }}</p>
                     @foreach ($sportTopComments as $post)

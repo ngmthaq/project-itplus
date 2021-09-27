@@ -87,14 +87,28 @@ class UserController extends Controller
         return redirect(route('login.show'))->with('success', 'Đặt lại mật khẩu thành công, vui lòng đăng nhập lại bằng mật khẩu mới');
     }
 
-    public function addComment(Request $request, Post $post)
+    public function addComment(Request $request, Post $post, $total)
     {
         $comment = Comment::create([
             'user_id' => Auth::user()->id,
             'post_id' => $post->id,
             'content' => $request->content
         ]);
-        $comments = Comment::getSixComments($post);
+
+        $total = $total < 6 ? 6 : $total;
+
+        $comments = Comment::getComments($post, $total);
         return view('web.parts.comment._new-comment', compact('comments'));
+    }
+
+    public function showNextSixComments(Post $post, $total)
+    {
+        $comments = Comment::getNextSixComments($post, $total);
+        return view('web.parts.comment._new-comment', compact('comments'));
+    }
+
+    public function editComment(Request $request, Comment $comment)
+    {
+
     }
 }

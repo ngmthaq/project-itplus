@@ -40,14 +40,15 @@ class Comment extends Model
         return $total;
     }
 
-    public static function getSixComments($post)
+    public static function getComments($post, $total = 6)
     {
         $comments = Comment::with('user')
             ->where('post_id', '=', $post->id)
             ->orderBy('created_at', 'desc')
-            ->take(6)
+            ->take($total)
             ->get();
-        return $comments;
+        $result = $comments->reverse();
+        return $result;
     }
 
     public static function getNextSixComments($post, $total)
@@ -58,6 +59,7 @@ class Comment extends Model
             ->skip($total)
             ->take(6)
             ->get();
-        return $comments;
+        $result = $comments->reverse();
+        return $result;
     }
 }

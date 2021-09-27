@@ -92,7 +92,7 @@ a.link {
 }
 
 a.link:hover {
-    color: var(--main-color);
+    color: var(--main-color) !important;
 }
 
 a.logo {

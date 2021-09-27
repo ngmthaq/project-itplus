@@ -49,12 +49,13 @@
                                 </div>
                             </div>
                         </form>
-                        <table class="table">
+                        <table class="table table-hover table-bordered">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">ID</th>
                                     <th scope="col">Tiêu đề</th>
                                     <th scope="col">Danh mục</th>
+                                    <th scope="col">Bình luận</th>
                                     <th scope="col">Ngày đăng bài</th>
                                     <th scope="col">Lần sửa bài gần nhất</th>
                                     <th scope="col"></th>
@@ -66,13 +67,14 @@
                                         <tr class="post-row @php echo ($post->deleted_at) ? 'hidden' : 'visible'  @endphp">
                                             <th scope="row">P{{ $post->id }}</th>
                                             <td class="title_vi" title="{{ $post->title_vi }}">{{ $post->title_vi }}</td>
-                                            <td class="title_vi">{{ $post->category->name_vi }}</td>
-                                            <td>{{ date('d/m/Y H:i:s', strtotime($post->created_at)) }}</td>
+                                            <td>{{ $post->category->name_vi }}</td>
+                                            <td>{{ count($post->comments) }}</td>
+                                            <td>{{ date('d/m/y H:i', strtotime($post->created_at)) }}</td>
                                             <td>
                                                 @if (strcmp($post->created_at, $post->updated_at) == 0)
                                                     Không có dữ liệu
                                                 @else
-                                                    {{ date('d/m/Y H:i:s', strtotime($post->updated_at)) }}
+                                                    {{ date('d/m/y H:i', strtotime($post->updated_at)) }}
                                                 @endif
                                             </td>
                                             <td>

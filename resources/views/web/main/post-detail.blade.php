@@ -98,21 +98,22 @@
         }
 
         .user-information {
-            display: flex;
-            align-items: flex-start;
+            /* display: flex;
+                align-items: flex-start; */
         }
 
         .user-image {
             width: 30px;
             height: 30px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: inline-block;
+            text-align: center;
+            line-height: 30px;
             background: var(--main-color);
             color: #fff;
             border-radius: 50%;
             margin-right: 10px;
             margin-top: 4px;
+            float: left;
         }
 
         .comment {
@@ -120,12 +121,28 @@
             padding: 4px 16px;
             border-radius: 10px;
             display: flex;
+            justify-content: space-between;
         }
 
         .comment-action {
             margin-left: 12px;
             font-size: 12px;
             padding: 4px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .comment-action-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .comment-action-container li {
+            padding: 2px 4px;
+            font-size: 16px;
+            margin: 2px 8px 8px 0;
+            cursor: pointer;
+            user-select: none;
         }
 
         .comment-form {
@@ -185,6 +202,12 @@
                 </div>
                 <h5>Bình luận</h5>
                 <div class="comment-container mb-3 bg-light p-2">
+                    <p class="mt-1 mb-3">
+                        <a href="javascript:void(0)" class="link" id="show-more-comment" style="color: royalblue;"
+                            data-post="{{ $post->id }}" onclick="showNextSixComments(this)">
+                            Xem thêm bình luận
+                        </a>
+                    </p>
                     <div class="user-comment my-2">
                         @if (count($comments) > 0)
                             @foreach ($comments as $comment)
@@ -218,6 +241,10 @@
                                             @endif
                                         @endauth
                                     </div>
+                                    <ul class="comment-action-container" style="display: none;">
+                                        <li class="text-primary">Sửa</li>
+                                        <li class="text-danger">Xoá</li>
+                                    </ul>
                                 </div>
                             @endforeach
                         @else
@@ -381,17 +408,39 @@
     <script>
         function addComment(e) {
             let newCommentInput = document.querySelector('input#new-comment').value;
+            let total = document.querySelectorAll('.user-information').length;
             let postId = document.querySelector('input#post-id').value;
-            axios.post('/add-comment/' + postId, {
-                post_id: postId,
+            console.log(total);
+            axios.post('/add-comment/' + postId + '/comment/' + total, {
                 content: newCommentInput
             }).then((result) => {
+                let showMoreComments = document.querySelector('a#show-more-comment');
+                if (total == 6) {
+                    showMoreComments.style.display = 'block';
+                }
                 let parent = document.querySelector('.user-comment');
                 document.querySelector('input#new-comment').value = "";
                 parent.innerHTML = result.data;
             }).catch((err) => {
                 console.error(err);
             });
+        }
+
+        function showNextSixComments(e) {
+            let total = document.querySelectorAll('.user-information').length;
+            console.log(total);
+            let postId = e.getAttribute('data-post');
+            axios.post('/show-more-comment/' + postId + '/comment/' + total)
+                .then((result) => {
+                    let parent = document.querySelector('.user-comment');
+                    document.querySelector('input#new-comment').value = "";
+                    parent.innerHTML = result.data + parent.innerHTML;
+                    if (result.data == "") {
+                        e.style.display = 'none';
+                    }
+                }).catch((err) => {
+                    console.error(err);
+                });
         }
 
         let newCommentInput = document.querySelector('input#new-comment');
@@ -402,6 +451,11 @@
         })
 
         $(function() {
+            $('.comment-action').click(function (e) { 
+                e.preventDefault();
+                $(this).parent('.comment').siblings('.comment-action-container').slideToggle('fast');
+            });
+
             // Email validate
             function validateEmail(email) {
                 const regex =
