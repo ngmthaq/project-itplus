@@ -344,7 +344,6 @@
             let newCommentInput = document.querySelector('input#new-comment').value;
             let total = document.querySelectorAll('.user-information').length;
             let postId = document.querySelector('input#post-id').value;
-            console.log(total);
             axios.post('/add-comment/' + postId + '/comment/' + total, {
                 content: newCommentInput
             }).then((result) => {
@@ -397,7 +396,6 @@
             let commentId = e.getAttribute('data-comment');
             axios.delete('/delete-comment/' + commentId)
                 .then((result) => {
-                    console.log(result);
                     e.parentElement.parentElement.style.display = 'none';
                 }).catch((err) => {
                     console.error(err);
