@@ -99,7 +99,7 @@
 
         .user-information {
             /* display: flex;
-                    align-items: flex-start; */
+                                    align-items: flex-start; */
         }
 
         .user-image {
@@ -149,6 +149,14 @@
             display: flex;
             align-items: flex-start;
             justify-content: space-between;
+        }
+
+        .edit-comment {
+            border: none;
+            box-shadow: none;
+            display: none;
+            box-shadow: none !important;
+            height: 100%;
         }
 
     </style>
@@ -203,9 +211,9 @@
                 <h5>Bình luận</h5>
                 <div class="comment-container mb-3 bg-light p-2">
                     <p class="mt-1 mb-3">
-                        <a href="javascript:void(0)" class="link" id="show-more-comment" 
-                            style="color: royalblue; user-select: none; @php echo count($comments) < 6 ? 'display: none;' : '' @endphp"
-                            data-post="{{ $post->id }}" onclick="showNextSixComments(this)">
+                        <a href="javascript:void(0)" class="link" id="show-more-comment"
+                            style="color: royalblue; user-select: none; @php echo count($comments) < 6 ? 'display: none;' : '' @endphp" data-post="{{ $post->id }}"
+                            onclick="showNextSixComments(this)">
                             Xem thêm bình luận
                         </a>
                     </p>
@@ -217,34 +225,34 @@
                                         {{ ucfirst(substr($comment->user->first_name, 0, 1)) }}
                                     </div>
                                     <div class="comment">
-                                        <div>
+                                        <div style="flex: 9;">
                                             <p class="user-name">
                                                 <strong>
                                                     {{ $comment->user->first_name }}
                                                     {{ $comment->user->last_name }}
                                                 </strong>
                                             </p>
-                                            <form>
+                                            <form class="d-flex align-items-center" onsubmit="return false;">
                                                 <p class="comment-text">{{ $comment->content }}</p>
-                                                <input type="text"
-                                                    style="border: none; border-bottom: 1px solid var(--secondary); box-shadow: none; display:none;"
-                                                    class="form-control edit-comment">
-                                                <button type="submit" class="btn btn-outline-none" style="display:none;">
+                                                <input type="text" class="form-control edit-comment" required>
+                                                <button type="button" class="btn btn-outline-none" style="display:none;"
+                                                    onclick="editComment(this)" data-comment="{{ $comment->id }}">
                                                     <i class="fas fa-paper-plane"></i>
                                                 </button>
                                             </form>
                                         </div>
                                         @auth
                                             @if (Auth::user()->id == $comment->user->id)
-                                                <div class="comment-action">
+                                                <div class="comment-action text-right" style="flex: 1;">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </div>
                                             @endif
                                         @endauth
                                     </div>
                                     <ul class="comment-action-container" style="display: none;">
-                                        <li class="text-primary">Sửa</li>
-                                        <li class="text-danger">Xoá</li>
+                                        <li class="text-primary edit-button">Sửa</li>
+                                        <li class="text-danger delete-button">Xoá</li>
+                                        <li class="text-dark cancel-button" style="display: none">Huỷ</li>
                                     </ul>
                                 </div>
                             @endforeach
@@ -365,6 +373,23 @@
                 });
         }
 
+        function editComment(e) {
+            console.dir(e.previousElementSibling);
+            let comment = e.previousElementSibling.value;
+            console.log(comment);
+            let commentId = e.getAttribute('data-comment');
+            console.log(commentId);
+            axios.put('/edit-comment/' + commentId, {
+                content: comment
+            }).then((result) => {
+                console.log(result);
+                e.parentElement.parentElement.parentElement.parentElement.innerHTML = result.data;
+                
+            }).catch((err) => {
+                console.error(err);
+            });
+        }
+
         let newCommentInput = document.querySelector('input#new-comment');
         newCommentInput.addEventListener('keydown', function(e) {
             if (e.which == 13) {
@@ -373,8 +398,43 @@
         })
 
         $(function() {
+            $(document).on('keydown', '.edit-comment', function(e) {
+                if (e.which == 13) {
+                    $(this).next().click();
+                }
+            })
+
+            $(document).on('click', '.edit-button', function() {
+                $(this).parents('.user-information').find('.comment-text').hide();
+                $(this).parents('.user-information').find('.edit-comment').show();
+                $(this).parents('.user-information').find('.edit-comment').val(
+                    $(this).parents('.user-information').find('.comment-text').text()
+                );
+                $(this).parents('.user-information').find('.edit-comment').select();
+                $(this).parents('.user-information').find('.edit-comment').focus();
+                $(this).parents('.user-information').find('button').show();
+                $(this).hide();
+                $(this).siblings('.delete-button').hide();
+                $(this).siblings('.cancel-button').show();
+                $('.comment-action').css('visibility', 'hidden');
+            })
+
+            $(document).on('click', '.cancel-button', function() {
+                $(this).parents('.user-information').find('.comment-text').show();
+                $(this).parents('.user-information').find('.edit-comment').hide();
+                $(this).parents('.user-information').find('.edit-comment').val(
+                    $(this).parents('.user-information').find('.comment-text').text()
+                );
+                $(this).parents('.user-information').find('button').hide();
+                $(this).hide();
+                $(this).siblings('.delete-button').show();
+                $(this).siblings('.edit-button').show();
+                $('.comment-action').css('visibility', 'visible');
+            })
+
             $(document).on('click', '.comment-action', function() {
-                $(this).parents('.user-information').siblings().find('.comment-action-container').slideUp();
+                $(this).parents('.user-information').siblings().find('.comment-action-container').slideUp(
+                    'fast');
                 $(this).parents('.comment').siblings('.comment-action-container').slideToggle('fast');
             });
 

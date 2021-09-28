@@ -109,6 +109,15 @@ class UserController extends Controller
 
     public function editComment(Request $request, Comment $comment)
     {
+        $comment->content = $request->content;
+        $comment->save();
+        return view('web.parts.comment._editted-comment', compact('comment'));
+    }
 
+    public function deleteComment(Comment $comment)
+    {
+        $comment->delete();
+        $comment->save();
+        return true;
     }
 }
