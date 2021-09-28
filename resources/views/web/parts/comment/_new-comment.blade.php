@@ -29,5 +29,9 @@
                 @endif
             @endauth
         </div>
+        <ul class="comment-action-container" style="display: none;">
+            <li class="text-primary">Sửa</li>
+            <li class="text-danger">Xoá</li>
+        </ul>
     </div>
 @endforeach

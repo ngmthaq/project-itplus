@@ -61,27 +61,25 @@
             // $('.dropdown-button').click(function() {
             //     $('.dropdown-container').slideToggle("fast");
             // })
-            $('.dropdown-button').hover(function () {
-                    // over
-                    $('.dropdown-container').fadeIn('fast');
-                }, function () {
-                    // out
-                    $('.dropdown-container').fadeOut('fast');
-                }
-            );
+            $('.dropdown-button').hover(function() {
+                // over
+                $('.dropdown-container').fadeIn('fast');
+            }, function() {
+                // out
+                $('.dropdown-container').fadeOut('fast');
+            });
 
             // User action dropdown
             // $('.user-action').click(function() {
             //     $('.user-action-container').slideToggle();
             // });
-            $('.user-action').hover(function () {
-                    // over
-                    $('.user-action-container').fadeIn('fast');
-                }, function () {
-                    // out
-                    $('.user-action-container').fadeOut('fast');
-                }
-            );
+            $('.user-action').hover(function() {
+                // over
+                $('.user-action-container').fadeIn('fast');
+            }, function() {
+                // out
+                $('.user-action-container').fadeOut('fast');
+            });
 
             // Hiển thị thời gian
             setInterval(function() {

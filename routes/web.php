@@ -115,17 +115,16 @@ Route::get('/posts/{post}', [PostController::class, 'showPostDetail'])
     ->name('post.showPostDetail')
     ->where(['post' => '[0-9]+']);
 
-Route::middleware(['authCheck'])->group(function () {
-    // Add comment
-    Route::post('/add-comment/{post}/comment/{total}', [UserController::class, 'addComment'])
-        ->name('user.addComment')
-        ->where(['post' => '[0-9]+']);
+// Add comment
+Route::post('/add-comment/{post}/comment/{total}', [UserController::class, 'addComment'])
+->name('user.addComment')
+->where(['post' => '[0-9]+'])
+->middleware('authCheck');
 
-    // Show next six comments
-    Route::post('/show-more-comment/{post}/comment/{total}', [UserController::class, 'showNextSixComments'])
-        ->name('user.showNextSixComments')
-        ->where([
-            'post' => '[0-9]+',
-            'total' => '[0-9]+'
-        ]);
-});
+// Show next six comments
+Route::post('/show-more-comment/{post}/comment/{total}', [UserController::class, 'showNextSixComments'])
+    ->name('user.showNextSixComments')
+    ->where([
+        'post' => '[0-9]+',
+        'total' => '[0-9]+'
+    ]);

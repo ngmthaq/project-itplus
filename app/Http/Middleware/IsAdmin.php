@@ -20,6 +20,6 @@ class IsAdmin
         if (Auth::user()->role_id == 1) {
             return $next($request);
         }
-        return redirect('/')->with('error', 'Không thể truy cập vào đường dẫn');
+        return redirect(route('admin.dashboard'))->with('error', 'Bạn chưa được cấp quyền để truy cập trang này');
     }
 }
