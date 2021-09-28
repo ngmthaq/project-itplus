@@ -101,9 +101,9 @@ class UserController extends Controller
         return view('web.parts.comment._new-comment', compact('comments'));
     }
 
-    public function showNextSixComments(Post $post, $total)
+    public function showNextComments(Post $post, $total)
     {
-        $comments = Comment::getNextSixComments($post, $total);
+        $comments = Comment::getNextComments($post, $total);
         return view('web.parts.comment._new-comment', compact('comments'));
     }
 

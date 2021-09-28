@@ -135,8 +135,8 @@ Route::middleware(['authCheck'])->group(function () {
 });
 
 // Show next six comments
-Route::post('/show-more-comment/{post}/comment/{total}', [UserController::class, 'showNextSixComments'])
-    ->name('user.showNextSixComments')
+Route::post('/show-more-comment/{post}/comment/{total}', [UserController::class, 'showNextComments'])
+    ->name('user.showNextComments')
     ->where([
         'post' => '[0-9]+',
         'total' => '[0-9]+'

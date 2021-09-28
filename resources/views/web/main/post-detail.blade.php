@@ -348,12 +348,12 @@
                 content: newCommentInput
             }).then((result) => {
                 let showMoreComments = document.querySelector('a#show-more-comment');
-                if (total == 6) {
-                    showMoreComments.style.display = 'block';
-                }
                 let parent = document.querySelector('.user-comment');
                 document.querySelector('input#new-comment').value = "";
                 parent.innerHTML = result.data;
+                if (parent.querySelectorAll('.user-information').length == total) {
+                    showMoreComments.style.display = 'block';
+                }
             }).catch((err) => {
                 console.error(err);
             });
@@ -365,8 +365,8 @@
             axios.post('/show-more-comment/' + postId + '/comment/' + total)
                 .then((result) => {
                     let parent = document.querySelector('.user-comment');
-                    parent.innerHTML = result.data + parent.innerHTML;
-                    if (result.data == "") {
+                    parent.innerHTML = result.data;
+                    if (parent.querySelectorAll('.user-information').length == total) {
                         e.style.display = 'none';
                     }
                 }).catch((err) => {
