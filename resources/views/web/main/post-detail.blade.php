@@ -99,7 +99,7 @@
 
         .user-information {
             /* display: flex;
-                                    align-items: flex-start; */
+                                        align-items: flex-start; */
         }
 
         .user-image {
@@ -251,7 +251,10 @@
                                     </div>
                                     <ul class="comment-action-container" style="display: none;">
                                         <li class="text-primary edit-button">Sửa</li>
-                                        <li class="text-danger delete-button">Xoá</li>
+                                        <li class="text-danger delete-button" data-comment="{{ $comment->id }}"
+                                            onclick="deleteComment(this)">
+                                            Xoá
+                                        </li>
                                         <li class="text-dark cancel-button" style="display: none">Huỷ</li>
                                     </ul>
                                 </div>
@@ -359,7 +362,6 @@
 
         function showNextSixComments(e) {
             let total = document.querySelectorAll('.user-information').length;
-            console.log(total);
             let postId = e.getAttribute('data-post');
             axios.post('/show-more-comment/' + postId + '/comment/' + total)
                 .then((result) => {
@@ -374,20 +376,32 @@
         }
 
         function editComment(e) {
-            console.dir(e.previousElementSibling);
             let comment = e.previousElementSibling.value;
-            console.log(comment);
+            if (comment == "") {
+                return false;
+            }
             let commentId = e.getAttribute('data-comment');
-            console.log(commentId);
             axios.put('/edit-comment/' + commentId, {
                 content: comment
             }).then((result) => {
-                console.log(result);
+                document.querySelectorAll('.comment-action').forEach(function(item, index) {
+                    item.style.visibility= 'visible';
+                });
                 e.parentElement.parentElement.parentElement.parentElement.innerHTML = result.data;
-                
             }).catch((err) => {
                 console.error(err);
             });
+        }
+
+        function deleteComment(e) {
+            let commentId = e.getAttribute('data-comment');
+            axios.delete('/delete-comment/' + commentId)
+                .then((result) => {
+                    console.log(result);
+                    e.parentElement.parentElement.style.display = 'none';
+                }).catch((err) => {
+                    console.error(err);
+                });
         }
 
         let newCommentInput = document.querySelector('input#new-comment');

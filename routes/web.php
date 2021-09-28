@@ -115,11 +115,24 @@ Route::get('/posts/{post}', [PostController::class, 'showPostDetail'])
     ->name('post.showPostDetail')
     ->where(['post' => '[0-9]+']);
 
-// Add comment
-Route::post('/add-comment/{post}/comment/{total}', [UserController::class, 'addComment'])
-    ->name('user.addComment')
-    ->where(['post' => '[0-9]+'])
-    ->middleware('authCheck');
+Route::middleware(['authCheck'])->group(function () {
+    // Add comment
+    Route::post('/add-comment/{post}/comment/{total}', [UserController::class, 'addComment'])
+        ->name('user.addComment')
+        ->where(['post' => '[0-9]+']);
+
+    // Edit comment
+    Route::put('/edit-comment/{comment}', [UserController::class, 'editComment'])
+        ->name('user.editComment')
+        ->where(['comment' => '[0-9]+'])
+        ->middleware('isUserOfComment');
+
+    // Delete comment
+    Route::delete('/delete-comment/{comment}', [UserController::class, 'deleteComment'])
+        ->name('user.deleteComment')
+        ->where(['comment' => '[0-9]+'])
+        ->middleware('isUserOfComment');
+});
 
 // Show next six comments
 Route::post('/show-more-comment/{post}/comment/{total}', [UserController::class, 'showNextSixComments'])
@@ -128,15 +141,3 @@ Route::post('/show-more-comment/{post}/comment/{total}', [UserController::class,
         'post' => '[0-9]+',
         'total' => '[0-9]+'
     ]);
-
-// Edit comment
-Route::put('/edit-comment/{comment}', [UserController::class, 'editComment'])
-    ->name('user.editComment')
-    ->where(['comment' => '[0-9]+'])
-    ->middleware('authCheck');
-
-// Delete comment
-Route::delete('/delete-comment/{comment}', [UserController::class, 'deleteComment'])
-    ->name('user.deleteComment')
-    ->where(['comment' => '[0-9]+'])
-    ->middleware('authCheck');

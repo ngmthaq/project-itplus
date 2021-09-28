@@ -116,8 +116,6 @@ class UserController extends Controller
 
     public function deleteComment(Comment $comment)
     {
-        $comment->delete();
-        $comment->save();
-        return true;
+        return $comment->delete();
     }
 }

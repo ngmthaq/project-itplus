@@ -10,10 +10,11 @@
                     {{ $comment->user->last_name }}
                 </strong>
             </p>
-            <form class="d-flex align-items-center">
+            <form class="d-flex align-items-center" onsubmit="return false;">
                 <p class="comment-text">{{ $comment->content }}</p>
                 <input type="text" class="form-control edit-comment" required>
-                <button type="submit" class="btn btn-outline-none" style="display:none;">
+                <button type="button" class="btn btn-outline-none" style="display:none;" onclick="editComment(this)"
+                    data-comment="{{ $comment->id }}">
                     <i class="fas fa-paper-plane"></i>
                 </button>
             </form>
@@ -28,7 +29,9 @@
     </div>
     <ul class="comment-action-container" style="display: none;">
         <li class="text-primary edit-button">Sửa</li>
-        <li class="text-danger delete-button">Xoá</li>
+        <li class="text-danger delete-button" data-comment="{{ $comment->id }}" onclick="deleteComment(this)">
+            Xoá
+        </li>
         <li class="text-dark cancel-button" style="display: none">Huỷ</li>
     </ul>
 </div>
