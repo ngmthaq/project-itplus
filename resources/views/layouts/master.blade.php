@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="{{ asset('assets/images/THE VIETNAM NEWSPAPER (1).png') }}" type="image/x-icon">
     {{-- Directory Link --}}
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/fontawesome/css/all.min.css') }}">
@@ -23,7 +24,14 @@
         @yield('content')
         @include('web.parts._footer._footer')
         @include('web.parts._footer._scroll-to-top')
+        @include('web.parts.fb._message')
     </div>
+
+    {{-- Facebook SDK --}}
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" nonce="xK800kdE"
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0">
+    </script>
 
     {{-- CDN Script --}}
     <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.7.0/build/ol.js"></script>

@@ -206,6 +206,7 @@
                             </li>
                         @endforeach
                     </ul>
+                    @include('web.parts.fb._page')
                 </div>
             </div>
         </div>

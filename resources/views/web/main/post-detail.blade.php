@@ -99,7 +99,7 @@
 
         .user-information {
             /* display: flex;
-                                        align-items: flex-start; */
+                                                                        align-items: flex-start; */
         }
 
         .user-image {
@@ -189,11 +189,19 @@
                 </h5>
                 <div class="post-container mb-3">
                     <h2 class="pb-2">{{ $post->title_vi }}</h2>
-                    <p class="pb-4">
+                    <p class="pb-1">
                         <small>
                             Ngày đăng: {{ date('d/m/Y', strtotime($post->created_at)) }}
                             bởi {{ $post->user->first_name }} {{ $post->user->last_name }}
                         </small>
+                    <div class="fb-share-button mb-3" data-href="{{ Request::url() }}" data-layout="button_count"
+                        data-size="small">
+                        <a target="_blank"
+                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+                            class="fb-xfbml-parse-ignore">Chia sẻ
+                        </a>
+                    </div>
+                    <div class="fb-save" data-uri="{{ Request::url() }}" data-size="small"></div>
                     </p>
                     <p>{{ $post->subtitle_vi }}</p>
                     @if ($post->type_id == 1)
@@ -242,21 +250,34 @@
                                             </form>
                                         </div>
                                         @auth
-                                            @if (Auth::user()->id == $comment->user->id)
+                                            @if (Auth::user()->id == $comment->user->id || Auth::user()->role_id == 1)
                                                 <div class="comment-action text-right" style="flex: 1;">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </div>
                                             @endif
                                         @endauth
                                     </div>
-                                    <ul class="comment-action-container" style="display: none;">
-                                        <li class="text-primary edit-button">Sửa</li>
-                                        <li class="text-danger delete-button" data-comment="{{ $comment->id }}"
-                                            onclick="deleteComment(this)">
-                                            Xoá
-                                        </li>
-                                        <li class="text-dark cancel-button" style="display: none">Huỷ</li>
-                                    </ul>
+                                    @auth
+                                        @if (Auth::user()->id == $comment->user->id)
+                                            <ul class="comment-action-container" style="display: none;">
+                                                <li class="text-primary edit-button">Sửa</li>
+                                                <li class="text-danger delete-button" data-comment="{{ $comment->id }}"
+                                                    onclick="deleteComment(this)">
+                                                    Xoá
+                                                </li>
+                                                <li class="text-dark cancel-button" style="display: none">Huỷ</li>
+                                            </ul>
+                                        @else
+                                            @if (Auth::user()->role_id == 1)
+                                                <ul class="comment-action-container" style="display: none;">
+                                                    <li class="text-danger delete-button" data-comment="{{ $comment->id }}"
+                                                        onclick="deleteComment(this)">
+                                                        Xoá bình luận vi phạm
+                                                    </li>
+                                                </ul>
+                                            @endif
+                                        @endif
+                                    @endauth
                                 </div>
                             @endforeach
                         @else
@@ -333,6 +354,7 @@
                         @endforeach
                     </ul>
                 </div>
+                @include('web.parts.fb._page')
             </div>
         </div>
     </div>
@@ -384,7 +406,7 @@
                 content: comment
             }).then((result) => {
                 document.querySelectorAll('.comment-action').forEach(function(item, index) {
-                    item.style.visibility= 'visible';
+                    item.style.visibility = 'visible';
                 });
                 e.parentElement.parentElement.parentElement.parentElement.innerHTML = result.data;
             }).catch((err) => {

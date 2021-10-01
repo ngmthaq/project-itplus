@@ -93,6 +93,7 @@
         <div class="row mb-5 button-container">
             <div class="col-12 text-center">
                 <button class="btn btn-outline-info" onclick="loadmore(this)">XEM THÊM</button>
+                <button class="btn btn-outline-info" style="display: none;">Đang tải...</button>
             </div>
         </div>
     </section>
@@ -102,16 +103,22 @@
     <script>
         function loadmore(e) {
             let totalPost = document.querySelectorAll('.post-container').length;
-            axios.post('/videos/' + totalPost)
-            .then((result) => {
-                let postParent = document.querySelector('#posts');
-                postParent.innerHTML = postParent.innerHTML += result.data;
-                if (result.data == "") {
-                    document.querySelector('.button-container').style.display = "none";
-                }
-            }).catch((err) => {
-                console.error(err);
-            });
+            e.style.display = 'none';
+            e.nextElementSibling.style.display = 'inline-block';
+            setTimeout(() => {
+                axios.post('/videos/' + totalPost)
+                    .then((result) => {
+                        let postParent = document.querySelector('#posts');
+                        postParent.innerHTML = postParent.innerHTML += result.data;
+                        e.style.display = 'inline-block';
+                        e.nextElementSibling.style.display = 'none';
+                        if (result.data == "") {
+                            document.querySelector('.button-container').style.display = "none";
+                        }
+                    }).catch((err) => {
+                        console.error(err);
+                    });
+            }, 100);
         }
     </script>
 @endpush

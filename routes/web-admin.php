@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\User\UserController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('admin')->middleware(['authCheck', 'isAdminOrMod'])->group(function () {
+    // Redirect 
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard');
+    });
+
     // Dashboard
     Route::get('/dashboard', [AdminController::class, 'dashboard'])
         ->name('admin.dashboard');

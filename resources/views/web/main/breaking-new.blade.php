@@ -81,10 +81,12 @@
                         </div>
                         <div class="content-container">
                             <h5 class="title" title="{{ $post->title_vi }}">
-                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link">{{ $post->title_vi }}</a>
+                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                    class="link">{{ $post->title_vi }}</a>
                             </h5>
                             <p class="subtitle" title="{{ $post->subtitle_vi }}">{{ $post->subtitle_vi }}</p>
-                            <small class="mb-2 d-block">Đăng bài: {{ date('d/m/Y', strtotime($post->created_at)) }}</small>
+                            <small class="mb-2 d-block">Đăng bài:
+                                {{ date('d/m/Y', strtotime($post->created_at)) }}</small>
                         </div>
                     </div>
                 </div>
@@ -93,6 +95,7 @@
         <div class="row mb-5 button-container">
             <div class="col-12 text-center">
                 <button class="btn btn-outline-info" onclick="loadmore(this)">XEM THÊM</button>
+                <button class="btn btn-outline-info" style="display: none;">Đang tải...</button>
             </div>
         </div>
     </section>
@@ -102,16 +105,22 @@
     <script>
         function loadmore(e) {
             let totalPost = document.querySelectorAll('.post-container').length;
-            axios.post('/breaking-news/' + totalPost)
-            .then((result) => {
-                let postParent = document.querySelector('#posts');
-                postParent.innerHTML = postParent.innerHTML += result.data;
-                if (result.data == "") {
-                    document.querySelector('.button-container').style.display = "none";
-                }
-            }).catch((err) => {
-                console.error(err);
-            });
+            e.style.display = 'none';
+            e.nextElementSibling.style.display = 'inline-block';
+            setTimeout(() => {
+                axios.post('/breaking-news/' + totalPost)
+                    .then((result) => {
+                        let postParent = document.querySelector('#posts');
+                        postParent.innerHTML = postParent.innerHTML += result.data;
+                        e.style.display = 'inline-block';
+                        e.nextElementSibling.style.display = 'none';
+                        if (result.data == "") {
+                            document.querySelector('.button-container').style.display = "none";
+                        }
+                    }).catch((err) => {
+                        console.error(err);
+                    });
+            }, 100);
         }
     </script>
 @endpush

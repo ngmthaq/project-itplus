@@ -9,7 +9,7 @@
             </div>
             <div class="content-container">
                 <h5 class="title" title="{{ $post->title_vi }}">
-                    <a href="#" class="link">{{ $post->title_vi }}</a>
+                    <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link">{{ $post->title_vi }}</a>
                 </h5>
                 <p class="subtitle" title="{{ $post->subtitle_vi }}">
                     {{ $post->subtitle_vi }}

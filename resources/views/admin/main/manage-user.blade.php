@@ -194,7 +194,7 @@
                                                         <i class="fas fa-eye"></i>
                                                     </a>
                                                     <a href="javascript:void(0)" class="btn btn-sm btn-success"
-                                                        data-id="{{ $reader->id }}" onclick="grandMod(this)" title="Phân quyền là ngườI quản lý">
+                                                        data-id="{{ $reader->id }}" onclick="grandMod(this)" title="Phân quyền là người quản lý">
                                                         <i class="fas fa-arrow-up"></i>
                                                     </a>
                                                     <a href="javascript:void(0)" class="btn btn-sm btn-danger"
