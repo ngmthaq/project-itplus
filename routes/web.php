@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\Post\CategoryController;
 use App\Http\Controllers\Post\PostController;
+use App\Http\Controllers\Socialite\FacebookController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,14 @@ use Illuminate\Support\Facades\Route;
 // Homepage
 Route::get('/', [DefaultController::class, 'index']);
 
+// Contact
+Route::get('/contact', [DefaultController::class, 'contact'])
+    ->name('contact');
+
+// About us
+Route::get('/about', [DefaultController::class, 'about'])
+    ->name('about');
+
 // Register
 Route::get('/register', [RegisterController::class, 'show'])
     ->name('register.show')
@@ -36,6 +45,14 @@ Route::get('/verify/{user:remember_token}', [RegisterController::class, 'verify'
     ->name('verify')
     ->where(['user' => '[a-zA-Z0-9]+'])
     ->middleware(['authUserCantAccessToLoginAndRegister']);
+
+// Login using facebook
+Route::prefix('facebook')->group(function () {
+    Route::get('auth', [FacebookController::class, 'loginUsingFacebook'])
+        ->name('facebook.loginUsingFacebook');
+    Route::get('callback', [FacebookController::class, 'callbackFromFacebook'])
+        ->name('facebook.callbackFromFacebook');
+});
 
 // Login
 Route::get('/login', [LoginController::class, 'show'])

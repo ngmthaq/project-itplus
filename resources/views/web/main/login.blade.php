@@ -71,6 +71,11 @@
                     </div>
                 </form>
             </div>
+            <div class="col-lg-6">
+                <div class="socialite-box d-flex flex-column align-items-center justify-content-center h-100">
+                    <a class="social-login facebook" href="{{ route('facebook.loginUsingFacebook') }}">Login with Facebook</a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
@@ -81,6 +86,18 @@
             padding: 50px 0;
         }
 
+        .social-login {
+            padding: 10px 20px;
+            display: inline-block;
+            width: 300px;
+            text-align: center
+        }
+
+        .social-login.facebook {
+            background-color: royalblue;
+            color: #fff;
+            text-decoration: none !important;
+        }
     </style>
 @endpush
 

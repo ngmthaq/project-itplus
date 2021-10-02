@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Http\Middleware\AuthCheckMiddleware;
 use App\Http\Middleware\AuthUserCantAccessToLoginAndRegister;
+use App\Http\Middleware\HttpsMiddleware;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAdminOrMod;
 use App\Http\Middleware\IsImage;
@@ -29,6 +30,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        // HttpsMiddleware::class
     ];
 
     /**
@@ -80,6 +82,6 @@ class Kernel extends HttpKernel
         'isImage' => IsImage::class,
         'isVideoMp4' => IsVideoMp4::class,
         'postWasNotDeleted' => PostWasNotDeleted::class,
-        'isUserOfComment' => IsUserOfComment::class
+        'isUserOfComment' => IsUserOfComment::class,
     ];
 }

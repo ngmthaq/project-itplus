@@ -79,4 +79,20 @@ class DefaultController extends Controller
             ->get();
         return view('web.parts.posts._breaking-news', compact('posts'));
     }
+
+    public function about()
+    {
+        return view('web.main.about-us', [
+            'site' => 'about',
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function contact()
+    {
+        return view('web.main.contact', [
+            'site' => 'contact',
+            'categories' => Category::all()
+        ]);
+    }
 }

@@ -92,8 +92,8 @@
                                     class="@php echo $site == 'videos' ? 'active' : '' @endphp">
                                     Video
                                 </a>
-                                <a href="#">Giới thiệu</a>
-                                <a href="#">Liên hệ</a>
+                                <a class="@php echo $site == 'about' ? 'active' : '' @endphp" href="{{ route('about') }}">Giới thiệu</a>
+                                <a class="@php echo $site == 'contact' ? 'active' : '' @endphp" href="{{ route('contact') }}">Liên hệ</a>
                                 @auth
                                     @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
                                         <a href="{{ route('admin.dashboard') }}">Quản lý</a>
