@@ -99,7 +99,7 @@
 
         .user-information {
             /* display: flex;
-                                                                        align-items: flex-start; */
+                                                                            align-items: flex-start; */
         }
 
         .user-image {
@@ -361,6 +361,17 @@
 @endsection
 
 @push('js')
+    @auth
+        <script>
+            let newCommentInput = document.querySelector('input#new-comment');
+            newCommentInput.addEventListener('keydown', function(e) {
+                if (e.which == 13) {
+                    document.querySelector('button#add-new-comment-button').click();
+                }
+            })
+        </script>
+    @endauth
+
     <script>
         function addComment(e) {
             let newCommentInput = document.querySelector('input#new-comment').value;
@@ -423,13 +434,6 @@
                     console.error(err);
                 });
         }
-
-        let newCommentInput = document.querySelector('input#new-comment');
-        newCommentInput.addEventListener('keydown', function(e) {
-            if (e.which == 13) {
-                document.querySelector('button#add-new-comment-button').click();
-            }
-        })
 
         $(function() {
             $(document).on('keydown', '.edit-comment', function(e) {

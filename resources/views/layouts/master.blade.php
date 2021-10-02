@@ -24,7 +24,6 @@
         @yield('content')
         @include('web.parts._footer._footer')
         @include('web.parts._footer._scroll-to-top')
-        @include('web.parts.fb._message')
     </div>
 
     {{-- Facebook SDK --}}
@@ -32,9 +31,7 @@
     <script async defer crossorigin="anonymous" nonce="xK800kdE"
         src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v12.0">
     </script>
-
-    {{-- CDN Script --}}
-    <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.7.0/build/ol.js"></script>
+    {{-- @include('web.parts.fb._message') --}}
 
     {{-- Directory Script --}}
     <script src="{{ asset('vendors/jquery/jquery-3.6.0.min.js') }}"></script>
