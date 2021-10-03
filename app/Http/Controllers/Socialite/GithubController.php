@@ -20,15 +20,17 @@ class GithubController extends Controller
     {
         try {
             $user = Socialite::driver('github')->user();
-            dd($user);
             // Check Users Email If Already There
             $is_user = User::where('email', $user->getEmail())->first();
             if (!$is_user) {
+                $name = explode(' ', $user->getName());
+                $first_name = array_shift($name);
+                $last_name = implode(' ', array_values($name));
                 $saveUser = User::create([
                     'github_id' => $user->getId(),
                     'role_id' => 2,
-                    'first_name' => $user->user['given_name'],
-                    'last_name' => $user->user['family_name'],
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
                     'email' => $user->getEmail(),
                     'password' => 'github' . $user->getId(),
                     'email_verified_at' => Carbon::now(),

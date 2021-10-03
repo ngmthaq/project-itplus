@@ -65,11 +65,20 @@
                                             <th scope="row" style="width: 100px;">U{{ $admin->id }}</th>
                                             <td>{{ $admin->first_name }} {{ $admin->last_name }}</td>
                                             <td style="width: 200px;">
-                                                {{ date('d/m/Y', strtotime($admin->userInformation->dob)) }}</td>
+                                                @if ($admin->userInformation)
+                                                    {{ date('d/m/Y', strtotime($admin->userInformation->dob)) }}
+                                                @else
+                                                    Chưa có
+                                                @endif
+                                            </td>
                                             <td style="width: 200px;">
-                                                @php
-                                                    echo $admin->userInformation->is_male == 1 ? 'Nam' : 'Nữ';
-                                                @endphp
+                                                @if ($admin->userInformation)
+                                                    @php
+                                                        echo $admin->userInformation->is_male == 1 ? 'Nam' : 'Nữ';
+                                                    @endphp
+                                                @else
+                                                    Chưa có
+                                                @endif
                                             </td>
                                             <td style="width: 200px;">
                                                 <a href="{{ route('admin.showUser', ['user' => $admin->id]) }}"
@@ -77,7 +86,8 @@
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                                 <a href="javascript:void(0)" class="btn btn-sm btn-warning"
-                                                    data-id="{{ $admin->id }}" onclick="grandMod(this)" title="Phân quyền là người quản lý">
+                                                    data-id="{{ $admin->id }}" onclick="grandMod(this)"
+                                                    title="Phân quyền là người quản lý">
                                                     <i class="fas fa-arrow-down"></i>
                                                 </a>
                                             </td>
@@ -114,11 +124,20 @@
                                             <th scope="row" style="width: 100px;">U{{ $mod->id }}</th>
                                             <td>{{ $mod->first_name }} {{ $mod->last_name }}</td>
                                             <td style="width: 200px;">
-                                                {{ date('d/m/Y', strtotime($mod->userInformation->dob)) }}</td>
+                                                @if ($mod->userInformation)
+                                                    {{ date('d/m/Y', strtotime($mod->userInformation->dob)) }}
+                                                @else
+                                                    Chưa có
+                                                @endif
+                                            </td>
                                             <td style="width: 200px;">
-                                                @php
-                                                    echo $mod->userInformation->is_male == 1 ? 'Nam' : 'Nữ';
-                                                @endphp
+                                                @if ($mod->userInformation)
+                                                    @php
+                                                        echo $mod->userInformation->is_male == 1 ? 'Nam' : 'Nữ';
+                                                    @endphp
+                                                @else
+                                                    Chưa có
+                                                @endif
                                             </td>
                                             <td style="width: 200px;">
                                                 <a href="{{ route('admin.showUser', ['user' => $mod->id]) }}"
@@ -126,11 +145,13 @@
                                                     <i class="fas fa-eye"></i>
                                                 </a>
                                                 <a href="javascript:void(0)" class="btn btn-sm btn-success"
-                                                    data-id="{{ $mod->id }}" onclick="grandAdmin(this)" title="Phân quyền là quản trị viên">
+                                                    data-id="{{ $mod->id }}" onclick="grandAdmin(this)"
+                                                    title="Phân quyền là quản trị viên">
                                                     <i class="fas fa-arrow-up"></i>
                                                 </a>
                                                 <a href="javascript:void(0)" class="btn btn-sm btn-warning"
-                                                    data-id="{{ $mod->id }}" onclick="grandReader(this)" title="Phân quyền là người dùng">
+                                                    data-id="{{ $mod->id }}" onclick="grandReader(this)"
+                                                    title="Phân quyền là người dùng">
                                                     <i class="fas fa-arrow-down"></i>
                                                 </a>
                                             </td>
@@ -171,15 +192,25 @@
                             <tbody id="reader-table">
                                 @if (count($readers) > 0)
                                     @foreach ($readers as $reader)
-                                        <tr class="user-row @php echo ($reader->deleted_at) ? 'hidden' : 'visible'  @endphp">
+                                        <tr
+                                            class="user-row @php echo ($reader->deleted_at) ? 'hidden' : 'visible'  @endphp">
                                             <th scope="row" style="width: 100px;">U{{ $reader->id }}</th>
                                             <td>{{ $reader->first_name }} {{ $reader->last_name }}</td>
                                             <td style="width: 200px;">
-                                                {{ date('d/m/Y', strtotime($reader->userInformation->dob)) }}</td>
+                                                @if ($reader->userInformation)
+                                                    {{ date('d/m/Y', strtotime($reader->userInformation->dob)) }}
+                                                @else
+                                                    Chưa có
+                                                @endif
+                                            </td>
                                             <td style="width: 200px;">
-                                                @php
-                                                    echo $reader->userInformation->is_male == 1 ? 'Nam' : 'Nữ';
-                                                @endphp
+                                                @if ($reader->userInformation)
+                                                    @php
+                                                        echo $reader->userInformation->is_male == 1 ? 'Nam' : 'Nữ';
+                                                    @endphp
+                                                @else
+                                                    Chưa có
+                                                @endif
                                             </td>
                                             @if ($reader->deleted_at)
                                                 <td>
@@ -194,11 +225,13 @@
                                                         <i class="fas fa-eye"></i>
                                                     </a>
                                                     <a href="javascript:void(0)" class="btn btn-sm btn-success"
-                                                        data-id="{{ $reader->id }}" onclick="grandMod(this)" title="Phân quyền là người quản lý">
+                                                        data-id="{{ $reader->id }}" onclick="grandMod(this)"
+                                                        title="Phân quyền là người quản lý">
                                                         <i class="fas fa-arrow-up"></i>
                                                     </a>
                                                     <a href="javascript:void(0)" class="btn btn-sm btn-danger"
-                                                        data-id="{{ $reader->id }}" onclick="deleteUser(this)" title="Xoá người dùng">
+                                                        data-id="{{ $reader->id }}" onclick="deleteUser(this)"
+                                                        title="Xoá người dùng">
                                                         <i class="far fa-trash-alt"></i>
                                                     </a>
                                                 </td>

@@ -123,13 +123,23 @@
                                     <tr>
                                         <td>{{ $user->first_name }} {{ $user->last_name }}</td>
                                         <td>
-                                            @if ($user->userInformation->is_male == 1)
-                                                Nam
+                                            @if ($user->userInformation)
+                                                @if ($user->userInformation->is_male == 1)
+                                                    Nam
+                                                @else
+                                                    Nữ
+                                                @endif
                                             @else
-                                                Nữ
+                                                Chưa đặt
                                             @endif
                                         </td>
-                                        <td>{{ date('d/m/Y', strtotime($user->userInformation->dob)) }}</td>
+                                        <td>
+                                            @if ($user->userInformation)
+                                                {{ date('d/m/Y', strtotime($user->userInformation->dob)) }}
+                                            @else
+                                                Chưa đặt
+                                            @endif
+                                        </td>
                                     </tr>
                                     @if ($i >= 8) @break @endif
                                 @endforeach
@@ -156,10 +166,11 @@
                                     @foreach ($posts as $post)
                                         @php $i++; @endphp
                                         <tr>
-                                            <td class="dashboard-title" title="{{ $post->title_vi }}">{{ $post->title_vi }}</td>
+                                            <td class="dashboard-title" title="{{ $post->title_vi }}">
+                                                {{ $post->title_vi }}</td>
                                             <td>{{ date('d/m/Y', strtotime($post->created_at)) }}</td>
                                             <td>
-                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" 
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
                                                     class="text-decoration-none text-light button-md-main" target="_blank">
                                                     Xem
                                                 </a>

@@ -6,6 +6,7 @@ use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\Post\CategoryController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Socialite\FacebookController;
+use App\Http\Controllers\Socialite\GithubController;
 use App\Http\Controllers\Socialite\GoogleController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Category;
@@ -69,6 +70,14 @@ Route::prefix('google')->group(function () {
         ->name('google.loginUsingGoogle');
     Route::get('callback', [GoogleController::class, 'callbackFromGoogle'])
         ->name('google.callbackFromGoogle');
+});
+
+// Login using github
+Route::prefix('github')->group(function () {
+    Route::get('auth', [GithubController::class, 'loginUsingGithub'])
+        ->name('github.loginUsingGithub');
+    Route::get('callback', [GithubController::class, 'callbackFromGithub'])
+        ->name('github.callbackFromGithub');
 });
 
 // Login

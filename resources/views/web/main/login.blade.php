@@ -85,6 +85,12 @@
                         </span>
                         Login with Google
                     </a>
+                    <a class="social-login github" href="{{ route('github.loginUsingGithub') }}">
+                        <span class="d-inline-block pr-3">
+                            <i class="fab fa-github"></i>
+                        </span>
+                        Login with Github
+                    </a>
                 </div>
             </div>
         </div>
