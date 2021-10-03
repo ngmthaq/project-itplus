@@ -24,8 +24,11 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
+        'email_verified_at',
         'remember_token',
-        'facebook_id'
+        'facebook_id',
+        'google_id',
+        'github_id'
     ];
 
     /**
@@ -78,5 +81,17 @@ class User extends Authenticatable
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = Hash::make($value);
+    }
+
+    // Ucfirst first name
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['first_name'] = ucfirst($value);
+    }
+
+    // Ucfirst last name
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = ucfirst($value);
     }
 }

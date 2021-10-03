@@ -31,9 +31,15 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => env('FACEBOOK_CLIENT_ID '), //USE FROM FACEBOOK DEVELOPER ACCOUNT
-        'client_secret' => env('FACEBOOK_CLIENT_SECRET '), //USE FROM FACEBOOK DEVELOPER ACCOUNT
-        'redirect' => 'http://127.0.0.1:8000/facebook/callback'
+        'client_id' => env('FACEBOOK_CLIENT_ID'), //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'client_secret' => env('FACEBOOK_CLIENT_SECRET'), //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'redirect' => env('FACEBOOK_REDIRECT')
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'), //USE FROM Google DEVELOPER ACCOUNT
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'), //USE FROM Google DEVELOPER ACCOUNT
+        'redirect' => env('GOOGLE_REDIRECT')
     ],
 
 ];

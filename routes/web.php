@@ -6,6 +6,7 @@ use App\Http\Controllers\DefaultController;
 use App\Http\Controllers\Post\CategoryController;
 use App\Http\Controllers\Post\PostController;
 use App\Http\Controllers\Socialite\FacebookController;
+use App\Http\Controllers\Socialite\GoogleController;
 use App\Http\Controllers\User\UserController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,14 @@ Route::get('/contact', [DefaultController::class, 'contact'])
 Route::get('/about', [DefaultController::class, 'about'])
     ->name('about');
 
+// Policy
+Route::get('/policy', [DefaultController::class, 'policy'])
+    ->name('policy');
+
+// Terms
+Route::get('/terms', [DefaultController::class, 'terms'])
+    ->name('terms');
+
 // Register
 Route::get('/register', [RegisterController::class, 'show'])
     ->name('register.show')
@@ -52,6 +61,14 @@ Route::prefix('facebook')->group(function () {
         ->name('facebook.loginUsingFacebook');
     Route::get('callback', [FacebookController::class, 'callbackFromFacebook'])
         ->name('facebook.callbackFromFacebook');
+});
+
+// Login using google
+Route::prefix('google')->group(function () {
+    Route::get('auth', [GoogleController::class, 'loginUsingGoogle'])
+        ->name('google.loginUsingGoogle');
+    Route::get('callback', [GoogleController::class, 'callbackFromGoogle'])
+        ->name('google.callbackFromGoogle');
 });
 
 // Login

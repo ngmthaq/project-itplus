@@ -73,7 +73,18 @@
             </div>
             <div class="col-lg-6">
                 <div class="socialite-box d-flex flex-column align-items-center justify-content-center h-100">
-                    <a class="social-login facebook" href="{{ route('facebook.loginUsingFacebook') }}">Login with Facebook</a>
+                    <a class="social-login facebook" href="{{ route('facebook.loginUsingFacebook') }}">
+                        <span class="d-inline-block pr-3">
+                            <i class="fab fa-facebook-f"></i>
+                        </span>
+                        Login with Facebook
+                    </a>
+                    <a class="social-login google" href="{{ route('google.loginUsingGoogle') }}">
+                        <span class="d-inline-block pr-3 blue">
+                            <i class="fab fa-google"></i>
+                        </span>
+                        Login with Google
+                    </a>
                 </div>
             </div>
         </div>
@@ -88,13 +99,31 @@
 
         .social-login {
             padding: 10px 20px;
-            display: inline-block;
+            display: flex;
             width: 300px;
-            text-align: center
+            margin-bottom: 6px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .blue {
+            color: royalblue;
         }
 
         .social-login.facebook {
             background-color: royalblue;
+            color: #fff;
+            text-decoration: none !important;
+        }
+
+        .social-login.google {
+            background-color: #fff;
+            color: red;
+            text-decoration: none !important;
+        }
+
+        .social-login.github {
+            background-color: #161b22;
             color: #fff;
             text-decoration: none !important;
         }

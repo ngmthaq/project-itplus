@@ -20,6 +20,7 @@ class FacebookController extends Controller
     {
         try {
             $user = Socialite::driver('facebook')->user();
+            dd($user);
             $saveUser = User::updateOrCreate([
                 'facebook_id' => $user->getId(),
             ], [
@@ -29,7 +30,7 @@ class FacebookController extends Controller
                 'password' => $user->getName() . '@' . $user->getId()
             ]);
             Auth::loginUsingId($saveUser->id);
-            return redirect()->route('home');
+            return redirect('/');
         } catch (\Throwable $th) {
             throw $th;
         }
