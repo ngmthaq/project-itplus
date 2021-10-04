@@ -77,19 +77,19 @@
                         <span class="d-inline-block pr-3">
                             <i class="fab fa-facebook-f"></i>
                         </span>
-                        Login with Facebook
+                        Đăng nhập bằng Facebook
                     </a>
                     <a class="social-login google" href="{{ route('google.loginUsingGoogle') }}">
                         <span class="d-inline-block pr-3 blue">
                             <i class="fab fa-google"></i>
                         </span>
-                        Login with Google
+                        Đăng nhập bằng Google
                     </a>
                     <a class="social-login github" href="{{ route('github.loginUsingGithub') }}">
                         <span class="d-inline-block pr-3">
                             <i class="fab fa-github"></i>
                         </span>
-                        Login with Github
+                        Đăng nhập bằng Github
                     </a>
                 </div>
             </div>

@@ -18,7 +18,7 @@ class AdminController extends Controller
     public function dashboard()
     {
         // Lấy số người dùng hiện tại
-        $users = User::with(['comments', 'userInformation'])->whereNull('deleted_at')->orderBy('id', 'desc')->get();
+        $users = User::with(['comments', 'userInformation'])->whereNull('deleted_at')->orderBy('id', 'desc')->take(7)->get();
         // Lấy số comments hiện tại
         $totalComments = count(Comment::all());
         // Lấy tất cả bài viết chưa bị xoá
