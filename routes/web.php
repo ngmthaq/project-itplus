@@ -184,3 +184,7 @@ Route::post('/show-more-comment/{post}/comment/{total}', [UserController::class,
         'post' => '[0-9]+',
         'total' => '[0-9]+'
     ]);
+
+// Search post
+Route::get('/search', [PostController::class, 'search'])
+    ->name('post.search');

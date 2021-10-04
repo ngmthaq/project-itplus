@@ -3,16 +3,18 @@
         <div class="row pb-4">
             <div class="col-lg-4">
                 <h5 class="text-main">GIỚI THIỆU</h5>
-                <p class="text-white">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Impedit beatae quidem
-                    harum obcaecati
-                    perferendis nobis ipsa ducimus quae quaerat, animi fugit, quos voluptatem odio quia ea atque libero
-                    explicabo tempore!
+                <p class="text-white">
+                    The Vietnam Newspaper là một dự án trang báo chia sẻ thông tin, tin tức
+                    được lập ra nhằm mục đích cung cấp các thông tin chính xác đã được
+                    xác thực đến đọc giả, giúp đọc giả dễ dàng tiếp cận thông tin hơn cũng 
+                    như tránh được các thông tin sai sự thật.
                 </p>
                 @include('web.parts.fb._page')
             </div>
             <div class="col-lg-2">
                 <h5 class="text-main">DANH MỤC</h5>
                 <ul>
+                    <li><a href="/" class="text-white">Trang chủ</a></li>
                     @foreach ($categories as $category)
                         <li><a href="#" class="text-white">{{ $category->name_vi }}</a></li>
                     @endforeach
@@ -21,14 +23,14 @@
             <div class="col-lg-2">
                 <h5></h5>
                 <ul>
-                    <li><a class="text-white" href="#">Track &amp; Field</a></li>
-                    <li><a class="text-white" href="#">MembershipContact us</a></li>
-                    <li><a class="text-white" href="#">Newsletter Alerts</a></li>
-                    <li><a class="text-white" href="#">Podcast</a></li>
-                    <li><a class="text-white" href="#">Blog</a></li>
-                    <li><a class="text-white" href="#">SMS Subscription</a></li>
-                    <li><a class="text-white" href="#">Advertisement Policy</a></li>
-                    <li><a class="text-white" href="#">Jobs</a></li>
+                    <li><a class="text-white" href="{{ route('policy') }}">Chính sách</a></li>
+                    <li><a class="text-white" href="{{ route('terms') }}">Điều khoản sử dụng</a></li>
+                    <li><a class="text-white text-secondary" title="Chức năng đang xây dựng" href="javascript:void(0)">Newsletter Alerts</a></li>
+                    <li><a class="text-white text-secondary" title="Chức năng đang xây dựng" href="javascript:void(0)">Podcast</a></li>
+                    <li><a class="text-white text-secondary" title="Chức năng đang xây dựng" href="javascript:void(0)">Blog</a></li>
+                    <li><a class="text-white text-secondary" title="Chức năng đang xây dựng" href="javascript:void(0)">SMS Subscription</a></li>
+                    <li><a class="text-white text-secondary" title="Chức năng đang xây dựng" href="javascript:void(0)">Advertisement Policy</a></li>
+                    <li><a class="text-white text-secondary" title="Chức năng đang xây dựng" href="javascript:void(0)">Jobs</a></li>
                 </ul>
             </div>
             <div class="col-lg-4">

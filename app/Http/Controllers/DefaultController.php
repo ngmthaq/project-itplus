@@ -98,16 +98,16 @@ class DefaultController extends Controller
 
     public function policy()
     {
-        return view('web.main.contact', [
-            'site' => 'contact',
+        return view('web.main.policy', [
+            'site' => 'policy',
             'categories' => Category::all()
         ]);
     }
 
     public function terms()
     {
-        return view('web.main.contact', [
-            'site' => 'contact',
+        return view('web.main.terms', [
+            'site' => 'terms',
             'categories' => Category::all()
         ]);
     }

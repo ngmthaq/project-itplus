@@ -1,4 +1,4 @@
-<header>
+<header class="d-xl-block d-none">
     <div class="container">
         {{-- Top header --}}
         <ul class="top-header">
@@ -63,13 +63,12 @@
                 <div class="col-11">
                     <ul class="my-navbar-list">
                         <li>
-                            <a href="/"
-                                class="@php echo $site == 'homepage' ? 'active' : '' @endphp">
+                            <a href="/" class="@php echo $site == 'homepage' ? 'active' : '' @endphp">
                                 <i class="fas fa-home"></i>
                             </a>
                         </li>
                         <li>
-                            <a href="{{ route('default.breakingNews') }}" 
+                            <a href="{{ route('default.breakingNews') }}"
                                 class="@php echo $site == 'breaking-news' ? 'active' : '' @endphp">
                                 Tin mới
                             </a>
@@ -83,7 +82,7 @@
                             </li>
                         @endforeach
                         <li class="dropdown-button">
-                            <a href="javascript:void(0)" 
+                            <a href="javascript:void(0)"
                                 class="@php echo $site == 'videos' || $site == 'about' || $site == 'contact' ? 'active' : '' @endphp">
                                 Thêm <i class="fas fa-angle-down"></i>
                             </a>
@@ -92,8 +91,10 @@
                                     class="@php echo $site == 'videos' ? 'active' : '' @endphp">
                                     Video
                                 </a>
-                                <a class="@php echo $site == 'about' ? 'active' : '' @endphp" href="{{ route('about') }}">Giới thiệu</a>
-                                <a class="@php echo $site == 'contact' ? 'active' : '' @endphp" href="{{ route('contact') }}">Liên hệ</a>
+                                <a class="@php echo $site == 'about' ? 'active' : '' @endphp"
+                                    href="{{ route('about') }}">Giới thiệu</a>
+                                <a class="@php echo $site == 'contact' ? 'active' : '' @endphp"
+                                    href="{{ route('contact') }}">Liên hệ</a>
                                 @auth
                                     @if (Auth::user()->role_id == 1 || Auth::user()->role_id == 3)
                                         <a href="{{ route('admin.dashboard') }}">Quản lý</a>
@@ -104,12 +105,21 @@
                     </ul>
                 </div>
                 <div class="col-1 d-flex justify-content-end">
-                    <form action="" class="search-form">
-                        {{-- <input type="text" name="search" id="search" class="search-input" placeholder="Tìm kiếm ..."> --}}
+                    <form action="{{ route('post.search') }}" class="search-form">
                         <button type="button" class="search-button"><i class="fas fa-search"></i></button>
+                        <div class="search-box">
+                            <button type="button" class="close-search-box">&times;</button>
+                            <div class="search-content">
+                                <input type="text" name="search_input" id="search-input" class="search-input">
+                                <button type="submit" class="btn btn-sm btn-info d-flex" style="margin: 4px auto;">Tìm kiếm</button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </nav>
     </div>
+</header>
+<header class="d-block d-xl-none">
+
 </header>

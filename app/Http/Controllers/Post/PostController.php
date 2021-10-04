@@ -204,4 +204,24 @@ class PostController extends Controller
             'site', 'categories', 'post', 'category', 'popularPosts', 'comments'
         ));
     }
+
+    
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search_input' => ['required']
+        ]);
+        
+        $result = Post::where('title_vi', 'like', '%' . $request->input('search_input') . '%')
+            ->whereNull('deleted_at')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return view('web.main.search-result', [
+            'site' => 'search',
+            'search_input' => $request->input('search_input'),
+            'posts' => $result,
+            'categories' => Category::all()
+        ]);
+    }
 }

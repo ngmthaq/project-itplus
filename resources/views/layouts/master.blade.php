@@ -41,6 +41,16 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(function() {
+            // Header search
+            $('.search-button').click(function() {
+                $('.search-box').fadeIn("fast");
+                $('body').css('overflow-y', 'hidden');
+            })
+            $('.close-search-box').click(function() {
+                $('.search-box').fadeOut("fast");
+                $('body').css('overflow-y', 'scroll');
+            })
+
             // Toast animation
             $('.my-toast span').click(function() {
                 $(this).parent().fadeOut();
