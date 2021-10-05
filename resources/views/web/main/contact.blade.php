@@ -71,7 +71,8 @@
             <div class="col-6">
                 <h5 class="mb-3">Phản hồi lại cho chúng tôi</h5>
                 <div class="contact-form-container bg-light p-3">
-                    <form action="" class="contact-form">
+                    <form action="{{ route('addFeedback') }}" class="feedback-form" method="POST">
+                        @csrf
                         <div class="form-row">
                             <div class="form-group col-6">
                                 <label for="first_name">
@@ -80,14 +81,28 @@
                                 </label>
                                 <input type="text" name="first_name" id="first-name" class="form-control"
                                     placeholder="VD: Nguyen">
+                                <small class="first-name-error required">
+                                    @if ($errors->has('first_name'))
+                                        @foreach ($errors->get('first_name') as $item)
+                                            {{ $item }} <br>
+                                        @endforeach
+                                    @endif
+                                </small>
                             </div>
                             <div class="form-group col-6">
-                                <label for="lastt_name">
+                                <label for="last_name">
                                     Tên
                                     <small class="required">*</small>
                                 </label>
-                                <input type="text" name="lastt_name" id="lastt-name" class="form-control"
+                                <input type="text" name="last_name" id="last-name" class="form-control"
                                     placeholder="VD: Van A">
+                                <small class="last-name-error required">
+                                    @if ($errors->has('last_name'))
+                                        @foreach ($errors->get('last_name') as $item)
+                                            {{ $item }} <br>
+                                        @endforeach
+                                    @endif
+                                </small>
                             </div>
                         </div>
                         <div class="form-row">
@@ -98,6 +113,13 @@
                                 </label>
                                 <input type="email" name="email" id="email" class="form-control"
                                     placeholder="VD: your_email@example.com">
+                                <small class="email-error required">
+                                    @if ($errors->has('email'))
+                                        @foreach ($errors->get('email') as $item)
+                                            {{ $item }} <br>
+                                        @endforeach
+                                    @endif
+                                </small>
                             </div>
                         </div>
                         <div class="form-row">
@@ -108,6 +130,13 @@
                                 </label>
                                 <input type="text" name="subject" id="subject" class="form-control"
                                     placeholder="VD: Your feedback ...">
+                                <small class="subject-error required">
+                                    @if ($errors->has('subject'))
+                                        @foreach ($errors->get('subject') as $item)
+                                            {{ $item }} <br>
+                                        @endforeach
+                                    @endif
+                                </small>
                             </div>
                         </div>
                         <div class="form-row">
@@ -116,7 +145,14 @@
                                     Nội dung
                                     <small class="required">*</small>
                                 </label>
-                                <textarea name="content" id="content" class="form-control" cols="30" rows="10"></textarea>
+                                <textarea name="content" id="content" class="form-control" cols="30" rows="8"></textarea>
+                                <small class="content-error required">
+                                    @if ($errors->has('content'))
+                                        @foreach ($errors->get('content') as $item)
+                                            {{ $item }} <br>
+                                        @endforeach
+                                    @endif
+                                </small>
                             </div>
                         </div>
                         <div class="form-row">
@@ -133,5 +169,83 @@
 @endsection
 
 @push('js')
+    <script>
+        $(function() {
+            // Vietnamese's name validate
+            function validateName(name) {
+                const regex =
+                    /^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂẾưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựýỳỵỷỹ\s\W|_]+$/;
+                return regex.test(name);
+            }
 
+            // Email validate
+            function validateEmail(email) {
+                const regex =
+                    /^[a-z][a-z0-9_\.]{5,32}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$/;
+                return regex.test(email);
+            }
+
+            // Password validate: Có ít nhất 8 số, có tối thiểu 1 chữ và 1 số
+            function validatePassword(password) {
+                const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+                return regex.test(password);
+            }
+
+            // Register validate
+            $('form.feedback-form').submit(function(e) {
+                // Reset
+                $('.first-name-error').text('');
+                $('.last-name-error').text('');
+                $('.email-error').text('');
+                $('.subject-error').text('');
+                $('.content-error').text('');
+                $('input#first-name').val($.trim($('input#first-name').val()));
+                $('input#last-name').val($.trim($('input#last-name').val()));
+                $('input#email').val($.trim($('input#email').val()));
+                $('input#subject').val($.trim($('input#subject').val()));
+                $('input#content').val($.trim($('input#content').val()));
+
+                // Error messages
+                let firstNameError = ['Vui lòng nhập họ của của bạn'];
+                let lastNameError = ['Vui lòng nhập tên của của bạn'];
+                let subjectError = ['Vui lòng nhập tiêu đề'];
+                let contentError = ['Vui lòng nhập Nội dung'];
+                let emailError = [
+                    'Vui lòng nhập đúng định dạng email và email có độ dài tên tối thiểu 6 kí tự',
+                    'Vui lòng nhập email của bạn'
+                ];
+
+                // Validate
+                let isValidated = true;
+                if (!validateName($('#first-name').val())) {
+                    isValidated = false;
+                    $('.first-name-error').text(firstNameError[0]);
+                }
+                if (!validateName($('#last-name').val())) {
+                    isValidated = false;
+                    $('.last-name-error').text(lastNameError[0]);
+                }
+                if ($('#email').val() == "") {
+                    isValidated = false;
+                    $('.email-error').text(emailError[1]);
+                } else {
+                    if (!validateEmail($('#email').val())) {
+                        isValidated = false;
+                        $('.email-error').text(emailError[0]);
+                    }
+                }
+                if ($('#subject').val() == "") {
+                    isValidated = false;
+                    $('.subject-error').text(subjectError[0]);
+                }
+                if ($('#content').val() == "") {
+                    isValidated = false;
+                    $('.content-error').text(contentError[0]);
+                }
+                if (!isValidated) {
+                    e.preventDefault();
+                }
+            });
+        })
+    </script>
 @endpush

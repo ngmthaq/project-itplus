@@ -9,6 +9,7 @@ use App\Http\Controllers\Socialite\FacebookController;
 use App\Http\Controllers\Socialite\GithubController;
 use App\Http\Controllers\Socialite\GoogleController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\User\UserInformationController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,8 @@ Route::get('/', [DefaultController::class, 'index']);
 // Contact
 Route::get('/contact', [DefaultController::class, 'contact'])
     ->name('contact');
+Route::post('/feedback', [DefaultController::class, 'addFeedback'])
+    ->name('addFeedback');
 
 // About us
 Route::get('/about', [DefaultController::class, 'about'])
@@ -188,3 +191,16 @@ Route::post('/show-more-comment/{post}/comment/{total}', [UserController::class,
 // Search post
 Route::get('/search', [PostController::class, 'search'])
     ->name('post.search');
+
+// User's information
+Route::get('/user/information', [UserInformationController::class, 'show'])
+    ->name('userInformation.show')
+    ->middleware('authCheck');
+
+// Edit user's information
+Route::get('/user/information/edit', [UserInformationController::class, 'showEditForm'])
+    ->name('userInformation.showEditForm')
+    ->middleware('authCheck');
+Route::put('/user/information/edit', [UserInformationController::class, 'edit'])
+    ->name('userInformation.edit')
+    ->middleware('authCheck');

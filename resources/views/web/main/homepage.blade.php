@@ -7,7 +7,7 @@
 @section('content')
     <section class="container split-header">
         <div class="row mb-3">
-            <div class="col-6">
+            <div class="col-12 col-xl-6 pb-3">
                 <div class="owl-carousel owl-theme">
                     @foreach ($firstSliders as $slider)
                         <div class="item">
@@ -21,7 +21,8 @@
                             </small>
                             <div class="title-container">
                                 <h5 class="title">
-                                    <a href="{{ route('post.showPostDetail', ['post' => $slider->id]) }}" class="link" title="{{ $slider->title_vi }}">
+                                    <a href="{{ route('post.showPostDetail', ['post' => $slider->id]) }}"
+                                        class="link" title="{{ $slider->title_vi }}">
                                         {{ $slider->title_vi }}
                                     </a>
                                 </h5>
@@ -35,7 +36,7 @@
                 </div>
             </div>
             @foreach ($videoPosts as $post)
-                <div class="col-3">
+                <div class="col-12 col-xl-3 pb-3">
                     <div class="item">
                         <small class="category-name">
                             <a href="{{ route('category.showPosts', ['category' => $post->category->id]) }}"
@@ -47,7 +48,8 @@
                         </small>
                         <div class="title-container">
                             <h5 class="title">
-                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                    class="link" title="{{ $post->title_vi }}">
                                     {{ $post->title_vi }}
                                 </a>
                             </h5>
@@ -61,7 +63,7 @@
         </div>
         {{-- Chính trị --}}
         <div class="row mb-3">
-            <div class="col-9">
+            <div class="col-xl-9 col-12">
                 <div class="categories-container politics">
                     <h5 class="bg-blue">
                         <a href="{{ route('category.showPosts', ['category' => $firstPolitic->category->id]) }}"
@@ -70,12 +72,13 @@
                         </a>
                     </h5>
                     <div class="row">
-                        <div class="col-7 category-post-container">
+                        <div class="col-xl-7 col-12 mb-3 mb-3 category-post-container">
                             <div class="item">
                                 <small class="category-name">{{ $firstPolitic->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="{{ route('post.showPostDetail', ['post' => $firstPolitic->id]) }}" class="link" title="{{ $firstPolitic->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstPolitic->id]) }}"
+                                            class="link" title="{{ $firstPolitic->title_vi }}">
                                             {{ $firstPolitic->title_vi }}
                                         </a>
                                     </h5>
@@ -86,7 +89,7 @@
                                 <img src="{{ asset($firstPolitic->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-xl-5 col-12">
                             @foreach ($politics as $post)
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -96,7 +99,8 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                                    class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -110,7 +114,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-xl-3 col-12">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstPolitic->category->name_vi }}</p>
                     @foreach ($politicTopComments as $post)
@@ -122,7 +126,8 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                            class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -142,7 +147,7 @@
         </div>
         {{-- Kinh doanh --}}
         <div class="row mb-3">
-            <div class="col-9">
+            <div class="col-xl-9 col-12">
                 <div class="categories-container politics">
                     <h5 class="bg-blue">
                         <a href="{{ route('category.showPosts', ['category' => $firstBusiness->category->id]) }}"
@@ -151,12 +156,13 @@
                         </a>
                     </h5>
                     <div class="row">
-                        <div class="col-7 category-post-container">
+                        <div class="col-xl-7 col-12 mb-3 mb-3 category-post-container">
                             <div class="item">
                                 <small class="category-name">{{ $firstBusiness->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="{{ route('post.showPostDetail', ['post' => $firstBusiness->id]) }}" class="link" title="{{ $firstBusiness->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstBusiness->id]) }}"
+                                            class="link" title="{{ $firstBusiness->title_vi }}">
                                             {{ $firstBusiness->title_vi }}
                                         </a>
                                     </h5>
@@ -167,7 +173,7 @@
                                 <img src="{{ asset($firstBusiness->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-xl-5 col-12">
                             @foreach ($business as $post)
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -177,7 +183,8 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                                    class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -191,7 +198,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-xl-3 col-12">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstBusiness->category->name_vi }}</p>
                     @foreach ($businessTopComments as $post)
@@ -203,7 +210,8 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                            class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -223,7 +231,7 @@
         </div>
         {{-- Khoa học và công nghệ --}}
         <div class="row mb-3">
-            <div class="col-9">
+            <div class="col-xl-9 col-12">
                 <div class="categories-container politics">
                     <h5 class="bg-blue">
                         <a href="{{ route('category.showPosts', ['category' => $firstSnT->category->id]) }}"
@@ -232,12 +240,13 @@
                         </a>
                     </h5>
                     <div class="row">
-                        <div class="col-7 category-post-container">
+                        <div class="col-xl-7 col-12 mb-3 category-post-container">
                             <div class="item">
                                 <small class="category-name">{{ $firstSnT->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="{{ route('post.showPostDetail', ['post' => $firstSnT->id]) }}" class="link" title="{{ $firstSnT->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstSnT->id]) }}"
+                                            class="link" title="{{ $firstSnT->title_vi }}">
                                             {{ $firstSnT->title_vi }}
                                         </a>
                                     </h5>
@@ -248,7 +257,7 @@
                                 <img src="{{ asset($firstSnT->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col--xl-5 col-12">
                             @foreach ($SnTs as $post)
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -258,7 +267,8 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                                    class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -272,7 +282,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-xl-3 col-12">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstSnT->category->name_vi }}</p>
                     @foreach ($SnTTopComments as $post)
@@ -284,7 +294,8 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                            class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -304,7 +315,7 @@
         </div>
         {{-- Sức khoẻ và cộng đồng --}}
         <div class="row mb-3">
-            <div class="col-9">
+            <div class="col-xl-9 col-12">
                 <div class="categories-container politics">
                     <h5 class="bg-blue">
                         <a href="{{ route('category.showPosts', ['category' => $firstHnC->category->id]) }}"
@@ -313,12 +324,13 @@
                         </a>
                     </h5>
                     <div class="row">
-                        <div class="col-7 category-post-container">
+                        <div class="col-xl-7 col-12 mb-3 category-post-container">
                             <div class="item">
                                 <small class="category-name">{{ $firstHnC->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="{{ route('post.showPostDetail', ['post' => $firstHnC->id]) }}" class="link" title="{{ $firstHnC->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstHnC->id]) }}"
+                                            class="link" title="{{ $firstHnC->title_vi }}">
                                             {{ $firstHnC->title_vi }}
                                         </a>
                                     </h5>
@@ -329,7 +341,7 @@
                                 <img src="{{ asset($firstHnC->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-xl-5 col-12">
                             @foreach ($HnCs as $post)
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -339,7 +351,8 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                                    class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -353,7 +366,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-xl-3 col-12">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstHnC->category->name_vi }}</p>
                     @foreach ($HnCTopComments as $post)
@@ -365,7 +378,8 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                            class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -385,7 +399,7 @@
         </div>
         {{-- Du lịch --}}
         <div class="row mb-3">
-            <div class="col-9">
+            <div class="col-xl-9 col-12">
                 <div class="categories-container politics">
                     <h5 class="bg-blue">
                         <a href="{{ route('category.showPosts', ['category' => $firstTravel->category->id]) }}"
@@ -394,12 +408,13 @@
                         </a>
                     </h5>
                     <div class="row">
-                        <div class="col-7 category-post-container">
+                        <div class="col-xl-7 col-12 mb-3 category-post-container">
                             <div class="item">
                                 <small class="category-name">{{ $firstTravel->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="{{ route('post.showPostDetail', ['post' => $firstTravel->id]) }}" class="link" title="{{ $firstTravel->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstTravel->id]) }}"
+                                            class="link" title="{{ $firstTravel->title_vi }}">
                                             {{ $firstTravel->title_vi }}
                                         </a>
                                     </h5>
@@ -410,7 +425,7 @@
                                 <img src="{{ asset($firstTravel->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-xl-5 col-12">
                             @foreach ($travels as $post)
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
@@ -420,7 +435,8 @@
                                     <div class="small-title-container">
                                         <p class="title">
                                             <strong>
-                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                                    class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -434,7 +450,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-xl-3 col-12">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstTravel->category->name_vi }}</p>
                     @foreach ($travelTopComments as $post)
@@ -446,7 +462,8 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                            class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -466,7 +483,7 @@
         </div>
         {{-- Thể thao --}}
         <div class="row mb-5">
-            <div class="col-9">
+            <div class="col-xl-9 col-12">
                 <div class="categories-container politics">
                     <h5 class="bg-blue">
                         <a href="{{ route('category.showPosts', ['category' => $firstSport->category->id]) }}"
@@ -475,12 +492,13 @@
                         </a>
                     </h5>
                     <div class="row">
-                        <div class="col-7 category-post-container">
+                        <div class="col-xl-7 col-12 mb-3 category-post-container">
                             <div class="item">
                                 <small class="category-name">{{ $firstSport->type->name_vi }}</small>
                                 <div class="title-container">
                                     <h5 class="title">
-                                        <a href="{{ route('post.showPostDetail', ['post' => $firstSport->id]) }}" class="link" title="{{ $firstSport->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $firstSport->id]) }}"
+                                            class="link" title="{{ $firstSport->title_vi }}">
                                             {{ $firstSport->title_vi }}
                                         </a>
                                     </h5>
@@ -491,17 +509,18 @@
                                 <img src="{{ asset($firstSport->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
-                        <div class="col-5">
+                        <div class="col-xl-5 col-12">
                             @foreach ($sports as $post)
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
                                     <div class="img-container">
                                         <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                                     </div>
-                                    <div class="small-title-container">
+                                    <div class="small-title-container small-title-container-sm">
                                         <p class="title">
                                             <strong>
-                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                                <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                                    class="link" title="{{ $post->title_vi }}">
                                                     {{ $post->title_vi }}
                                                 </a>
                                             </strong>
@@ -515,7 +534,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-xl-3 col-12">
                 <div class="categories-container">
                     <p class="title bg-secondary">Phổ biến - {{ $firstSport->category->name_vi }}</p>
                     @foreach ($sportTopComments as $post)
@@ -527,7 +546,8 @@
                             <div class="small-title-container">
                                 <p class="title">
                                     <strong>
-                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link" title="{{ $post->title_vi }}">
+                                        <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                            class="link" title="{{ $post->title_vi }}">
                                             {{ $post->title_vi }}
                                         </a>
                                     </strong>
@@ -576,6 +596,12 @@
 
         .small-title-container {
             flex: 1;
+        }
+
+        @media only screen and (max-width: 1180px) {
+            .small-title-container {
+                flex: 3;
+            }
         }
 
         .small-date {

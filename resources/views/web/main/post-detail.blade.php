@@ -299,13 +299,11 @@
                         <!-- Button trigger modal -->
                         <p class="my-3">
                             Vui lòng
-                            <a href="{{ route('login.show') }}" data-toggle="modal" data-target="#login-modal">
+                            <a href="javascript:void(0)" data-toggle="modal" data-target="#login-modal">
                                 đăng nhập
                             </a>
                             để bình luận
                         </p>
-                        {{-- Modal login --}}
-                        @include('web.parts._header._loggin-modal')
                     @endif
                 </div>
             </div>

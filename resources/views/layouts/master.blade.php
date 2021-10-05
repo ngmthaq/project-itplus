@@ -41,6 +41,27 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $(function() {
+            // Sidebar
+            $('.sidebar-button').click(function() {
+                $('.sidebar').fadeIn('fast');
+                $('body').css('overflow-y', 'hidden');
+            })
+            $('.close-sidebar').click(function() {
+                $('.sidebar').fadeOut('fast');
+                $('body').css('overflow-y', 'scroll');
+            })
+
+            // Search form submit handle
+            $('.search-form').submit(function(e) {
+                let isValidated = true;
+                if ($('#search-input').val() == "") {
+                    isValidated = false;
+                }
+                if (!isValidated) {
+                    e.preventDefault();
+                }
+            })
+
             // Header search
             $('.search-button').click(function() {
                 $('.search-box').fadeIn("fast");

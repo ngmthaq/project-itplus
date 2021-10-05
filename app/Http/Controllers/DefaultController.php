@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DefaultController extends Controller
 {
@@ -94,6 +96,30 @@ class DefaultController extends Controller
             'site' => 'contact',
             'categories' => Category::all()
         ]);
+    }
+
+    public function addFeedback(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email',
+            'subject' => 'required',
+            'content' => 'required',
+        ]);
+        $feedback = DB::table('feedbacks')->insert([
+            'first_name' => $request->input('first_name'),
+            'last_name' => $request->input('last_name'),
+            'email' => $request->input('email'),
+            'subject' => $request->input('subject'),
+            'content' => $request->input('content'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+        if ($feedback) {
+            return redirect(route('contact'))->with('success', 'Gửi phản hồi thành công');
+        }
+        return redirect(route('contact'))->with('error', 'Gửi phản hồi thất bại, xin vui lòng thử lại');
     }
 
     public function policy()

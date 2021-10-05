@@ -18,7 +18,7 @@
                 <form action="{{ route('register') }}" class="register-form" method="POST">
                     @csrf
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group col-12">
                             <h2>Đăng ký</h2>
                         </div>
                     </div>

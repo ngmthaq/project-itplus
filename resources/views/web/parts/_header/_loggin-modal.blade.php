@@ -68,6 +68,30 @@
                             </label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <hr>
+                        <p class="text-center mb-3">Hoặc đăng nhập bằng</p>
+                        <div class="socialite-box d-flex flex-column align-items-center justify-content-center h-100">
+                            {{-- <a class="social-login social-login-sm facebook" href="{{ route('facebook.loginUsingFacebook') }}">
+                                <span class="d-inline-block pr-3">
+                                    <i class="fab fa-facebook-f"></i>
+                                </span>
+                                Đăng nhập bằng Facebook
+                            </a> --}}
+                            <a class="social-login social-login-sm google" href="{{ route('google.loginUsingGoogle') }}">
+                                <span class="d-inline-block pr-3 blue">
+                                    <i class="fab fa-google"></i>
+                                </span>
+                                Đăng nhập bằng Google
+                            </a>
+                            <a class="social-login social-login-sm github" href="{{ route('github.loginUsingGithub') }}">
+                                <span class="d-inline-block pr-3">
+                                    <i class="fab fa-github"></i>
+                                </span>
+                                Đăng nhập bằng Github
+                            </a>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
