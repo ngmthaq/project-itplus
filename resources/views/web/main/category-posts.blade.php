@@ -62,6 +62,7 @@
             left: 0;
             padding: 1px 2px;
         }
+
     </style>
 @endpush
 
@@ -77,30 +78,33 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-9">
+            <div class="col-12 col-xl-9">
                 <div class="row mb-3" id="casual">
                     <div class="col-12">
                         <h5 class="py-3">Bài viết mới</h5>
                     </div>
                     @if (count($casualPosts) > 0)
                         @foreach ($casualPosts as $post)
-                            <div class="col-4 casual-posts">
+                            <div class="col-12 col-md-6 col-xl-4 casual-posts">
                                 <div class="post-container mb-3">
                                     <small class="category-type">
                                         {{ $post->category->name_vi }} - {{ $post->type->name_vi }}
                                     </small>
                                     <div class="img-container">
-                                        <img src="{{ $post->cover_url }}" alt="{{ $post->cover_url }}" width="100%"
+                                        <img class="lazyload" data-src="{{ $post->cover_url }}"
+                                            src="{{ $post->cover_url }}" alt="{{ $post->cover_url }}" width="100%"
                                             height="100%">
                                     </div>
                                     <div class="content-container">
                                         <h5 class="title" title="{{ $post->title_vi }}">
-                                            <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link">{{ $post->title_vi }}</a>
+                                            <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                                class="link">{{ $post->title_vi }}</a>
                                         </h5>
                                         <p class="subtitle" title="{{ $post->subtitle_vi }}">
                                             {{ $post->subtitle_vi }}
                                         </p>
-                                        <small class="mb-2 d-block">Đăng bài: {{ date('d/m/Y', strtotime($post->created_at)) }}</small>
+                                        <small class="mb-2 d-block">Đăng bài:
+                                            {{ date('d/m/Y', strtotime($post->created_at)) }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -127,23 +131,26 @@
                     </div>
                     @if (count($videoPosts) > 0)
                         @foreach ($videoPosts as $post)
-                            <div class="col-4 video-posts">
+                            <div class="col-12 col-md-6 col-xl-4 casual-posts">
                                 <div class="post-container mb-3">
                                     <small class="category-type">
                                         {{ $post->category->name_vi }} - {{ $post->type->name_vi }}
                                     </small>
                                     <div class="img-container">
-                                        <img src="{{ $post->cover_url }}" alt="{{ $post->cover_url }}" width="100%"
+                                        <img class="lazyload" data-src="{{ $post->cover_url }}"
+                                            src="{{ $post->cover_url }}" alt="{{ $post->cover_url }}" width="100%"
                                             height="100%">
                                     </div>
                                     <div class="content-container">
                                         <h5 class="title" title="{{ $post->title_vi }}">
-                                            <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link">{{ $post->title_vi }}</a>
+                                            <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                                class="link">{{ $post->title_vi }}</a>
                                         </h5>
                                         <p class="subtitle" title="{{ $post->subtitle_vi }}">
                                             {{ $post->subtitle_vi }}
                                         </p>
-                                        <small class="mb-2 d-block">Đăng bài: {{ date('d/m/Y', strtotime($post->created_at)) }}</small>
+                                        <small class="mb-2 d-block">Đăng bài:
+                                            {{ date('d/m/Y', strtotime($post->created_at)) }}</small>
                                     </div>
                                 </div>
                             </div>
@@ -165,8 +172,8 @@
                     </div>
                 @endif
             </div>
-            <div class="col-3">
-                <h5 class="py-3">&nbsp;</h5>
+            <div class="col-12 col-xl-3 d-block d-md-flex justify-content-between d-xl-block mt-3 mt-xl-0">
+                <h5 class="py-3 d-none d-xl-block">&nbsp;</h5>
                 <div class="mb-3">
                     <h5 class="py-3 px-1 bg-blue text-center">Danh mục</h5>
                     <div class="category-count-container p-1 bg-light">
@@ -181,21 +188,26 @@
                                 </li>
                             @endforeach
                         </ul>
+                        @include('web.parts.fb._page')
                     </div>
                 </div>
-                <div class="popular-posts mb-3">
+                <div class="popular-posts mb-3 pl-0 pl-md-3 pl-xl-0">
                     <h5 class="py-3 px-1 bg-secondary text-center text-light">Phổ biến</h5>
                     <ul class="popular-posts-container bg-light pb-1">
                         @foreach ($popularPosts as $post)
-                            <li class="label-container popular-item mb-3" style="height: 120px; border-bottom: 1px solid #999;">
+                            <li class="label-container popular-item mb-3"
+                                style="height: 120px; border-bottom: 1px solid #999;">
                                 <small class="type-name bg-main">{{ $post->type->name_vi }}</small>
                                 <div class="img-container" style="height: inherit; flex: 1;">
-                                    <img src="{{ $post->cover_url }}" alt="{{ $post->cover_url }}" width="100%" height="100%">
+                                    <img class="lazyload" data-src="{{ $post->cover_url }}"
+                                        src="{{ $post->cover_url }}" alt="{{ $post->cover_url }}" width="100%"
+                                        height="100%">
                                 </div>
                                 <div class="content-container" style="flex: 1;">
                                     <p>
                                         <strong>
-                                            <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link title">
+                                            <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                                                class="link title">
                                                 {{ $post->title_vi }}
                                             </a>
                                             <small>{{ date('d/m/Y', strtotime($post->created_at)) }}</small><br>
@@ -206,7 +218,6 @@
                             </li>
                         @endforeach
                     </ul>
-                    @include('web.parts.fb._page')
                 </div>
             </div>
         </div>

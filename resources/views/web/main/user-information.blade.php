@@ -14,7 +14,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-xl-8">
                 <form onsubmit="return false;" class="my-3">
                     <div class="form-row">
                         <div class="form-group col-12">

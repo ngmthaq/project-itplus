@@ -27,7 +27,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-8">
+            <div class="col-12 col-lg-8">
                 <p class="pb-3">
                     <strong>The Vietnam Newspaper</strong> là một dự án trang báo chia sẻ thông tin, tin tức
                     của học viên trung tâm ITPlus khoá học lập trình website chuyên nghiệp.
@@ -48,7 +48,7 @@
                     </iframe>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-12 col-lg-8">
                 <div class="img-box">
                     <img src="{{ asset('assets/images/THE VIETNAM NEWSPAPER (1).png') }}" alt="logo" width="100%"
                         height="100%">

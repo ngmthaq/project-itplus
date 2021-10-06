@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6 col-12">
                 <div class="py-3">
                     <p><strong>Trường Đại học Thương Mại</strong></p>
                     <p>CS1: 79 Đ. Hồ Tùng Mậu, Mai Dịch, Cầu Giấy, Hà Nội</p>
@@ -46,7 +46,7 @@
                     <p>Email: mail***@***.edu.vn</p>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6 col-12">
                 <h5 class="pb-3">Fanpage</h5>
                 <div class="fb pb-3">
                     <iframe
@@ -59,7 +59,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6 col-12">
                 <h5 class="pb-3">Bản đồ</h5>
                 <div class="contact-map pb-5">
                     <iframe
@@ -68,8 +68,8 @@
                     </iframe>
                 </div>
             </div>
-            <div class="col-6">
-                <h5 class="mb-3">Phản hồi lại cho chúng tôi</h5>
+            <div class="col-lg-6 col-12">
+                <h5 class="mb-3 mt-3 mt-lg-0">Phản hồi lại cho chúng tôi</h5>
                 <div class="contact-form-container bg-light p-3">
                     <form action="{{ route('addFeedback') }}" class="feedback-form" method="POST">
                         @csrf

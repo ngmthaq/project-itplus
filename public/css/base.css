@@ -530,3 +530,13 @@ iframe {
 .split-header {
     margin-top: 200px;
 }
+
+@media only screen and (max-width: 1180px) {
+    .split-header {
+        margin-top: 150px;
+    }
+
+    .breadcrum {
+        margin-top: 150px;
+    }
+}

@@ -14,7 +14,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-8">
+            <div class="col-xl-8 col-12">
                 <form action="{{ route('userInformation.edit') }}" class="edit-form" method="POST">
                     @csrf
                     @method('PUT')
@@ -139,9 +139,7 @@
 @endsection
 
 @push('css')
-    <style>
 
-    </style>
 @endpush
 
 @push('js')

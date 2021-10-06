@@ -1,1 +1,1 @@
-<a class="scroll-to-top" href="#">TOP</a>
+<a class="scroll-to-top text-light" href="#">TOP</a>

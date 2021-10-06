@@ -36,7 +36,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <div class="py-3">
                     <p><strong>Trường Đại học Thương Mại</strong></p>
                     <p>CS1: 79 Đ. Hồ Tùng Mậu, Mai Dịch, Cầu Giấy, Hà Nội</p>
@@ -46,7 +46,7 @@
                     <p>Email: mail***@***.edu.vn</p>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-12 col-lg-6">
                 <p>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore saepe fuga harum quasi voluptates
                     laborum commodi explicabo, quia dolor labore at iusto praesentium blanditiis? Rem, provident id?

@@ -72,7 +72,7 @@
                 </form>
             </div>
             <div class="col-lg-6">
-                <div class="socialite-box d-flex flex-column align-items-center justify-content-center h-100">
+                <div class="socialite-box d-flex flex-column align-items-center justify-content-start justify-content-lg-center h-100 mb-5 mb-lg-0">
                     <p class="mb-3">Hoặc đăng nhập bằng</p>
                     {{-- <a class="social-login facebook" href="{{ route('facebook.loginUsingFacebook') }}">
                         <span class="d-inline-block pr-3">

@@ -99,7 +99,7 @@
 
         .user-information {
             /* display: flex;
-                                                                            align-items: flex-start; */
+                                                                                align-items: flex-start; */
         }
 
         .user-image {
@@ -167,15 +167,15 @@
         <div class="row mb-3">
             <div class="col-12">
                 <ul class="breadcrum vi mt-0">
-                    <li><a href="/">Trang chủ</a></li>
+                    <li style="width: 50px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"><a href="/">Trang chủ</a></li>
                     <li><i class="fas fa-angle-right"></i></li>
-                    <li>
+                    <li style="width: 60px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                         <a href="{{ route('category.showPosts', ['category' => $category->id]) }}">
                             {{ $category->name_vi }}
                         </a>
                     </li>
                     <li><i class="fas fa-angle-right"></i></li>
-                    <li style="width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                    <li style="width: 100px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
                         title="{{ $post->title_vi }}">
                         {{ $post->title_vi }}
                     </li>
@@ -183,7 +183,7 @@
             </div>
         </div>
         <div class="row mb-3">
-            <div class="col-9">
+            <div class="col-xl-9 col-12">
                 <h5 class="py-3 px-2">
                     {{ $category->name_vi }}
                 </h5>
@@ -194,14 +194,6 @@
                             Ngày đăng: {{ date('d/m/Y', strtotime($post->created_at)) }}
                             bởi {{ $post->user->first_name }} {{ $post->user->last_name }}
                         </small>
-                    <div class="fb-share-button mb-3" data-href="{{ Request::url() }}" data-layout="button_count"
-                        data-size="small">
-                        <a target="_blank"
-                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
-                            class="fb-xfbml-parse-ignore">Chia sẻ
-                        </a>
-                    </div>
-                    <div class="fb-save" data-uri="{{ Request::url() }}" data-size="small"></div>
                     </p>
                     <p>{{ $post->subtitle_vi }}</p>
                     @if ($post->type_id == 1)
@@ -307,8 +299,8 @@
                     @endif
                 </div>
             </div>
-            <div class="col-3">
-                <h5 class="py-3">&nbsp;</h5>
+            <div class="col-12 col-xl-3 d-block d-md-flex justify-content-between d-xl-block mt-3 mt-xl-0">
+                <h5 class="py-3 d-none d-xl-block">&nbsp;</h5>
                 <div class="mb-3">
                     <h5 class="py-3 px-1 bg-blue text-center">Danh mục</h5>
                     <div class="category-count-container p-1 bg-light">
@@ -323,9 +315,10 @@
                                 </li>
                             @endforeach
                         </ul>
+                        @include('web.parts.fb._page')
                     </div>
                 </div>
-                <div class="popular-posts mb-3">
+                <div class="popular-posts mb-3 pl-0 pl-md-3 pl-xl-0">
                     <h5 class="py-3 px-1 bg-secondary text-center text-light">Phổ biến</h5>
                     <ul class="popular-posts-container bg-light pb-1">
                         @foreach ($popularPosts as $post)
@@ -333,7 +326,8 @@
                                 style="height: 120px; border-bottom: 1px solid #999;">
                                 <small class="type-name bg-main">{{ $post->type->name_vi }}</small>
                                 <div class="img-container" style="height: inherit; flex: 1;">
-                                    <img src="{{ $post->cover_url }}" alt="{{ $post->cover_url }}" width="100%"
+                                    <img class="lazyload" data-src="{{ $post->cover_url }}"
+                                        src="{{ $post->cover_url }}" alt="{{ $post->cover_url }}" width="100%"
                                         height="100%">
                                 </div>
                                 <div class="content-container" style="flex: 1;">
@@ -352,7 +346,6 @@
                         @endforeach
                     </ul>
                 </div>
-                @include('web.parts.fb._page')
             </div>
         </div>
     </div>

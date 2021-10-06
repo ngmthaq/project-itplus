@@ -1,5 +1,5 @@
-@foreach ($videoPosts as $post)
-    <div class="col-4">
+@foreach ($posts as $post)
+    <div class="col-12 col-md-6 col-lg-4">
         <div class="post-container mb-3">
             <small class="category-type">
                 {{ $post->category->name_vi }} - {{ $post->type->name_vi }}
@@ -9,11 +9,11 @@
             </div>
             <div class="content-container">
                 <h5 class="title" title="{{ $post->title_vi }}">
-                    <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}" class="link">{{ $post->title_vi }}</a>
+                    <a href="{{ route('post.showPostDetail', ['post' => $post->id]) }}"
+                        class="link">{{ $post->title_vi }}</a>
                 </h5>
-                <p class="subtitle" title="{{ $post->subtitle_vi }}">
-                    {{ $post->subtitle_vi }}
-                </p>
+                <p class="subtitle" title="{{ $post->subtitle_vi }}">{{ $post->subtitle_vi }}</p>
+                <small class="mb-2 d-block">Đăng bài: {{ date('d/m/Y', strtotime($post->created_at)) }}</small>
             </div>
         </div>
     </div>

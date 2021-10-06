@@ -30,13 +30,14 @@
                                 <p class="subtitle" title="{{ $slider->subtitle_vi }}">{{ $slider->subtitle_vi }}
                                 </p>
                             </div>
-                            <img src="{{ asset($slider->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                            <img class="lazyload" data-src="{{ asset($slider->cover_url) }}"
+                                src="{{ asset($slider->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                         </div>
                     @endforeach
                 </div>
             </div>
             @foreach ($videoPosts as $post)
-                <div class="col-12 col-xl-3 pb-3">
+                <div class="col-12 col-md-6 col-xl-3 pb-3">
                     <div class="item">
                         <small class="category-name">
                             <a href="{{ route('category.showPosts', ['category' => $post->category->id]) }}"
@@ -56,7 +57,8 @@
                             <small>{{ date('d/m/Y', strtotime($post->created_at)) }}</small>
                             <p class="subtitle" title="{{ $post->subtitle_vi }}">{{ $post->subtitle_vi }}</p>
                         </div>
-                        <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                        <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                            src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                     </div>
                 </div>
             @endforeach
@@ -86,7 +88,8 @@
                                     <p class="subtitle" title="{{ $firstPolitic->subtitle_vi }}">
                                         {{ $firstPolitic->subtitle_vi }}</p>
                                 </div>
-                                <img src="{{ asset($firstPolitic->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($firstPolitic->cover_url) }}"
+                                    src="{{ asset($firstPolitic->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
                         <div class="col-xl-5 col-12">
@@ -94,7 +97,8 @@
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
                                     <div class="img-container">
-                                        <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                        <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                            src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                                     </div>
                                     <div class="small-title-container">
                                         <p class="title">
@@ -121,7 +125,8 @@
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
                             <div class="img-container">
-                                <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                    src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                             <div class="small-title-container">
                                 <p class="title">
@@ -170,7 +175,8 @@
                                     <p class="subtitle" title="{{ $firstBusiness->subtitle_vi }}">
                                         {{ $firstBusiness->subtitle_vi }}</p>
                                 </div>
-                                <img src="{{ asset($firstBusiness->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($firstBusiness->cover_url) }}"
+                                    src="{{ asset($firstBusiness->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
                         <div class="col-xl-5 col-12">
@@ -178,7 +184,8 @@
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
                                     <div class="img-container">
-                                        <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                        <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                            src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                                     </div>
                                     <div class="small-title-container">
                                         <p class="title">
@@ -205,7 +212,8 @@
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
                             <div class="img-container">
-                                <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                    src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                             <div class="small-title-container">
                                 <p class="title">
@@ -254,15 +262,17 @@
                                     <p class="subtitle" title="{{ $firstSnT->subtitle_vi }}">
                                         {{ $firstSnT->subtitle_vi }}</p>
                                 </div>
-                                <img src="{{ asset($firstSnT->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($firstSnT->cover_url) }}"
+                                    src="{{ asset($firstSnT->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
-                        <div class="col--xl-5 col-12">
+                        <div class="col-xl-5 col-12">
                             @foreach ($SnTs as $post)
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
                                     <div class="img-container">
-                                        <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                        <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                            src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                                     </div>
                                     <div class="small-title-container">
                                         <p class="title">
@@ -289,7 +299,8 @@
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
                             <div class="img-container">
-                                <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                    src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                             <div class="small-title-container">
                                 <p class="title">
@@ -338,7 +349,8 @@
                                     <p class="subtitle" title="{{ $firstHnC->subtitle_vi }}">
                                         {{ $firstHnC->subtitle_vi }}</p>
                                 </div>
-                                <img src="{{ asset($firstHnC->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($firstHnC->cover_url) }}"
+                                    src="{{ asset($firstHnC->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
                         <div class="col-xl-5 col-12">
@@ -346,7 +358,8 @@
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
                                     <div class="img-container">
-                                        <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                        <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                            src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                                     </div>
                                     <div class="small-title-container">
                                         <p class="title">
@@ -373,7 +386,8 @@
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
                             <div class="img-container">
-                                <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                    src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                             <div class="small-title-container">
                                 <p class="title">
@@ -422,7 +436,8 @@
                                     <p class="subtitle" title="{{ $firstTravel->subtitle_vi }}">
                                         {{ $firstTravel->subtitle_vi }}</p>
                                 </div>
-                                <img src="{{ asset($firstTravel->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($firstTravel->cover_url) }}"
+                                    src="{{ asset($firstTravel->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
                         <div class="col-xl-5 col-12">
@@ -430,7 +445,8 @@
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
                                     <div class="img-container">
-                                        <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                        <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                            src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                                     </div>
                                     <div class="small-title-container">
                                         <p class="title">
@@ -457,7 +473,8 @@
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
                             <div class="img-container">
-                                <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                    src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                             <div class="small-title-container">
                                 <p class="title">
@@ -506,7 +523,8 @@
                                     <p class="subtitle" title="{{ $firstSport->subtitle_vi }}">
                                         {{ $firstSport->subtitle_vi }}</p>
                                 </div>
-                                <img src="{{ asset($firstSport->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($firstSport->cover_url) }}"
+                                    src="{{ asset($firstSport->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                         </div>
                         <div class="col-xl-5 col-12">
@@ -514,7 +532,8 @@
                                 <div class="small-item" style="position: relative; flex: 1;">
                                     <small class="category-name">{{ $post->type->name_vi }}</small>
                                     <div class="img-container">
-                                        <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                        <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                            src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                                     </div>
                                     <div class="small-title-container small-title-container-sm">
                                         <p class="title">
@@ -541,7 +560,8 @@
                         <div class="small-item" style="position: relative; flex: 1;">
                             <small class="category-name">{{ $post->type->name_vi }}</small>
                             <div class="img-container">
-                                <img src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
+                                <img class="lazyload" data-src="{{ asset($post->cover_url) }}"
+                                    src="{{ asset($post->cover_url) }}" alt="Ảnh" width="100%" height="100%">
                             </div>
                             <div class="small-title-container">
                                 <p class="title">
@@ -601,6 +621,12 @@
         @media only screen and (max-width: 1180px) {
             .small-title-container {
                 flex: 3;
+            }
+        }
+
+        @media only screen and (max-width: 992px) {
+            .small-title-container {
+                flex: 2;
             }
         }
 

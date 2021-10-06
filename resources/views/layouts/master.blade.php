@@ -39,6 +39,10 @@
     <script src="{{ asset('vendors/fontawesome/js/all.min.js') }}"></script>
     <script src="{{ asset('vendors/owlcarousel/dist/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+    <script>
+        lazyload();
+    </script>
     <script>
         $(function() {
             // Sidebar

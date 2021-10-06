@@ -169,7 +169,8 @@
             </li>
         @endforeach
         <li class="dropdown-button">
-            <a href="{{ route('category.showVideos') }}" class="sidebar-item @php echo $site == 'videos' ? 'active' : '' @endphp">
+            <a href="{{ route('category.showVideos') }}"
+                class="sidebar-item @php echo $site == 'videos' ? 'active' : '' @endphp">
                 Video
             </a>
         </li>
@@ -179,7 +180,8 @@
             </a>
         </li>
         <li>
-            <a class="sidebar-item @php echo $site == 'contact' ? 'active' : '' @endphp" href="{{ route('contact') }}">
+            <a class="sidebar-item @php echo $site == 'contact' ? 'active' : '' @endphp"
+                href="{{ route('contact') }}">
                 Liên hệ
             </a>
         </li>
@@ -188,13 +190,19 @@
     <ul class="d-block text-center mb-3">
         @if (!Auth::check())
             <li>
-                <a class="sidebar-item @php echo $site == 'login' ? 'active' : '' @endphp" href="javascript:void(0)"
-                    data-toggle="modal" data-target="#login-modal">
-                    Đăng nhập
-                </a>
+                @if ($site == 'register' || $site == 'login' || $site == 'contact' || $site == 'resetPassword')
+                    <a class="sidebar-item @php echo $site == 'login' ? 'active' : '' @endphp" href="{{ route('login.show') }}">
+                        Đăng nhập
+                    </a>
+                @else
+                    <a class="sidebar-item" href="javascript:void(0)" data-toggle="modal" data-target="#login-modal">
+                        Đăng nhập
+                    </a>
+                @endif
             </li>
             <li>
-                <a class="sidebar-item @php echo $site == 'register' ? 'active' : '' @endphp" href="{{ route('register.show') }}">
+                <a class="sidebar-item @php echo $site == 'register' ? 'active' : '' @endphp"
+                    href="{{ route('register.show') }}">
                     Đăng ký
                 </a>
             </li>
@@ -225,4 +233,6 @@
         @endif
     </ul>
 </aside>
-@include('web.parts._header._loggin-modal')
+@if ($site != 'register' && $site != 'login' && $site != 'contact' && $site != 'resetPassword')
+    @include('web.parts._header._loggin-modal')
+@endif
