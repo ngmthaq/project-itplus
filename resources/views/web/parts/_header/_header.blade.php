@@ -127,7 +127,7 @@
                             <button type="button" class="close-search-box">&times;</button>
                             <div class="search-content">
                                 <input type="text" name="search_input" id="search-input" class="search-input"
-                                    placeholder="Tìm kiếm...">
+                                    placeholder="Tìm kiếm..." autocomplete="off">
                                 <button type="submit" class="button-md-main d-flex" style="margin: 4px auto;">
                                     Tìm kiếm
                                 </button>
