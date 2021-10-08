@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Events\ResetPasswordConfirmed;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\ResetPasswordRequest;
@@ -55,7 +56,8 @@ class UserController extends Controller
         $request->flash();
         $user = User::where('email', 'like', '%' . trim($request->input('email')) . '%')->first();
         if ($user) {
-            Mail::to(trim($request->input('email')))->send(new ResetPasswordMail($user));
+            // Phát sự kiện ngườI dùng confirm email
+            event(new ResetPasswordConfirmed($user));
             return redirect(route('user.getEmail'))->with('error', 'Chúng tôi đã gửi thư vào email của bạn, vui lòng kiểm tra email và xác thực');
         }
         return redirect(route('user.getEmail'))->with('invalid_email', 'Không tồn tại email');
