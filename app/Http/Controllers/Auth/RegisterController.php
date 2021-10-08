@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
+use App\Jobs\SendRegisterMail;
 use App\Mail\VerifyEmail;
 use App\Models\Category;
 use App\Models\User;
@@ -42,7 +43,7 @@ class RegisterController extends Controller
             ]);
         }
         if ($userInformation) {
-            Mail::to($user->email)->send(new VerifyEmail($user));
+            SendRegisterMail::dispatch($user);
             return redirect('/')->with('error', 'Chúng tôi đã gửi liên kết xác thực vào email của bạn, vui lòng kiểm tra hòm thư của bạn để xác thực tài khoản');
         } else {
             $user->delete();

@@ -669,7 +669,7 @@
         .title-container .title {
             color: #000;
             padding: 12px 6px 6px;
-            height: 60px;
+            height: 58px;
             overflow: hidden;
             display: -webkit-box;
             -webkit-line-clamp: 2;
