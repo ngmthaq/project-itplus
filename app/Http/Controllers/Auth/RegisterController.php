@@ -43,6 +43,7 @@ class RegisterController extends Controller
             ]);
         }
         if ($userInformation) {
+            // Lưu job vào queue để gửi email register
             SendRegisterMail::dispatch($user);
             return redirect('/')->with('error', 'Chúng tôi đã gửi liên kết xác thực vào email của bạn, vui lòng kiểm tra hòm thư của bạn để xác thực tài khoản');
         } else {
