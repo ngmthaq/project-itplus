@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class UserInformationController extends Controller
 {
+    /**
+     * Show user's information
+     *
+     * @return view
+     */
     public function show()
     {
         return view('web.main.user-information', [
@@ -20,6 +25,11 @@ class UserInformationController extends Controller
         ]);
     }
 
+    /**
+     * Show edit user's information form
+     *
+     * @return view
+     */
     public function showEditForm()
     {
         return view('web.main.edit-user-information', [
@@ -28,6 +38,13 @@ class UserInformationController extends Controller
         ]);
     }
 
+    /**
+     * Edit user's information handle
+     *
+     * @param EditUserInformationRequest $request
+     *
+     * @return void
+     */
     public function edit(EditUserInformationRequest $request)
     {
         $user = User::find(Auth::user()->id);

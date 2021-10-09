@@ -11,11 +11,21 @@ use Illuminate\Support\Facades\Hash;
 
 class FacebookController extends Controller
 {
+    /**
+     * Login using Facebook button
+     *
+     * @return void
+     */
     public function loginUsingFacebook()
     {
         return Socialite::driver('facebook')->redirect();
     }
 
+    /**
+     * Login using Facebook handle
+     *
+     * @return void
+     */
     public function callbackFromFacebook()
     {
         try {

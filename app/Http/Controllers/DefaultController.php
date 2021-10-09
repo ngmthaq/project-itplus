@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\DB;
 
 class DefaultController extends Controller
 {
+    /**
+     * Show homepage
+     * Todo: load some posts of all categories
+     *
+     * @return view
+     */
     public function index()
     {
         // Site
@@ -57,6 +63,11 @@ class DefaultController extends Controller
         ));
     }
 
+    /**
+     * Todo: Load six lastest posts on this page
+     *
+     * @return view
+     */
     public function breakingNews()
     {
         $categories = Category::all();
@@ -71,6 +82,13 @@ class DefaultController extends Controller
         ));
     }
 
+    /**
+     * Todo: Load more six posts on breaking news page
+     *
+     * @param mixed $post
+     *
+     * @return view
+     */
     public function loadmoreBreakingNews($post)
     {
         $posts = Post::with(['category', 'comments', 'type'])
@@ -82,6 +100,11 @@ class DefaultController extends Controller
         return view('web.parts.posts._breaking-news', compact('posts'));
     }
 
+    /**
+     * About page
+     *
+     * @return view
+     */
     public function about()
     {
         return view('web.main.about-us', [
@@ -90,6 +113,11 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * Contact page
+     *
+     * @return view
+     */
     public function contact()
     {
         return view('web.main.contact', [
@@ -98,6 +126,13 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * Todo: Get user's feedback ang store in database
+     *
+     * @param Request $request
+     *
+     * @return void
+     */
     public function addFeedback(Request $request)
     {
         $request->validate([
@@ -122,6 +157,11 @@ class DefaultController extends Controller
         return redirect(route('contact'))->with('error', 'Gửi phản hồi thất bại, xin vui lòng thử lại');
     }
 
+    /**
+     * Policy page demo
+     *
+     * @return view
+     */
     public function policy()
     {
         return view('web.main.policy', [
@@ -130,6 +170,11 @@ class DefaultController extends Controller
         ]);
     }
 
+    /**
+     * Terms of use page demo
+     *
+     * @return view
+     */
     public function terms()
     {
         return view('web.main.terms', [

@@ -11,11 +11,22 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GithubController extends Controller
 {
+
+    /**
+     * Login using Github button
+     *
+     * @return void
+     */
     public function loginUsingGithub()
     {
         return Socialite::driver('github')->redirect();
     }
 
+    /**
+     * Login using Github handle
+     *
+     * @return void
+     */
     public function callbackFromGithub()
     {
         try {

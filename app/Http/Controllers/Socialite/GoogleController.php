@@ -11,11 +11,21 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleController extends Controller
 {
+/**
+     * Login using Google button
+     *
+     * @return void
+     */
     public function loginUsingGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
 
+    /**
+     * Login using Google handle
+     *
+     * @return void
+     */
     public function callbackFromGoogle()
     {
         try {
