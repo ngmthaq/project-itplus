@@ -13,7 +13,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Mail;
 use phpDocumentor\Reflection\Types\This;
 
-class SendRegisterMail implements ShouldQueue
+class SendRegisterMail
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
