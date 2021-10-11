@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Jobs\SendRegisterMail;
 use App\Models\Category;
 use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
@@ -27,8 +28,9 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password], $rememberMe)) {
             $request->session()->regenerate();
             if (!Auth::user()->email_verified_at) {
+                SendRegisterMail::dispatch(Auth::user());
                 Auth::logout();
-                return redirect(route("login.show"))->with('email_not_verified', 'Vui lòng xác thực email');
+                return redirect(route("login.show"))->with('error', 'Tài khoản này chưa được xác thực. Vui lòng truy cập vào email của bạn và xác thực');
             }
             return redirect('/')->with('login_successfully', 'Đăng nhập thành công');
         }
@@ -44,12 +46,13 @@ class LoginController extends Controller
         if (Auth::attempt(['email' => $email, 'password' => $password], $rememberMe)) {
             $request->session()->regenerate();
             if (!Auth::user()->email_verified_at) {
+                SendRegisterMail::dispatch(Auth::user());
                 Auth::logout();
-                return redirect()->back()->with('error', 'Vui lòng xác thực email');
+                return redirect(route("login.show"))->with('error', 'Tài khoản này chưa được xác thực. Vui lòng truy cập vào email của bạn và xác thực');
             }
             return redirect()->back()->with('success', 'Đăng nhập thành công');
         }
-        return redirect()->back()->with('error', 'Đăng nhập thất bại, kiểm tra lại email hoặc mật khẩu');
+        return redirect(route('login.show'))->with('login_error', 'Đăng nhập thất bại, kiểm tra lại email hoặc mật khẩu');
     }
 
     public function logout()

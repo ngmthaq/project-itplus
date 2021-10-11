@@ -33,10 +33,17 @@
                         </div>
                     </a>
                 @else
-                    <a href="javascript:void(0)" data-toggle="modal" data-target="#login-modal"
-                        class="vi link @php echo $site == 'login' ? ' active ' : '' @endphp">
-                        Đăng nhập
-                    </a>
+                    @if ($site == 'register' || $site == 'login' || $site == 'contact' || $site == 'resetPassword')
+                        <a class="link @php echo $site == 'login' ? 'active' : '' @endphp"
+                            href="{{ route('login.show') }}">
+                            Đăng nhập
+                        </a>
+                    @else
+                        <a class="link" href="javascript:void(0)" data-toggle="modal"
+                            data-target="#login-modal">
+                            Đăng nhập
+                        </a>
+                    @endif
                     <span>/</span>
                     <a href="{{ route('register.show') }}"
                         class="vi link @php echo $site == 'register' ? ' active ' : '' @endphp">
@@ -191,7 +198,8 @@
         @if (!Auth::check())
             <li>
                 @if ($site == 'register' || $site == 'login' || $site == 'contact' || $site == 'resetPassword')
-                    <a class="sidebar-item @php echo $site == 'login' ? 'active' : '' @endphp" href="{{ route('login.show') }}">
+                    <a class="sidebar-item @php echo $site == 'login' ? 'active' : '' @endphp"
+                        href="{{ route('login.show') }}">
                         Đăng nhập
                     </a>
                 @else

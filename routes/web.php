@@ -54,7 +54,7 @@ Route::post('/register', [RegisterController::class, 'register'])
     ->middleware(['authUserCantAccessToLoginAndRegister']);
 
 // Verify email
-Route::get('/verify/{user:remember_token}', [RegisterController::class, 'verify'])
+Route::get('/verify/{user:token}', [RegisterController::class, 'verify'])
     ->name('verify')
     ->where(['user' => '[a-zA-Z0-9]+'])
     ->middleware(['authUserCantAccessToLoginAndRegister']);
@@ -111,10 +111,10 @@ Route::get('password/email', [UserController::class, 'getEmailForm'])
     ->name('user.getEmail');
 Route::post('password/email', [UserController::class, 'sendEmail'])
     ->name('user.sendEmail');
-Route::get('password/reset/{user:remember_token}', [UserController::class, 'resetPasswordForm'])
+Route::get('password/reset/{user:token}', [UserController::class, 'resetPasswordForm'])
     ->name('user.resetPasswordForm')
     ->where(['user' => '[a-zA-Z0-9]+']);
-Route::put('password/reset/{user:remember_token}', [UserController::class, 'resetPassword'])
+Route::put('password/reset/{user:token}', [UserController::class, 'resetPassword'])
     ->name('user.resetPassword')
     ->where(['user' => '[a-zA-Z0-9]+']);
 
@@ -159,7 +159,8 @@ Route::post('/videos/{total}', [CategoryController::class, 'loadmoreVideoPage'])
 // Show post detail
 Route::get('/posts/{post}', [PostController::class, 'showPostDetail'])
     ->name('post.showPostDetail')
-    ->where(['post' => '[0-9]+']);
+    ->where(['post' => '[0-9]+'])
+    ->middleware('isValidPost');
 
 Route::middleware(['authCheck'])->group(function () {
     // Add comment

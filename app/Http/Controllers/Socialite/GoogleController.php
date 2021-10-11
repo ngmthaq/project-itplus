@@ -41,7 +41,7 @@ class GoogleController extends Controller
                     'email' => $user->getEmail(),
                     'password' => 'google' . $user->getId(),
                     'email_verified_at' => Carbon::now(),
-                    'remember_token' => md5($user->getName() . $user->getEmail() . date('Y-m-d H:i:s'))
+                    'token' => md5($user->getName() . $user->getEmail() . date('Y-m-d H:i:s'))
                 ]);
             } else {
                 $saveUser = User::where('email', $user->getEmail())->first();

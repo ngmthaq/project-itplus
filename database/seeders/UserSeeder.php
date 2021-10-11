@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('thang2000'), // thang2000
             'remember_token' => md5('NguyễnThắngnguyenmanhthang2000.fb@gmail.com' . date('Y-m-d H:i:s')),
+            'token' => md5('NguyễnThắngnguyenmanhthang2000.fb@gmail.com' . date('Y-m-d H:i:s')),
         ]);
     }
 }

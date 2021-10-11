@@ -31,7 +31,7 @@ class VerifyEmail extends Mailable
     public function build()
     {
         return $this->view('mail.verify-email', [
-            'remember_token' =>$this->user->remember_token
+            'token' =>$this->user->token
         ])
             ->subject('The Vietnam Newspaper');
     }

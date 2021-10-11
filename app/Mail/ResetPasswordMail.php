@@ -31,7 +31,7 @@ class ResetPasswordMail extends Mailable
     public function build()
     {
         return $this->view('mail.reset-password-email', [
-            'remember_token' => $this->user->remember_token
+            'token' => $this->user->token
         ])->subject('The Vietnam Newspaper | Đặt lại mật khẩu');
     }
 }

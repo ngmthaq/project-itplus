@@ -98,7 +98,7 @@ class UserController extends Controller
         return view('web.main.reset-password', [
             'categories' => Category::all(),
             'site' => 'resetPassword',
-            'user' => $user->remember_token
+            'user' => $user->token
         ]);
     }
 
@@ -117,12 +117,12 @@ class UserController extends Controller
                 'email' => $user->email
             ],
             [
-                'token' => $user->remember_token,
+                'token' => $user->token,
                 'created_at' => Carbon::now()
             ]
         );
         $user->password = trim($request->input('confirm_password'));
-        $user->remember_token = md5($user->first_name . $user->last_name . $user->email . date('Y-m-d H:i:s'));
+        $user->token = md5($user->first_name . $user->last_name . $user->email . date('Y-m-d H:i:s'));
         $user->save();
         Auth::logout();
         return redirect(route('login.show'))->with('success', 'Đặt lại mật khẩu thành công, vui lòng đăng nhập lại bằng mật khẩu mới');

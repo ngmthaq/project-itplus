@@ -9,6 +9,7 @@ use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsAdminOrMod;
 use App\Http\Middleware\IsImage;
 use App\Http\Middleware\IsUserOfComment;
+use App\Http\Middleware\IsValidPost;
 use App\Http\Middleware\IsVideoMp4;
 use App\Http\Middleware\PostWasNotDeleted;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
@@ -83,5 +84,6 @@ class Kernel extends HttpKernel
         'isVideoMp4' => IsVideoMp4::class,
         'postWasNotDeleted' => PostWasNotDeleted::class,
         'isUserOfComment' => IsUserOfComment::class,
+        'isValidPost' => IsValidPost::class,
     ];
 }

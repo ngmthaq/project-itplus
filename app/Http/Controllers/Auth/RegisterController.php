@@ -33,7 +33,7 @@ class RegisterController extends Controller
             'last_name' => trim($request->input('last_name')),
             'email' => trim($request->input('email')),
             'password' => trim($request->input('password')),
-            'remember_token' => md5(trim($request->input('first_name')) . trim($request->input('last_name')) . trim($request->input('email')) . date('Y-m-d H:i:s'))
+            'token' => md5(trim($request->input('first_name')) . trim($request->input('last_name')) . trim($request->input('email')) . date('Y-m-d H:i:s'))
         ]);
         if ($user) {
             $userInformation = $user->userInformation()->create([
@@ -59,12 +59,12 @@ class RegisterController extends Controller
                 'email' => $user->email
             ],
             [
-                'token' => $user->remember_token,
+                'token' => $user->token,
                 'created_at' => Carbon::now()
             ]
         );
         $user->email_verified_at = Carbon::now();
-        $user->remember_token = md5($user->first_name . $user->last_name . $user->email . date('Y-m-d H:i:s'));
+        $user->token = md5($user->first_name . $user->last_name . $user->email . date('Y-m-d H:i:s'));
         $user->save();
         Auth::login($user);
         return redirect('/')->with('success', 'Xác thực tài khoản thành công');
