@@ -97,11 +97,6 @@
             display: block;
         }
 
-        .user-information {
-            /* display: flex;
-                                                                                align-items: flex-start; */
-        }
-
         .user-image {
             width: 30px;
             height: 30px;
@@ -192,10 +187,9 @@
                     <p class="pb-1">
                         <small>
                             Ngày đăng: {{ date('d/m/Y', strtotime($post->created_at)) }}
-                            bởi {{ $post->user->first_name }} {{ $post->user->last_name }}
                         </small>
                     </p>
-                    <p>{{ $post->subtitle_vi }}</p>
+                    <p style="font-size: 18px;">{{ $post->subtitle_vi }}</p>
                     @if ($post->type_id == 1)
                         <div class="post-content pb-3">
                             {!! $post->content_vi !!}

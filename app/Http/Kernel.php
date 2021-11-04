@@ -51,7 +51,12 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            // FOR CRAWL DATA
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // ------------- END ------------------ //
+            
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],

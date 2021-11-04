@@ -94,7 +94,8 @@ class UserController extends Controller
      *
      * @return view
      */
-    public function resetPasswordForm(User $user) {
+    public function resetPasswordForm(User $user)
+    {
         return view('web.main.reset-password', [
             'categories' => Category::all(),
             'site' => 'resetPassword',

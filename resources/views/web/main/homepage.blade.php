@@ -131,7 +131,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-12">
+            <div class="col-xl-3 col-12 bg-light">
                 <div class="categories-container">
                     @if ($firstPolitic)
                         <p class="title bg-secondary">Phổ biến - {{ $firstPolitic->category->name_vi }}</p>
@@ -227,7 +227,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-12">
+            <div class="col-xl-3 col-12 bg-light">
                 <div class="categories-container">
                     @if ($firstBusiness)
                         <p class="title bg-secondary">Phổ biến - {{ $firstBusiness->category->name_vi }}</p>
@@ -320,7 +320,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-12">
+            <div class="col-xl-3 col-12 bg-light">
                 <div class="categories-container">
                     @if ($firstSnT)
                         <p class="title bg-secondary">Phổ biến - {{ $firstSnT->category->name_vi }}</p>
@@ -413,7 +413,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-12">
+            <div class="col-xl-3 col-12 bg-light">
                 <div class="categories-container">
                     @if ($firstHnC)
                         <p class="title bg-secondary">Phổ biến - {{ $firstHnC->category->name_vi }}</p>
@@ -506,7 +506,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-12">
+            <div class="col-xl-3 col-12 bg-light">
                 <div class="categories-container">
                     @if ($firstTravel)
                         <p class="title bg-secondary">Phổ biến - {{ $firstTravel->category->name_vi }}</p>
@@ -599,7 +599,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xl-3 col-12">
+            <div class="col-xl-3 col-12 bg-light">
                 <div class="categories-container">
                     @if ($firstSport)
                         <p class="title bg-secondary">Phổ biến - {{ $firstSport->category->name_vi }}</p>

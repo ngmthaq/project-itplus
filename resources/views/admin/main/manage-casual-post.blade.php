@@ -7,7 +7,7 @@
 @push('css')
     <style>
         .title_vi {
-            max-width: 500px;
+            max-width: 400px;
             text-overflow: ellipsis;
             white-space: nowrap;
             overflow: hidden;
