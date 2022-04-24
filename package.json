@@ -10,12 +10,12 @@
         "production": "mix --production"
     },
     "devDependencies": {
+    },
+    "dependencies": {
         "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
-        "postcss": "^8.1.14"
-    },
-    "dependencies": {
+        "postcss": "^8.1.14",
         "@ckeditor/ckeditor5-build-classic": "^29.2.0",
         "ckeditor4": "^4.16.2"
     }
